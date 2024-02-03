@@ -8,23 +8,21 @@
     "build": "swc tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "prepare": "husky"
+    "prepare": "husky",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "lint-staged": {
-    "*.{ts,tsx,js,jsx}": [
-      "yarn lint:fix"
-    ],
-    "*.{md,json}": [
-      "prettier --write"
+    "**/*.{js,jsx,ts,tsx,html,css,json}": [
+      "yarn prettier --write"
     ]
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run checkTs && lint-staged",
+      "pre-commit": "pnpm run checkTs && lint-staged",
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   },
@@ -44,6 +42,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
     "husky": "^9.0.10",
+    "lint-staged": "^15.2.1",
     "postcss": "^8.4.33",
     "prettier": "^3.2.4",
     "tailwindcss": "^3.4.1",
