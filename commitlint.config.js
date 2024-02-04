@@ -3,7 +3,7 @@ module.exports = {
   parserPreset: {
     parserOpts: {
       referenceActions: null,
-      issuePrefixes: ["HYGEE-", "ISSUE-"],
+      issuePrefixes: ["HYGGE-", "ISSUE-"],
     },
   },
   rules: {

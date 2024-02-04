@@ -20,7 +20,15 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
+    "preserveValueImports": false,
+
+    ////
+    "noImplicitAny": false,
+    "strictNullChecks": true,
+    "allowJs": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true
   },
-  "include": ["src"],
-  "references": [{ "path": "./tsconfig.node.json" }],
+  "include": ["src", "cypress/**/*.tsx", "./cypress.d.ts"],
+  "references": [{ "path": "./tsconfig.node.json" }]
 }
