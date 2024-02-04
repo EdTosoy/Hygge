@@ -10,11 +10,9 @@
   },
 
   "include": [
-    "integration/*.ts",
-    "support/*.ts",
-    "components/*.cy.tsx",
     "../node_modules/cypress",
     "**/*.ts",
+    "**/*.tsx",
     "../cypress.d.ts"
   ]
 }
