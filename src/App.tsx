@@ -1,10 +1,9 @@
 import "./App.css";
-
+import { Layout } from "./layout/index.ts";
 function App() {
   return (
     <div>
-      <ion-icon name="heart" />
-      Poppins
+      <Layout />
     </div>
   );
 }

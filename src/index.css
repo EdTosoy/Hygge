@@ -36,8 +36,13 @@ a {
 
 .grid-container {
   display: grid;
-  grid-template-columns: minmax(1rem, 1fr) minmax(1rem, 1050px) minmax(
+  grid-template-columns: minmax(1rem, 1fr) minmax(1rem, 1221px) minmax(
       1rem,
       1fr
     );
+}
+
+.main-container {
+  grid-column-start: 2;
+  grid-column-end: 3;
 }
