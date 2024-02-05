@@ -1,6 +1,6 @@
 import { lazyLoad } from "utils/loadable";
 
-export const Header = lazyLoad(
+export const Logo = lazyLoad(
   () => import("./index"),
-  (module) => module.Header,
+  (module) => module.Logo,
 );
