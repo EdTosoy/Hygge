@@ -1,7 +1,7 @@
 export const Logo = () => {
   return (
-    <div className="gap-1 p-2">
-      <div className="flex  cursor-pointer">
+    <div className="p-2">
+      <div className="flex  gap-1 cursor-pointer">
         <h1 className="text-2xl font-semibold">Hygge</h1>
         <h1 className="grid place-content-center">
           <div className="text-logo-red">

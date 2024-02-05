@@ -13,9 +13,14 @@ export default {
       },
       width: {
         large: "607px",
+        871: "871px",
+        210: "210px",
       },
       maxWidth: {
         210: "210px",
+      },
+      boxShadow: {
+        "3xl": "0 5px 60px -10px rgba(0, 0, 0, 0.3)",
       },
     },
   },

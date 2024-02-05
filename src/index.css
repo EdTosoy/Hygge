@@ -47,3 +47,7 @@ a {
   grid-column-start: 2;
   grid-column-end: 3;
 }
+
+.dropdown ion-icon {
+  font-size: 24px;
+}
