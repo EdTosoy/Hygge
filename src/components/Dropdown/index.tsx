@@ -1,14 +1,24 @@
-import { useState } from "react";
 import { IconContainer } from "../index";
 
-export const Dropdown = () => {
-  const [showDropdown, setShowDropdown] = useState(false);
+interface DropdownProps {
+  showNotificationPanel: boolean;
+  setShowNotificationPanel: React.Dispatch<React.SetStateAction<boolean>>;
+  showDropdown: boolean;
+  setShowDropdown: React.Dispatch<React.SetStateAction<boolean>>;
+}
+export const Dropdown = ({
+  setShowNotificationPanel,
+  showNotificationPanel,
+  showDropdown,
+  setShowDropdown,
+}: DropdownProps) => {
   return (
     <>
       <IconContainer>
         <div
           className="dropdown grid place-content-center"
           onClick={() => {
+            if (showNotificationPanel) setShowNotificationPanel(false);
             setShowDropdown((prev) => !prev);
           }}
         >

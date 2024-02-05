@@ -1,7 +1,10 @@
+import { useState } from "react";
 import { Logo, Profile, Dropdown, IconContainer } from "../index";
 import { HeaderProps } from "./types";
 
 export const Header = ({ isLoggedIn = true }: HeaderProps) => {
+  const [showDropdown, setShowDropdown] = useState(false);
+  const [showNotificationPanel, setShowNotificationPanel] = useState(false);
   return (
     <header className="flex justify-between py-2 gap-5">
       <div className="flex justify-between w-871">
@@ -19,14 +22,41 @@ export const Header = ({ isLoggedIn = true }: HeaderProps) => {
         <div className="flex justify-between gap-5">
           <div className="flex items-center gap-5">
             <IconContainer hasNotification>
-              <ion-icon name="notifications-outline" size="large" />
+              <div
+                className="dropdown grid place-content-center"
+                onClick={() => {
+                  if (showDropdown) setShowDropdown(false);
+                  setShowNotificationPanel((prev) => !prev);
+                }}
+              >
+                <ion-icon name="notifications-outline" size="large" />
+                {showNotificationPanel && (
+                  <div className="w-325 h-376 border border-light-gray bg-white z-10 absolute top-11 left-0 rounded-md shadow-lg grid place-content-center">
+                    <div>
+                      <h1 className="font-semibold text-sm ">
+                        You don’t have any activity yet
+                      </h1>
+                      <p className="text-xs max-w-52 text-semi-gray py-2 text-center">
+                        That’s ok, maybe you just need the right inspiration.
+                        Try posting in r/somethingimade , a popular community
+                        for discussion
+                      </p>
+                    </div>
+                  </div>
+                )}
+              </div>
             </IconContainer>
             <IconContainer>
               <ion-icon name="add-circle-outline" size="large" />
             </IconContainer>
           </div>
           <Profile />
-          <Dropdown />
+          <Dropdown
+            showNotificationPanel={showNotificationPanel}
+            setShowNotificationPanel={setShowNotificationPanel}
+            showDropdown={showDropdown}
+            setShowDropdown={setShowDropdown}
+          />
         </div>
       ) : (
         <div className="flex justify-between gap-5">

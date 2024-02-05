@@ -10,11 +10,16 @@ export default {
         "light-gray": "#F2F2F2",
         "accent-red": "#FF4452",
         "accent-green": "#31A24C",
+        "semi-gray": "#8B8B8B",
       },
       width: {
         large: "607px",
         871: "871px",
         210: "210px",
+        325: "325px",
+      },
+      height: {
+        376: "376px",
       },
       maxWidth: {
         210: "210px",
