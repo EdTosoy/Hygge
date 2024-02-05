@@ -1,6 +1,6 @@
-import { HeaderProps } from "./types";
-import { Logo, Profile, Dropdown, IconContainer } from "../index";
 import { useState } from "react";
+import { Logo, Profile, Dropdown, IconContainer } from "../index";
+import { HeaderProps } from "./types";
 import { useTranslation } from "react-i18next";
 
 export const Header = ({ isLoggedIn = true }: HeaderProps) => {
