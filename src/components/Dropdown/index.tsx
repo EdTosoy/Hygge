@@ -1,3 +1,9 @@
+import { IconContainer } from "../index";
+
 export const Dropdown = () => {
-  return <div>Dropdown</div>;
+  return (
+    <IconContainer>
+      <ion-icon name="chevron-down-outline" size="large" />
+    </IconContainer>
+  );
 };

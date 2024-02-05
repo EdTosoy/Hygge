@@ -28,7 +28,7 @@
     "allowJs": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "baseUrl": "src/"
+    "baseUrl": "./src"
   },
   "include": ["src", "cypress/**/*.tsx", "./cypress.d.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]

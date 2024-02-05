@@ -1,6 +1,6 @@
 import { lazyLoad } from "../../utils/loadable";
 
-export const Dropdown = lazyLoad(
+export const IconContainer = lazyLoad(
   () => import("./index"),
-  (module) => module.Dropdown,
+  (module) => module.IconContainer,
 );
