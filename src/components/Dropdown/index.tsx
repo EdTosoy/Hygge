@@ -1,9 +1,6 @@
 import { IconContainer } from "../index";
+import { DropdownProps } from "./types";
 
-interface DropdownProps {
-  showDropdown: boolean;
-  toggleDropdown: () => void;
-}
 export const Dropdown = ({ showDropdown, toggleDropdown }: DropdownProps) => {
   return (
     <>

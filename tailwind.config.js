@@ -17,6 +17,7 @@ export default {
         871: "871px",
         210: "210px",
         325: "325px",
+        238: "238px",
       },
       height: {
         376: "376px",
@@ -26,6 +27,9 @@ export default {
       },
       boxShadow: {
         "3xl": "0 5px 60px -10px rgba(0, 0, 0, 0.3)",
+      },
+      fontSize: {
+        "2xs": "0.625rem",
       },
     },
   },

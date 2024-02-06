@@ -7,8 +7,8 @@ export function HomePage() {
   const dispatch = useDispatch();
 
   return (
-    <div className="bg-white grid-container">
-      <div className="main-container">
+    <div className="bg-white body-grid-container">
+      <div className="col-start-2 col-end-3 p-6">
         <div>
           <button
             aria-label="Increment value"
