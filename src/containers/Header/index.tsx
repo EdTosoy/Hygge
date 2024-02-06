@@ -13,7 +13,7 @@ export const Header = ({ isLoggedIn }: HeaderProps) => {
   } = useContext(ToggleContext) as ToggleContextType;
   const { t } = useTranslation();
   return (
-    <header className="flex justify-between py-2 gap-5">
+    <header className="flex justify-between py-2 gap-5 ">
       <div className="flex justify-between w-871">
         <Logo />
         <div className="grid place-items-center">
