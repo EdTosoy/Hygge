@@ -35,7 +35,7 @@ export const SideNavigation = () => {
         ))}
       </div>
       <div className="border-b border-light-gray">
-        <h1 className="py-6 pl-5 text-sm uppercase">Categories</h1>
+        <h1 className="py-6 pl-5 text-xs uppercase">Categories</h1>
         {navigationButtons.categories.map((button, index) => (
           <SideNavigationButton
             key={index}
@@ -44,10 +44,10 @@ export const SideNavigation = () => {
             isActive={isButtonActive}
           />
         ))}
-        <p className="py-6 pl-5 text-sm font-medium ">see more</p>
+        <p className="py-6 pl-5 text-xs font-medium ">See more</p>
       </div>
       <div>
-        <h1 className="py-6 pl-5 text-sm uppercase">Resources</h1>
+        <h1 className="py-6 pl-5 text-xs uppercase">Resources</h1>
         {navigationButtons.resources.map((button, index) => (
           <SideNavigationButton
             key={index}
