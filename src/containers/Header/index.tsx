@@ -1,10 +1,10 @@
 import { useContext } from "react";
-import { Logo, Profile, Dropdown, IconContainer } from "../index";
+import { Logo, Profile, Dropdown, IconContainer } from "../../components/index";
 import { HeaderProps } from "./types";
 import { useTranslation } from "react-i18next";
 import { ToggleContext, ToggleContextType } from "../../context/toggleContext";
 
-export const Header = ({ isLoggedIn = true }: HeaderProps) => {
+export const Header = ({ isLoggedIn }: HeaderProps) => {
   const {
     showNotificationPanel,
     showDropdown,

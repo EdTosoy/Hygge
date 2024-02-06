@@ -1,10 +1,14 @@
 import "./App.css";
 import { Layout } from "./layout/index.ts";
+
+import { store } from "./store";
+import { Provider } from "react-redux";
+
 function App() {
   return (
-    <div>
+    <Provider store={store}>
       <Layout />
-    </div>
+    </Provider>
   );
 }
 
