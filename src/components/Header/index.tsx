@@ -1,11 +1,16 @@
-import { useState } from "react";
+import { useContext } from "react";
 import { Logo, Profile, Dropdown, IconContainer } from "../index";
 import { HeaderProps } from "./types";
 import { useTranslation } from "react-i18next";
+import { ToggleContext, ToggleContextType } from "../../context/toggleContext";
 
 export const Header = ({ isLoggedIn = true }: HeaderProps) => {
-  const [showDropdown, setShowDropdown] = useState(false);
-  const [showNotificationPanel, setShowNotificationPanel] = useState(false);
+  const {
+    showNotificationPanel,
+    showDropdown,
+    toggleDropdown,
+    toggleNotificationPanel,
+  } = useContext(ToggleContext) as ToggleContextType;
   const { t } = useTranslation();
   return (
     <header className="flex justify-between py-2 gap-5">
@@ -26,10 +31,7 @@ export const Header = ({ isLoggedIn = true }: HeaderProps) => {
             <IconContainer hasNotification>
               <div
                 className="dropdown grid place-content-center"
-                onClick={() => {
-                  if (showDropdown) setShowDropdown(false);
-                  setShowNotificationPanel((prev) => !prev);
-                }}
+                onClick={() => toggleNotificationPanel()}
               >
                 <ion-icon name="notifications-outline" size="large" />
                 {showNotificationPanel && (
@@ -52,10 +54,8 @@ export const Header = ({ isLoggedIn = true }: HeaderProps) => {
           </div>
           <Profile />
           <Dropdown
-            showNotificationPanel={showNotificationPanel}
-            setShowNotificationPanel={setShowNotificationPanel}
+            toggleDropdown={toggleDropdown}
             showDropdown={showDropdown}
-            setShowDropdown={setShowDropdown}
           />
         </div>
       ) : (

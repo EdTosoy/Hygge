@@ -1,26 +1,16 @@
 import { IconContainer } from "../index";
 
 interface DropdownProps {
-  showNotificationPanel: boolean;
-  setShowNotificationPanel: React.Dispatch<React.SetStateAction<boolean>>;
   showDropdown: boolean;
-  setShowDropdown: React.Dispatch<React.SetStateAction<boolean>>;
+  toggleDropdown: () => void;
 }
-export const Dropdown = ({
-  setShowNotificationPanel,
-  showNotificationPanel,
-  showDropdown,
-  setShowDropdown,
-}: DropdownProps) => {
+export const Dropdown = ({ showDropdown, toggleDropdown }: DropdownProps) => {
   return (
     <>
       <IconContainer>
         <div
           className="dropdown grid place-content-center"
-          onClick={() => {
-            if (showNotificationPanel) setShowNotificationPanel(false);
-            setShowDropdown((prev) => !prev);
-          }}
+          onClick={() => toggleDropdown()}
         >
           <ion-icon name="chevron-down-outline" />
           {showDropdown && (
