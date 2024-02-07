@@ -5,10 +5,6 @@ import { resolve } from "path";
 // https://vitejs.dev/config/
 export default defineConfig({
   test: {
-    coverage: {
-      reporter: ["default", "text", "json", "html"],
-      provider: "istanbul", // or 'v8'
-    },
     exclude: [
       ...configDefaults.exclude,
       "src/**/*.tsx",
