@@ -10,7 +10,7 @@
     "preview": "vite preview",
     "prepare": "husky",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "cy:open": "cypress open"
+    "cy:open": "concurrently \"tailwindcss -i ./src/index.css -o ./dist/index.css --watch\" \"cypress open\" "
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.1.0",
@@ -53,6 +53,7 @@
     "@typescript-eslint/parser": "^6.20.0",
     "@vitejs/plugin-react-swc": "^3.6.0",
     "autoprefixer": "^10.4.17",
+    "concurrently": "^8.2.2",
     "cypress": "^13.6.4",
     "eslint": "^8.56.0",
     "eslint-plugin-react": "^7.33.2",
