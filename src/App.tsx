@@ -1,9 +1,10 @@
-import "./App.css";
-import { Layout } from "./layout/index.ts";
+import { Provider } from "react-redux";
 import { BrowserRouter as Router } from "react-router-dom";
 
 import { store } from "./store";
-import { Provider } from "react-redux";
+import { Layout } from "layout";
+
+import "./App.css";
 
 function App() {
   return (

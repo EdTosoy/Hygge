@@ -1,4 +1,4 @@
-import { IconContainer } from "../index";
+import { IconContainer } from "components";
 import { DropdownProps } from "./types";
 
 export const Dropdown = ({ showDropdown, toggleDropdown }: DropdownProps) => {

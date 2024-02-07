@@ -1,4 +1,4 @@
-import { Logo } from "../index.tsx";
+import { Logo } from "components";
 
 describe("<Logo />", () => {
   it("renders", () => {

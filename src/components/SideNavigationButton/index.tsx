@@ -1,5 +1,5 @@
-import { IconContainer } from "../../components/index.ts";
-import { SideNavigationButtonProps } from "./types.ts";
+import { IconContainer } from "components";
+import { SideNavigationButtonProps } from "./types";
 
 export const SideNavigationButton = ({
   isActive,

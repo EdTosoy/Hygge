@@ -1,4 +1,4 @@
-import { SideNavigationButton } from "../../components";
+import { SideNavigationButton } from "components";
 
 export const SideNavigation = () => {
   const navigationButtons = {

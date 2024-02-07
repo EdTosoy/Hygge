@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import { HomePage, Header, SideNavigation } from "../containers";
+import { HomePage, Header, SideNavigation } from "containers";
 
 type Props = {};
 

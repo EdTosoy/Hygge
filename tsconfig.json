@@ -28,8 +28,26 @@
     "allowJs": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "baseUrl": "./src"
+    "baseUrl": "./",
+    "paths": {
+      "cypress": ["cypress/*"],
+      "src": ["src/*"],
+      "@types": ["src/@types"],
+      "assets": ["src/assets"],
+      "components": ["src/components"],
+      "constants": ["src/constants"],
+      "containers": ["src/containers"],
+      "context": ["src/context"],
+      "hooks": ["src/hooks"],
+      "layout": ["src/layout"],
+      "locales": ["src/locales"],
+      "pages": ["src/pages"],
+      "routes": ["src/routes"],
+      "utils": ["src/utils"]
+    },
+    "typeRoots": ["node_modules/@types", "./src/@types"]
   },
   "include": ["src", "cypress/**/*.tsx", "./cypress.d.ts"],
+  "exclude": ["node_modules", "dist"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

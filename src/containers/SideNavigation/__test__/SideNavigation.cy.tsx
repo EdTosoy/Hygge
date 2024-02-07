@@ -1,4 +1,4 @@
-import { SideNavigation } from "../index.tsx";
+import { SideNavigation } from "containers";
 
 describe("<SideNavigation />", () => {
   it("renders", () => {

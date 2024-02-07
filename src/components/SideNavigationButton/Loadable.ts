@@ -1,4 +1,4 @@
-import { lazyLoad } from "../../utils/loadable";
+import { lazyLoad } from "utils";
 
 export const SideNavigationButton = lazyLoad(
   () => import("./index"),

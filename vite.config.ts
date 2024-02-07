@@ -1,11 +1,13 @@
 import { defineConfig, configDefaults } from "vitest/config";
 import react from "@vitejs/plugin-react-swc";
+import { resolve } from "path";
 
 // https://vitejs.dev/config/
 export default defineConfig({
   test: {
     coverage: {
-      reporter: ["default", "html"],
+      reporter: ["default", "text", "json", "html"],
+      provider: "istanbul", // or 'v8'
     },
     exclude: [
       ...configDefaults.exclude,
@@ -16,4 +18,22 @@ export default defineConfig({
     ],
   },
   plugins: [react()],
+  resolve: {
+    alias: {
+      src: resolve("src/"),
+      types: resolve("src/@types/"),
+      assets: resolve("src/assets/"),
+      components: resolve("src/components/"),
+      constants: resolve("src/constants/"),
+      containers: resolve("src/containers/"),
+      context: resolve("src/context/"),
+      cypress: resolve("cypress/"),
+      hooks: resolve("src/hooks/"),
+      layout: resolve("src/layout/"),
+      locales: resolve("src/locales/"),
+      pages: resolve("src/pages/"),
+      routes: resolve("src/routes/"),
+      utils: resolve("src/utils/"),
+    },
+  },
 });

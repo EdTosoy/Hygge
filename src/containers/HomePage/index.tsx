@@ -1,5 +1,5 @@
-import type { RootState } from "../../store.ts";
 import { useSelector, useDispatch } from "react-redux";
+import type { RootState } from "src/store.ts";
 import { decrement, increment } from "./slice.ts";
 
 export function HomePage() {

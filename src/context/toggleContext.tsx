@@ -1,18 +1,12 @@
 // context/todoContext.tsx
 import React, { useState } from "react";
-
-export type ToggleContextType = {
-  showNotificationPanel: boolean;
-  toggleDropdown: () => void;
-  showDropdown: boolean;
-  toggleNotificationPanel: () => void;
-};
+import { ToggleContextType } from "@types";
 
 export const ToggleContext = React.createContext<ToggleContextType | null>(
   null,
 );
 
-const ToggleProvider: React.FC<{ children: React.ReactNode }> = ({
+export const ToggleProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [showDropdown, setShowDropdown] = useState(false);
@@ -39,5 +33,3 @@ const ToggleProvider: React.FC<{ children: React.ReactNode }> = ({
     </ToggleContext.Provider>
   );
 };
-
-export default ToggleProvider;
