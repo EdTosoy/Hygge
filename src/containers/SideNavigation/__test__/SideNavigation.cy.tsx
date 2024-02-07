@@ -1,5 +1,4 @@
-import React from "react";
-import { SideNavigation } from "../../src/containers/SideNavigation/index";
+import { SideNavigation } from "../index.tsx";
 
 describe("<SideNavigation />", () => {
   it("renders", () => {

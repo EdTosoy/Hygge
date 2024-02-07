@@ -1,5 +1,4 @@
-import React from "react";
-import { Logo } from "../../src/components/Logo/index";
+import { Logo } from "../index.tsx";
 
 describe("<Logo />", () => {
   it("renders", () => {
