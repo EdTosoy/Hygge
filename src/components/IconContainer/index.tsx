@@ -11,7 +11,7 @@ export const IconContainer = ({
     >
       {children}
       {hasNotification && (
-        <div className="w-3 h-3 bg-accent-red rounded-full absolute top-0 right-0 z-10 " />
+        <div className="w-2.5 h-2.5 bg-accent-red rounded-full absolute top-0 right-0 z-10 " />
       )}
     </div>
   );

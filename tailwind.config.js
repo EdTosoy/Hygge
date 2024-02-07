@@ -15,9 +15,10 @@ export default {
       width: {
         large: "607px",
         871: "871px",
-        210: "210px",
+        195: "195px",
         325: "325px",
         238: "238px",
+        660: "660px",
       },
       height: {
         376: "376px",

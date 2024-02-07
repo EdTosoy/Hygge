@@ -13,51 +13,53 @@ export const Header = ({ isLoggedIn }: HeaderProps) => {
   } = useContext(ToggleContext) as ToggleContextType;
   const { t } = useTranslation();
   return (
-    <header className="flex justify-between py-2 gap-5 ">
-      <div className="flex justify-between w-871">
+    <header className="flex py-2  ">
+      <div className="flex justify-between">
         <Logo />
-        <div className="grid place-items-center">
+        <div className="grid place-items-center w-660">
           <input
             type="text"
             placeholder="Search"
-            className="px-8 py-3 text-sm bg-light-violet text-dark-violet placeholder-dark-violet rounded-full w-large focus:outline-none focus:ring-2 focus:ring-light-violet focus:ring-opacity-50"
+            className="px-10 py-3 text-xs font-light bg-light-violet text-dark-violet placeholder-dark-violet rounded-full w-large focus:outline-none focus:ring-2 focus:ring-light-violet focus:ring-opacity-50"
           />
         </div>
       </div>
 
       {isLoggedIn ? (
-        <div className="flex justify-between gap-5">
-          <div className="flex items-center gap-5">
-            <IconContainer hasNotification>
-              <div
-                className="dropdown grid place-content-center"
-                onClick={() => toggleNotificationPanel()}
-              >
-                <ion-icon name="notifications-outline" size="large" />
-                {showNotificationPanel && (
-                  <div className="w-325 h-376 border border-light-gray bg-white z-10 absolute top-11 left-0 rounded-md shadow-lg grid place-content-center">
-                    <div>
-                      <h1 className="font-semibold text-sm ">
-                        {t("translation.notificationMessage")}
-                      </h1>
-                      <p className="text-xs max-w-52 text-semi-gray py-2 text-center">
-                        {t("translation.notificationPlaceholder")}
-                      </p>
+        <>
+          <div className="flex justify-between gap-6">
+            <div className="flex items-center gap-3">
+              <IconContainer hasNotification>
+                <div
+                  className="dropdown grid place-content-center text-2xl cursor-pointer"
+                  onClick={() => toggleNotificationPanel()}
+                >
+                  <ion-icon name="notifications-outline" />
+                  {showNotificationPanel && (
+                    <div className="w-325 h-376 border border-light-gray bg-white z-10 absolute top-10 left-0 rounded-md shadow-lg grid place-content-center">
+                      <div>
+                        <h1 className="font-semibold text-sm ">
+                          {t("translation.notificationMessage")}
+                        </h1>
+                        <p className="text-xs max-w-52 text-semi-gray py-2 text-center">
+                          {t("translation.notificationPlaceholder")}
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                )}
-              </div>
-            </IconContainer>
-            <IconContainer>
-              <ion-icon name="add-circle-outline" size="large" />
-            </IconContainer>
+                  )}
+                </div>
+              </IconContainer>
+              <IconContainer className="text-2xl cursor-pointer">
+                <ion-icon name="add-circle-outline" />
+              </IconContainer>
+            </div>
+            <Profile />
           </div>
-          <Profile />
           <Dropdown
             toggleDropdown={toggleDropdown}
             showDropdown={showDropdown}
           />
-        </div>
+        </>
       ) : (
         <div className="flex justify-between gap-5">
           <div className="grid place-content-center">
