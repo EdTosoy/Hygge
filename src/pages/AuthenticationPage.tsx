@@ -1,10 +1,15 @@
-import { AuthenticationHeader, SignInForm } from "components";
+import { AuthenticationHeader, SignInForm, SignUpForm } from "components";
 import HeroPNG from "/src/assets/Hero.svg";
+import { useState } from "react";
 
-export const LoginPage = () => {
+export const AuthenticationPage = () => {
+  const [isForSignIn, setIsForSignIn] = useState(false);
   return (
     <div>
-      <AuthenticationHeader />
+      <AuthenticationHeader
+        isForSignIn={isForSignIn}
+        setIsForSignIn={setIsForSignIn}
+      />
       <div className="body-grid-container">
         <div className="col-start-2 col-end-3 flex ">
           <div>
@@ -25,9 +30,7 @@ export const LoginPage = () => {
               - Go back to Home Page
             </p>
           </div>
-          <div className="">
-            <SignInForm />
-          </div>
+          <div>{isForSignIn ? <SignInForm /> : <SignUpForm />}</div>
         </div>
       </div>
     </div>

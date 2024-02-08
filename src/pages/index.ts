@@ -1,1 +1,1 @@
-export { LoginPage } from "./LoginPage.tsx";
+export { AuthenticationPage } from "./AuthenticationPage.tsx";
