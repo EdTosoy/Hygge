@@ -1,11 +1,11 @@
 import { useContext } from "react";
 import { useTranslation } from "react-i18next";
 import {
-  Logo,
-  Profile,
   Dropdown,
   IconContainer,
+  Logo,
   PrimaryButton,
+  Profile,
   SecondaryButton,
 } from "components";
 import { HeaderProps } from "./types";
