@@ -4,12 +4,12 @@ export default {
   theme: {
     extend: {
       colors: {
-        "light-violet": "#F0EFFF",
-        "dark-violet": "#6650F2",
-        "logo-red": "#ff4351",
-        "light-gray": "#F2F2F2",
-        "accent-red": "#FF4452",
         "accent-green": "#31A24C",
+        "accent-red": "#FF4452",
+        "dark-violet": "#6650F2",
+        "light-gray": "#F2F2F2",
+        "light-violet": "#F0EFFF",
+        "logo-red": "#ff4351",
         "semi-gray": "#8B8B8B",
         violet: "#A7A3FF",
       },
