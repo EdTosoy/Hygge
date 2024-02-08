@@ -1,3 +1,5 @@
+import { PrimaryButton } from "components";
+
 export const PageNotFound = () => {
   return (
     <div className="grid place-content-center h-svh">
@@ -14,9 +16,10 @@ export const PageNotFound = () => {
         small group of people, changed who can see it or it’s been deleted.
       </p>
       <div className="grid place-content-center">
-        <button className="flex items-center justify-center bg-dark-violet w-full mt-11 text-white rounded-full py-2  px-6 hover:bg-dark-violet hover:text-white hover:ring-2 hover:ring-dark-violet hover:ring-opacity-50 shadow-3xl shadow-dark-violet">
-          <div className="">Go Back</div>
-        </button>
+        <PrimaryButton
+          className="mt-11 py-2 px-6 rounded-full"
+          text="Go Back"
+        />
       </div>
     </div>
   );

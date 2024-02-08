@@ -1,6 +1,13 @@
 import { useContext } from "react";
 import { useTranslation } from "react-i18next";
-import { Logo, Profile, Dropdown, IconContainer } from "components";
+import {
+  Logo,
+  Profile,
+  Dropdown,
+  IconContainer,
+  PrimaryButton,
+  SecondaryButton,
+} from "components";
 import { HeaderProps } from "./types";
 import { ToggleContextType } from "@types";
 import { ToggleContext } from "context";
@@ -62,17 +69,9 @@ export const Header = ({ isLoggedIn }: HeaderProps) => {
           />
         </>
       ) : (
-        <div className="flex justify-between gap-5">
-          <div className="grid place-content-center">
-            <button className="py-2 px-8 border text-dark-violet border-dark-violet rounded-full hover:bg-dark-violet hover:text-white hover:ring-2 hover:ring-dark-violet hover:ring-opacity-50 shadow-3xl shadow-dark-violet">
-              Sign Up
-            </button>
-          </div>
-          <div className="grid place-content-center">
-            <button className="py-2 px-8 border  border-dark-violet rounded-full bg-dark-violet text-white hover:ring-2 hover:ring-dark-violet hover:ring-opacity-50 shadow-3xl shadow-dark-violet">
-              Sign In
-            </button>
-          </div>
+        <div className="flex justify-between gap-5 items-center">
+          <SecondaryButton className="py-2 px-8 rounded-full" text="Sign Up" />
+          <PrimaryButton text="Sign In" className="py-2 px-8 rounded-full " />
         </div>
       )}
     </header>
