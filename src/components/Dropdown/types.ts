@@ -1,4 +1,5 @@
+import { ToggleContextType } from "@types";
 export interface DropdownProps {
-  showDropdown: boolean;
-  toggleDropdown: () => void;
+  showDropdown: ToggleContextType["showDropdown"];
+  toggleDropdown: ToggleContextType["toggleDropdown"];
 }

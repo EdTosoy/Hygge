@@ -1,14 +1,18 @@
 import { AuthenticationHeader, SignInForm, SignUpForm } from "components";
 import HeroPNG from "/src/assets/Hero.svg";
-import { useState } from "react";
+import { useContext } from "react";
+import { ToggleContextType } from "@types";
+import { ToggleContext } from "context";
 
 export const AuthenticationPage = () => {
-  const [isForSignIn, setIsForSignIn] = useState(false);
+  const { authenticationForm, toggleAuthenticationForm } = useContext(
+    ToggleContext,
+  ) as ToggleContextType;
   return (
     <div>
       <AuthenticationHeader
-        isForSignIn={isForSignIn}
-        setIsForSignIn={setIsForSignIn}
+        authenticationForm={authenticationForm}
+        toggleAuthenticationForm={toggleAuthenticationForm}
       />
       <div className="body-grid-container">
         <div className="col-start-2 col-end-3 flex ">
@@ -30,7 +34,9 @@ export const AuthenticationPage = () => {
               - Go back to Home Page
             </p>
           </div>
-          <div>{isForSignIn ? <SignInForm /> : <SignUpForm />}</div>
+          <div>
+            {authenticationForm === "sign-in" ? <SignInForm /> : <SignUpForm />}
+          </div>
         </div>
       </div>
     </div>

@@ -11,6 +11,9 @@ export const ToggleProvider: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   const [showDropdown, setShowDropdown] = useState(false);
   const [showNotificationPanel, setShowNotificationPanel] = useState(false);
+  const [authenticationForm, setAuthenticationForm] = useState<
+    "sign-in" | "sign-up"
+  >("sign-in");
   const toggleDropdown = () => {
     setShowDropdown(!showDropdown);
     setShowNotificationPanel(false);
@@ -18,6 +21,13 @@ export const ToggleProvider: React.FC<{ children: React.ReactNode }> = ({
   const toggleNotificationPanel = () => {
     setShowNotificationPanel(!showNotificationPanel);
     setShowDropdown(false);
+  };
+  const toggleAuthenticationForm = () => {
+    if (authenticationForm === "sign-in") {
+      setAuthenticationForm("sign-up");
+    } else {
+      setAuthenticationForm("sign-in");
+    }
   };
 
   return (
@@ -27,6 +37,8 @@ export const ToggleProvider: React.FC<{ children: React.ReactNode }> = ({
         showNotificationPanel,
         toggleDropdown,
         toggleNotificationPanel,
+        authenticationForm,
+        toggleAuthenticationForm,
       }}
     >
       {children}

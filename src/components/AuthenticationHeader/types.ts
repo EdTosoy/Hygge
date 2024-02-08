@@ -1,6 +1,6 @@
-import { Dispatch, SetStateAction } from "react";
+import { ToggleContextType } from "@types";
 
 export interface AuthenticationHeaderProps {
-  isForSignIn: boolean;
-  setIsForSignIn: Dispatch<SetStateAction<boolean>>;
+  authenticationForm: ToggleContextType["authenticationForm"];
+  toggleAuthenticationForm: ToggleContextType["toggleAuthenticationForm"];
 }

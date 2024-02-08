@@ -2,8 +2,8 @@ import { Logo } from "components";
 import { AuthenticationHeaderProps } from "./types";
 
 export const AuthenticationHeader = ({
-  isForSignIn,
-  setIsForSignIn,
+  authenticationForm,
+  toggleAuthenticationForm,
 }: AuthenticationHeaderProps) => {
   return (
     <div className="bg-white body-grid-container  ">
@@ -12,14 +12,14 @@ export const AuthenticationHeader = ({
           <Logo />
           <div className="">
             <p>
-              {isForSignIn
+              {authenticationForm === "sign-in"
                 ? "Create new account ?"
                 : "Already have an account ?"}
               <span
                 className="text-dark-violet cursor-pointer ml-4 font-semibold"
-                onClick={() => setIsForSignIn((prev) => !prev)}
+                onClick={toggleAuthenticationForm}
               >
-                {isForSignIn ? "Sign Up" : "Sign In"}
+                {authenticationForm === "sign-in" ? "Sign Up" : "Sign In"}
               </span>
             </p>
           </div>
