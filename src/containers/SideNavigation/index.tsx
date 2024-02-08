@@ -63,7 +63,7 @@ export const SideNavigation = () => {
   const isButtonActive = Boolean(false);
 
   return (
-    <div className="w-238  border-r border-light-gray">
+    <div className="w-238  border-r border-light-gray fixed ">
       <div className="border-b border-light-gray py-3">
         {navigationButtons.primary.map((button, index) => (
           <SideNavigationButton
@@ -75,7 +75,7 @@ export const SideNavigation = () => {
         ))}
       </div>
       <div className="border-b border-light-gray">
-        <h1 className="py-6 pl-5 text-xs uppercase">
+        <h1 className="py-5 pl-5 text-xs uppercase">
           {t("translation.sideNavigation.categories")}
         </h1>
         {navigationButtons.categories.map((button, index) => (
@@ -86,12 +86,12 @@ export const SideNavigation = () => {
             isActive={isButtonActive}
           />
         ))}
-        <p className="py-6 pl-5 text-xs font-medium ">
+        <p className="py-5 pl-5 text-xs font-medium cursor-pointer ">
           {t("translation.input.seeMore")}
         </p>
       </div>
       <div>
-        <h1 className="py-6 pl-5 text-xs uppercase">
+        <h1 className="py-5 pl-5 text-xs uppercase">
           {t("translation.sideNavigation.resources")}
         </h1>
         {navigationButtons.resources.map((button, index) => (

@@ -58,3 +58,7 @@ a {
 ion-icon {
   --ionicon-stroke-width: 40px;
 }
+
+.main-section-height {
+  height: calc(100vh - 60px);
+}
