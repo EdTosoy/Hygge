@@ -23,7 +23,6 @@ export default defineConfig({
       constants: resolve("src/constants/"),
       containers: resolve("src/containers/"),
       context: resolve("src/context/"),
-      cypress: resolve("cypress/"),
       hooks: resolve("src/hooks/"),
       layout: resolve("src/layout/"),
       locales: resolve("src/locales/"),

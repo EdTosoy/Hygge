@@ -30,7 +30,6 @@
     "allowSyntheticDefaultImports": true,
     "baseUrl": "./",
     "paths": {
-      "cypress": ["cypress/*"],
       "src": ["src/*"],
       "@types": ["src/@types"],
       "assets": ["src/assets"],
