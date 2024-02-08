@@ -15,7 +15,7 @@ export const AuthenticationPage = () => {
         toggleAuthenticationForm={toggleAuthenticationForm}
       />
       <div className="body-grid-container">
-        <div className="col-start-2 col-end-3 flex ">
+        <div className="col-start-2 col-end-3 flex justify-between ">
           <div>
             <div className="flex items-center">
               <div>

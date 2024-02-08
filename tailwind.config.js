@@ -27,12 +27,14 @@ export default {
       maxWidth: {
         210: "210px",
         422: "422px",
+        446: "446px",
       },
       boxShadow: {
         "3xl": "0 5px 60px -10px rgba(0, 0, 0, 0.3)",
       },
       fontSize: {
         "2xs": "0.625rem",
+        150: "150px",
       },
     },
   },

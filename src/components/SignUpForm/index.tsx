@@ -14,7 +14,7 @@ export const SignUpForm = () => {
         ></input>
         <input
           className="px-8 py-4 rounded-xl flex gap-3 items-center bg-light-violet text-dark-violet placeholder:text-violet my-4"
-          type="text"
+          type="email"
           placeholder="Enter Email"
         ></input>
         <input

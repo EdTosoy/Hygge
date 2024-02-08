@@ -9,7 +9,6 @@ describe("<AuthenticationHeader />", () => {
       ToggleContext,
     ) as ToggleContextType;
     // see: https://on.cypress.io/mounting-react
-    // cy.mount(<AuthenticationHeader isForSignIn={false}>);
     cy.mount(
       <AuthenticationHeader
         authenticationForm={authenticationForm}

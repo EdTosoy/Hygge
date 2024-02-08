@@ -11,8 +11,8 @@ function App() {
   return (
     <Router>
       <Provider store={store}>
-        {/* <Layout /> */}
-        <AuthenticationPage />
+        <Layout />
+        {/* <AuthenticationPage /> */}
       </Provider>
     </Router>
   );

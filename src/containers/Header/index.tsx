@@ -16,9 +16,7 @@ export const Header = ({ isLoggedIn }: HeaderProps) => {
   return (
     <header className="flex py-2  ">
       <div className="flex justify-between">
-        <div className="px-5">
-          <Logo />
-        </div>
+        <Logo isForAuthentication />
         <div className="grid place-items-center w-660">
           <input
             type="text"
