@@ -8,9 +8,9 @@ import {
   Profile,
   SecondaryButton,
 } from "components";
+import { ToggleContext } from "context";
 import { HeaderProps } from "./types";
 import { ToggleContextType } from "@types";
-import { ToggleContext } from "context";
 
 export const Header = ({ isLoggedIn }: HeaderProps) => {
   const {
@@ -47,10 +47,10 @@ export const Header = ({ isLoggedIn }: HeaderProps) => {
                     <div className="w-325 h-376 border border-light-gray bg-white z-10 absolute top-10 left-0 rounded-md shadow-lg grid place-content-center">
                       <div>
                         <h1 className="font-semibold text-sm ">
-                          {t("translation.notificationMessage")}
+                          {t("translation.notificationPanel.message")}
                         </h1>
                         <p className="text-xs max-w-52 text-semi-gray py-2 text-center">
-                          {t("translation.notificationPlaceholder")}
+                          {t("translation.notificationPanel.placeholder")}
                         </p>
                       </div>
                     </div>
@@ -70,8 +70,14 @@ export const Header = ({ isLoggedIn }: HeaderProps) => {
         </>
       ) : (
         <div className="flex justify-between gap-5 items-center">
-          <SecondaryButton className="py-2 px-8 rounded-full" text="Sign Up" />
-          <PrimaryButton text="Sign In" className="py-2 px-8 rounded-full " />
+          <SecondaryButton
+            className="py-2 px-8 rounded-full"
+            text={t("translation.button.signUp")}
+          />
+          <PrimaryButton
+            className="py-2 px-8 rounded-full "
+            text={t("translation.button.signIn")}
+          />
         </div>
       )}
     </header>

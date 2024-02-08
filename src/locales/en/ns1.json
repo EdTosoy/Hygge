@@ -1,6 +1,56 @@
 {
   "translation": {
-    "notificationMessage": "You don’t have any activity yet",
-    "notificationPlaceholder": "That’s ok, maybe you just need the right inspiration. Try posting in r/somethingimade , a popular community for discussion"
+    "notificationPanel": {
+      "message": "You don’t have any activity yet",
+      "placeholder": "That’s ok, maybe you just need the right inspiration. Try posting in r/somethingimade , a popular community for discussion."
+    },
+    "button": {
+      "signUp": "Sign Up",
+      "signIn": "Sign In",
+      "goBack": "Go Back",
+      "goBackToHome": "<- Go Back to Home Page",
+      "forgotPassword": "Forgot Password"
+    },
+    "input": {
+      "email": "Enter Email",
+      "password": "Password",
+      "confirmPassword": "Confirm Password",
+      "search": "Search",
+      "emailOrUsername": "Enter email or user name",
+      "username": "Create Username",
+      "seeMore": "See More"
+    },
+    "pageNotFound": {
+      "oops": "Oops!",
+      "title": "This content isn’t available right now",
+      "message": "When this happens, it’s usually because the owner only shared it a small group of people, changed who can see it or it’s been deleted."
+    },
+    "authenticationPage": {
+      "heroTitle": "Fuel your ",
+      "heroTitleSpan": "Passion",
+      "heroSubtitle": "Enjoy the good things in life with good people.",
+      "oAuthTitle": "or continue with",
+      "createNewAccount": "Create New Account ?",
+      "alreadyHaveAnAccount": "Already have an account ?"
+    },
+    "sideNavigation": {
+      "resources": "Resources",
+      "categories": "Categories",
+      "allRighsReserved": "all rights reserved Hygge © 2024.",
+      "icons": {
+        "home": "Home",
+        "popular": "Popular",
+        "arts": "Arts",
+        "music": "Music",
+        "videoEditing": "Video Editing",
+        "gaming": "Gaming",
+        "informationTechnology": "Information Technology",
+        "businessAdministration": "Business Administration",
+        "about": "About",
+        "help": "Help",
+        "careers": "Careers",
+        "faq": "FAQ"
+      }
+    }
   }
 }

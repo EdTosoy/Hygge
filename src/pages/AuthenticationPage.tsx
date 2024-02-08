@@ -1,13 +1,18 @@
+import { useContext } from "react";
+import { useTranslation } from "react-i18next";
+import { ToggleContext } from "context";
 import { AuthenticationHeader, SignInForm, SignUpForm } from "components";
 import HeroPNG from "/src/assets/Hero.svg";
-import { useContext } from "react";
 import { ToggleContextType } from "@types";
-import { ToggleContext } from "context";
+export { signIn } from "src/constants";
+import { signIn } from "src/constants";
 
 export const AuthenticationPage = () => {
   const { authenticationForm, toggleAuthenticationForm } = useContext(
     ToggleContext,
   ) as ToggleContextType;
+
+  const { t } = useTranslation();
   return (
     <div>
       <AuthenticationHeader
@@ -20,10 +25,13 @@ export const AuthenticationPage = () => {
             <div className="flex items-center">
               <div>
                 <h1 className="text-5xl font-semibold my-3">
-                  Fuel your <span className="text-dark-violet">Passion</span>
+                  {t("translation.authenticationPage.heroTitle")}
+                  <span className="text-dark-violet">
+                    {t("translation.authenticationPage.heroTitleSpan")}
+                  </span>
                 </h1>
                 <h3 className="font-medium text-3xl max-w-422">
-                  Enjoy the good things in life with good people.
+                  {t("translation.authenticationPage.heroSubtitle")}
                 </h3>
               </div>
               <div>
@@ -31,11 +39,11 @@ export const AuthenticationPage = () => {
               </div>
             </div>
             <p className="cursor-pointer text-semi-gray">
-              - Go back to Home Page
+              {t("translation.button.goBackToHome")}
             </p>
           </div>
           <div>
-            {authenticationForm === "sign-in" ? <SignInForm /> : <SignUpForm />}
+            {authenticationForm === signIn ? <SignInForm /> : <SignUpForm />}
           </div>
         </div>
       </div>
