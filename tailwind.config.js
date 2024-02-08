@@ -11,6 +11,7 @@ export default {
         "accent-red": "#FF4452",
         "accent-green": "#31A24C",
         "semi-gray": "#8B8B8B",
+        violet: "#A7A3FF",
       },
       width: {
         large: "607px",
@@ -25,6 +26,7 @@ export default {
       },
       maxWidth: {
         210: "210px",
+        422: "422px",
       },
       boxShadow: {
         "3xl": "0 5px 60px -10px rgba(0, 0, 0, 0.3)",

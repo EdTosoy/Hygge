@@ -1,6 +1,6 @@
 export const Logo = () => {
   return (
-    <div className="py-2 px-5 w-238">
+    <div className="py-2 w-238">
       <div className="flex  gap-1 cursor-pointer">
         <h1 className="text-xl font-semibold">Hygge</h1>
         <h1 className="grid place-content-center">
