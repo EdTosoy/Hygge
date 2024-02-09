@@ -1,10 +1,14 @@
 import { useTranslation } from "react-i18next";
 import { PrimaryButton } from "components";
+import { useNavigate } from "react-router-dom";
+import { Header } from "containers";
 
 export const PageNotFound = () => {
+  const navigate = useNavigate();
   const { t } = useTranslation();
   return (
     <div className="grid place-content-center h-svh">
+      <Header isLoggedIn={true} />
       <h3 className="text-center font-bold"></h3>
       <h1 className="text-center text-150 font-bold">404</h1>
       <h3 className="text-center text-2xl font-medium text-dark-violet">
@@ -19,6 +23,7 @@ export const PageNotFound = () => {
       <div className="grid place-content-center">
         <PrimaryButton
           className="mt-11 py-2 px-6 rounded-full"
+          onClick={() => navigate(-1)}
           text={t("translation.button.goBack")}
         />
       </div>

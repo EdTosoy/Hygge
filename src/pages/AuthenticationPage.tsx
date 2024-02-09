@@ -1,10 +1,10 @@
 import { useContext } from "react";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 import { ToggleContext } from "context";
 import { AuthenticationHeader, SignInForm, SignUpForm } from "components";
 import HeroPNG from "/src/assets/Hero.svg";
 import { ToggleContextType } from "@types";
-export { signIn } from "src/constants";
 import { signIn } from "src/constants";
 
 export const AuthenticationPage = () => {
@@ -13,6 +13,7 @@ export const AuthenticationPage = () => {
   ) as ToggleContextType;
 
   const { t } = useTranslation();
+  const navigate = useNavigate();
   return (
     <div>
       <AuthenticationHeader
@@ -38,10 +39,14 @@ export const AuthenticationPage = () => {
                 <img src={HeroPNG} alt="hero png" width={313} height={556} />
               </div>
             </div>
-            <p className="cursor-pointer text-semi-gray">
+            <p
+              className="cursor-pointer text-semi-gray"
+              onClick={() => navigate(-1)}
+            >
               {t("translation.button.goBackToHome")}
             </p>
           </div>
+
           <div>
             {authenticationForm === signIn ? <SignInForm /> : <SignUpForm />}
           </div>

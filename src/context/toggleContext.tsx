@@ -13,7 +13,7 @@ export const ToggleProvider: React.FC<{ children: React.ReactNode }> = ({
   const [showDropdown, setShowDropdown] = useState(false);
   const [showNotificationPanel, setShowNotificationPanel] = useState(false);
   const [authenticationForm, setAuthenticationForm] =
-    useState<ToggleContextType["authenticationForm"]>("sign-in");
+    useState<ToggleContextType["authenticationForm"]>(signUp);
 
   const toggleDropdown = () => {
     setShowDropdown(!showDropdown);
