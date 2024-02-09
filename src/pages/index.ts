@@ -1,2 +1,2 @@
-export { AuthenticationPage } from "./AuthenticationPage.tsx";
-export { PageNotFound } from "./PageNotFound.tsx";
+export { AuthenticationPage } from "./AuthenticationPage/Loadable.ts";
+export { PageNotFound } from "./PageNotFound/Loadable.ts";
