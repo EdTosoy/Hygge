@@ -15,6 +15,8 @@ export const ToggleProvider: React.FC<{ children: React.ReactNode }> = ({
     useState<ToggleContextType["authenticationForm"]>(signUp);
   const [showModal, setShowModal] = useState(false);
   const [modalContent, setModalContent] = useState<React.ReactNode>(null);
+  const [darkMode, setDarkMode] = useState(false);
+  const [onlineStatus, setOnlineStatus] = useState(false);
 
   const toggleDropdown = () => {
     setShowDropdown(!showDropdown);
@@ -53,6 +55,10 @@ export const ToggleProvider: React.FC<{ children: React.ReactNode }> = ({
         toggleModal,
         modalContent,
         setModalContent,
+        darkMode,
+        setDarkMode,
+        onlineStatus,
+        setOnlineStatus,
       }}
     >
       {children}
