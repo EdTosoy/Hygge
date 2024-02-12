@@ -35,7 +35,7 @@ export const Header = ({ isLoggedIn }: HeaderProps) => {
                 <input
                   type="text"
                   placeholder="Search"
-                  className="px-10 py-3 text-xs font-light bg-light-violet text-dark-violet placeholder-dark-violet rounded-full w-large focus:outline-none focus:ring-2 focus:ring-light-violet focus:ring-opacity-50"
+                  className="px-10 py-3 text-xs font-light bg-light-violet text-dark-violet placeholder-dark-violet rounded-full w-607 focus:outline-none focus:ring-2 focus:ring-light-violet focus:ring-opacity-50"
                 />
               </div>
             </div>

@@ -14,6 +14,7 @@ export const Layout = ({ children }: LayoutProps) => {
     toggleAuthenticationForm,
     showModal,
     modalContent,
+    toggleModal,
   } = useContext(ToggleContext) as ToggleContextType;
 
   const isModalValid = showModal && modalContent;
@@ -35,7 +36,11 @@ export const Layout = ({ children }: LayoutProps) => {
     <div>
       {header()}
       <main>{children}</main>
-      {isModalValid && <ModalContainer modalContent={modalContent} />}
+      {isModalValid && (
+        <div onClick={toggleModal}>
+          <ModalContainer modalContent={modalContent} />
+        </div>
+      )}
     </div>
   );
 };
