@@ -25,7 +25,7 @@ export const Header = ({ isLoggedIn }: HeaderProps) => {
   const navigate = useNavigate();
 
   return (
-    <div className="fixed top-0 z-50 grid place-content-center w-full border-b border-light-gray">
+    <div className="fixed top-0 z-40 grid place-content-center w-full border-b border-light-gray">
       <div className="bg-white body-grid-container ">
         <div className="col-start-2 col-end-3  ">
           <header className="flex py-2  ">

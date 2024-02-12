@@ -2,24 +2,18 @@ import { useContext } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { ToggleContext } from "context";
-import { AuthenticationHeader, SignInForm, SignUpForm } from "components";
+import { SignInForm, SignUpForm } from "components";
 import HeroPNG from "/src/assets/Hero.svg";
 import { ToggleContextType } from "@types";
 import { signIn } from "src/constants";
 
 export const AuthenticationPage = () => {
-  const { authenticationForm, toggleAuthenticationForm } = useContext(
-    ToggleContext,
-  ) as ToggleContextType;
+  const { authenticationForm } = useContext(ToggleContext) as ToggleContextType;
 
   const { t } = useTranslation();
   const navigate = useNavigate();
   return (
     <div>
-      <AuthenticationHeader
-        authenticationForm={authenticationForm}
-        toggleAuthenticationForm={toggleAuthenticationForm}
-      />
       <div className="body-grid-container">
         <div className="col-start-2 col-end-3 flex justify-between ">
           <div>

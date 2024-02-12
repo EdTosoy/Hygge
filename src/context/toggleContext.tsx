@@ -1,4 +1,3 @@
-// context/todoContext.tsx
 import React, { useState } from "react";
 import { ToggleContextType } from "@types";
 import { signIn, signUp } from "src/constants";
@@ -14,6 +13,8 @@ export const ToggleProvider: React.FC<{ children: React.ReactNode }> = ({
   const [showNotificationPanel, setShowNotificationPanel] = useState(false);
   const [authenticationForm, setAuthenticationForm] =
     useState<ToggleContextType["authenticationForm"]>(signUp);
+  const [showModal, setShowModal] = useState(false);
+  const [modalContent, setModalContent] = useState<React.ReactNode>(null);
 
   const toggleDropdown = () => {
     setShowDropdown(!showDropdown);
@@ -30,6 +31,14 @@ export const ToggleProvider: React.FC<{ children: React.ReactNode }> = ({
       setAuthenticationForm(signIn);
     }
   };
+  const toggleModal = () => {
+    if (showModal === true) {
+      setShowModal(false);
+      setModalContent(null);
+    } else {
+      setShowModal(true);
+    }
+  };
 
   return (
     <ToggleContext.Provider
@@ -40,6 +49,10 @@ export const ToggleProvider: React.FC<{ children: React.ReactNode }> = ({
         toggleNotificationPanel,
         authenticationForm,
         toggleAuthenticationForm,
+        showModal,
+        toggleModal,
+        modalContent,
+        setModalContent,
       }}
     >
       {children}
