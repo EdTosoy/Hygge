@@ -13,6 +13,15 @@ export default defineConfig({
       "**/__test__/**/*.cy.tsx",
     ],
   },
+
+  server: {
+    proxy: {
+      "/api": {
+        target: "http://localhost:6000/api",
+        secure: false,
+      },
+    },
+  },
   plugins: [react()],
   resolve: {
     alias: {

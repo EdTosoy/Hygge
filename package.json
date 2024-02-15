@@ -2,6 +2,7 @@
   "name": "hygge",
   "private": true,
   "version": "0.0.0",
+  "proxy": "http://localhost:6000/api",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -14,6 +15,7 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.1.0",
+    "axios": "^1.6.7",
     "i18next": "^23.8.2",
     "i18next-browser-languagedetector": "^7.2.0",
     "i18next-http-backend": "^2.4.3",

@@ -9,7 +9,7 @@
       "signIn": "Sign In",
       "goBack": "Go Back",
       "goBackToHome": "<- Go Back to Home Page",
-      "forgotPassword": "Forgot Password ?"
+      "forgotPassword": "Forgot Password?"
     },
     "input": {
       "email": "Enter Email",
@@ -30,8 +30,8 @@
       "heroTitleSpan": "Passion",
       "heroSubtitle": "Enjoy the good things in life with good people.",
       "oAuthTitle": "or continue with",
-      "createNewAccount": "Create New Account ?",
-      "alreadyHaveAnAccount": "Already have an account ?"
+      "createNewAccount": "Create New Account?",
+      "alreadyHaveAnAccount": "Already have an account?"
     },
     "sideNavigation": {
       "resources": "Resources",
