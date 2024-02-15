@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import axios from "axios";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { ToggleContext } from "context";
 import { OAuthOptions, PrimaryButton } from "components";
@@ -9,12 +10,24 @@ import { SignInFormInput, SignInFormProps } from "./types";
 
 export const SignInForm = ({ showFooter }: SignInFormProps) => {
   const { toggleModal } = useContext(ToggleContext) as ToggleContextType;
-  const { register, handleSubmit } = useForm<SignInFormInput>();
+  const { register, handleSubmit, reset } = useForm<SignInFormInput>();
   const { t } = useTranslation();
   const navigate = useNavigate();
 
   const onSubmit: SubmitHandler<SignInFormInput> = (data) => {
-    console.log(data);
+    const { emailOrUsername, password } = data;
+    axios
+      .post("/api/user/login", {
+        email: emailOrUsername,
+        password: password,
+      })
+      .then(function (response) {
+        console.log(response);
+        reset();
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
 
   return (

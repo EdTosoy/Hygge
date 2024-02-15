@@ -14,7 +14,7 @@ export const SignUpForm = () => {
       console.log("password not match!");
     }
     axios
-      .post("/user/register", data)
+      .post("/api/user/register", data)
       .then(function (response) {
         console.log(response);
         reset();
