@@ -14,11 +14,12 @@ export const Layout = ({ children }: LayoutProps) => {
   ) as ToggleContextType;
 
   const isModalValid = showModal && modalContent;
+  const userId = localStorage.getItem("userId");
   const header = () => {
     if (!isAuthPage)
       return (
         <div className="pt-14">
-          <Header isLoggedIn />
+          <Header isLoggedIn={Boolean(userId)} />
         </div>
       );
     return <AuthenticationHeader />;

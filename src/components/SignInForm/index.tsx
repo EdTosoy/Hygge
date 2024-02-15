@@ -24,6 +24,14 @@ export const SignInForm = ({ showFooter }: SignInFormProps) => {
       .then(function (response) {
         console.log(response);
         reset();
+
+        if (response.status === 200) {
+          const { username, _id } = response.data;
+          localStorage.setItem("userName", username);
+          localStorage.setItem("userId", _id);
+          navigate("/home");
+          toggleModal();
+        }
       })
       .catch(function (error) {
         console.log(error);
@@ -31,7 +39,12 @@ export const SignInForm = ({ showFooter }: SignInFormProps) => {
   };
 
   return (
-    <div className="p-14 shadow-2xl rounded-2xl">
+    <div
+      className="p-14 shadow-2xl rounded-2xl"
+      onClick={(e) => {
+        e.stopPropagation();
+      }}
+    >
       <h1 className="font-medium text-3xl">{t("translation.button.signIn")}</h1>
       <form className="" onSubmit={handleSubmit(onSubmit)}>
         <input

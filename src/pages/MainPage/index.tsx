@@ -10,10 +10,12 @@ export const MainPage = () => {
     ToggleContext,
   ) as ToggleContextType;
   const { pathname } = useLocation();
-
+  const userId = localStorage.getItem("userId");
   const handleOnClickMainContainer = () => {
-    setModalContent(<SignInForm showFooter />);
-    toggleModal();
+    if (!userId) {
+      setModalContent(<SignInForm showFooter />);
+      toggleModal();
+    }
   };
   return (
     <div className="body-grid-container" onClick={handleOnClickMainContainer}>
