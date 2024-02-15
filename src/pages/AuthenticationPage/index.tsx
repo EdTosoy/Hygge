@@ -1,17 +1,15 @@
-import { useContext } from "react";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
-import { ToggleContext } from "context";
+import { useLocation, useNavigate } from "react-router-dom";
 import { SignInForm, SignUpForm } from "components";
 import HeroPNG from "/src/assets/Hero.svg";
-import { ToggleContextType } from "@types";
-import { signIn } from "src/constants";
+import { SIGN_IN } from "constants";
 
 export const AuthenticationPage = () => {
-  const { authenticationForm } = useContext(ToggleContext) as ToggleContextType;
-
   const { t } = useTranslation();
+  const { search } = useLocation();
   const navigate = useNavigate();
+
+  const isSignIn = search === SIGN_IN;
   return (
     <div>
       <div className="body-grid-container">
@@ -41,9 +39,7 @@ export const AuthenticationPage = () => {
             </p>
           </div>
 
-          <div>
-            {authenticationForm === signIn ? <SignInForm /> : <SignUpForm />}
-          </div>
+          <div>{isSignIn ? <SignInForm /> : <SignUpForm />}</div>
         </div>
       </div>
     </div>

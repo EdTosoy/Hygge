@@ -9,13 +9,9 @@ import { LayoutProps } from "./types";
 export const Layout = ({ children }: LayoutProps) => {
   const { pathname } = useLocation();
   const isAuthPage = pathname === "/auth";
-  const {
-    authenticationForm,
-    toggleAuthenticationForm,
-    showModal,
-    modalContent,
-    toggleModal,
-  } = useContext(ToggleContext) as ToggleContextType;
+  const { showModal, modalContent, toggleModal } = useContext(
+    ToggleContext,
+  ) as ToggleContextType;
 
   const isModalValid = showModal && modalContent;
   const header = () => {
@@ -25,12 +21,7 @@ export const Layout = ({ children }: LayoutProps) => {
           <Header isLoggedIn />
         </div>
       );
-    return (
-      <AuthenticationHeader
-        authenticationForm={authenticationForm}
-        toggleAuthenticationForm={toggleAuthenticationForm}
-      />
-    );
+    return <AuthenticationHeader />;
   };
   return (
     <div>

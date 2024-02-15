@@ -8,6 +8,7 @@ import {
   PrimaryButton,
   Profile,
   SecondaryButton,
+  SignInForm,
 } from "components";
 import { ToggleContext } from "context";
 import { HeaderProps } from "./types";
@@ -19,10 +20,17 @@ export const Header = ({ isLoggedIn }: HeaderProps) => {
     showDropdown,
     toggleDropdown,
     toggleNotificationPanel,
+    toggleModal,
+    setModalContent,
   } = useContext(ToggleContext) as ToggleContextType;
 
   const { t } = useTranslation();
   const navigate = useNavigate();
+
+  const handleOnClickSignIn = () => {
+    setModalContent(<SignInForm showFooter />);
+    toggleModal();
+  };
 
   return (
     <div className="fixed top-0 z-40 grid place-content-center w-full border-b border-light-gray">
@@ -85,6 +93,8 @@ export const Header = ({ isLoggedIn }: HeaderProps) => {
                 <PrimaryButton
                   className="py-2 px-8 rounded-full "
                   text={t("translation.button.signIn")}
+                  type="button"
+                  onClick={handleOnClickSignIn}
                 />
               </div>
             )}

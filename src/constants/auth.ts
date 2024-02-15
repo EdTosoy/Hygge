@@ -1,2 +1,2 @@
-export const signIn = "sign-in";
-export const signUp = "sign-up";
+export const SIGN_IN = "?signIn";
+export const SIGN_UP = "?signUp";
