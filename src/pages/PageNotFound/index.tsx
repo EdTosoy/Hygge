@@ -23,6 +23,7 @@ export const PageNotFound = () => {
           className="mt-11 py-2 px-6 rounded-full"
           onClick={() => navigate(-1)}
           text={t("translation.button.goBack")}
+          type="button"
         />
       </div>
     </div>
