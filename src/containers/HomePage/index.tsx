@@ -1,9 +1,7 @@
-import { useSelector, useDispatch } from "react-redux";
-import type { RootState } from "src/store.ts";
+import { useDispatch } from "react-redux";
 import { decrement, increment } from "./slice.ts";
 
 export function HomePage() {
-  const count = useSelector((state: RootState) => state.counter.value);
   const dispatch = useDispatch();
 
   return (
@@ -14,7 +12,6 @@ export function HomePage() {
       >
         Increment
       </button>
-      <span>{count}</span>
       <button
         aria-label="Decrement value"
         onClick={() => dispatch(decrement())}

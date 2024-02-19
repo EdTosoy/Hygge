@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
+import { SignInForm } from "containers";
 import {
   Dropdown,
   IconContainer,
@@ -8,11 +9,11 @@ import {
   PrimaryButton,
   Profile,
   SecondaryButton,
-  SignInForm,
 } from "components";
 import { ToggleContext } from "context";
 import { HeaderProps } from "./types";
 import { ToggleContextType } from "@types";
+import { AUTH_ROUTE } from "src/constants";
 
 export const Header = ({ isLoggedIn }: HeaderProps) => {
   const {
@@ -88,7 +89,7 @@ export const Header = ({ isLoggedIn }: HeaderProps) => {
                 <SecondaryButton
                   className="py-2 px-8 rounded-full"
                   text={t("translation.button.signUp")}
-                  onClick={() => navigate("/auth")}
+                  onClick={() => navigate(AUTH_ROUTE)}
                 />
                 <PrimaryButton
                   className="py-2 px-8 rounded-full "

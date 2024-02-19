@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import { Logo } from "components";
 import { AuthenticationHeaderProps } from "./types";
 import { useLocation, useNavigate } from "react-router";
-import { SIGN_IN, SIGN_UP } from "constants";
+import { SIGN_IN, SIGN_UP } from "src/constants";
 
 export const AuthenticationHeader = ({}: AuthenticationHeaderProps) => {
   const { t } = useTranslation();

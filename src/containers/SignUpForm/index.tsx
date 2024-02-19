@@ -1,27 +1,32 @@
 import { useTranslation } from "react-i18next";
-import axios from "axios";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { useAppDispatch } from "hooks";
+import { signUp } from "../AuthenticationForm/slice";
 import { OAuthOptions, PrimaryButton } from "components";
 import { SignUpFormInput } from "./types";
 
 export const SignUpForm = () => {
   const { t } = useTranslation();
+  const dispatch = useAppDispatch();
   const { register, handleSubmit, reset } = useForm<SignUpFormInput>();
 
   const onSubmit: SubmitHandler<SignUpFormInput> = async (data) => {
-    const { confirmPassword, password } = data;
+    const { confirmPassword, password, email, username } = data;
     if (confirmPassword !== password) {
       console.log("password not match!");
     }
-    axios
-      .post("/api/user/register", data)
-      .then(function (response) {
-        console.log(response);
+    if (email && username) {
+      try {
+        await dispatch(
+          signUp({ email, password, confirmPassword, username }),
+        ).unwrap();
         reset();
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+      } catch (e) {
+        console.error(e);
+      }
+    } else {
+      console.log("there is no email, password, confirmPassword, username");
+    }
   };
 
   return (

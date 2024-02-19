@@ -30,8 +30,8 @@
     "allowSyntheticDefaultImports": true,
     "baseUrl": "./",
     "paths": {
-      "src": ["src/*"],
       "@types": ["src/@types"],
+      "api": ["src/api"],
       "assets": ["src/assets"],
       "components": ["src/components"],
       "constants": ["src/constants"],
@@ -42,6 +42,7 @@
       "locales": ["src/locales"],
       "pages": ["src/pages"],
       "routes": ["src/routes"],
+      "src": ["src/*"],
       "utils": ["src/utils"]
     },
     "typeRoots": ["node_modules/@types", "./src/@types"]

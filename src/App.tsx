@@ -5,14 +5,15 @@ import { store } from "./store";
 import { AuthenticationPage, MainPage, PageNotFound } from "pages";
 import { Layout } from "layout";
 import "./App.css";
+import { AUTH_ROUTE, HOME_ROUTE } from "src/constants";
 function App() {
   return (
     <Router>
       <Provider store={store}>
         <Layout>
           <Routes>
-            <Route path="/auth" element={<AuthenticationPage />} />
-            <Route path="/home" element={<MainPage />} />
+            <Route path={AUTH_ROUTE} element={<AuthenticationPage />} />
+            <Route path={HOME_ROUTE} element={<MainPage />} />
             <Route path="*" element={<PageNotFound />} />
           </Routes>
         </Layout>

@@ -25,8 +25,7 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      src: resolve("src/"),
-      types: resolve("src/@types/"),
+      api: resolve("src/api/"),
       assets: resolve("src/assets/"),
       components: resolve("src/components/"),
       constants: resolve("src/constants/"),
@@ -37,6 +36,8 @@ export default defineConfig({
       locales: resolve("src/locales/"),
       pages: resolve("src/pages/"),
       routes: resolve("src/routes/"),
+      src: resolve("src/"),
+      types: resolve("src/@types/"),
       utils: resolve("src/utils/"),
     },
   },

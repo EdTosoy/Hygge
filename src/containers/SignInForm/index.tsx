@@ -1,41 +1,36 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import axios from "axios";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { ToggleContext } from "context";
 import { OAuthOptions, PrimaryButton } from "components";
+import { useAppDispatch } from "hooks";
+import { login } from "../AuthenticationForm/slice";
 import { ToggleContextType } from "@types";
 import { SignInFormInput, SignInFormProps } from "./types";
+import { AUTH_ROUTE, HOME_ROUTE } from "src/constants";
 
 export const SignInForm = ({ showFooter }: SignInFormProps) => {
   const { toggleModal } = useContext(ToggleContext) as ToggleContextType;
   const { register, handleSubmit, reset } = useForm<SignInFormInput>();
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
-  const onSubmit: SubmitHandler<SignInFormInput> = (data) => {
+  const onSubmit: SubmitHandler<SignInFormInput> = async (data) => {
     const { emailOrUsername, password } = data;
-    axios
-      .post("/api/user/login", {
-        email: emailOrUsername,
-        password: password,
-      })
-      .then(function (response) {
-        console.log(response);
+    if (emailOrUsername && password) {
+      try {
+        await dispatch(login({ email: emailOrUsername, password })).unwrap();
         reset();
-
-        if (response.status === 200) {
-          const { username, _id } = response.data;
-          localStorage.setItem("userName", username);
-          localStorage.setItem("userId", _id);
-          navigate("/home");
-          toggleModal();
-        }
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+        navigate(HOME_ROUTE);
+        toggleModal();
+      } catch (e) {
+        console.error(e);
+      }
+    } else {
+      console.log("there is no email and/or password");
+    }
   };
 
   return (
@@ -80,7 +75,7 @@ export const SignInForm = ({ showFooter }: SignInFormProps) => {
                 className="text-dark-violet cursor-pointer ml-4 font-semibold"
                 onClick={() => {
                   toggleModal();
-                  navigate("/auth");
+                  navigate(AUTH_ROUTE);
                 }}
               >
                 {t("translation.button.signUp")}

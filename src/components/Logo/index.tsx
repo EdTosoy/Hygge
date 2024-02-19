@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router";
+import { HOME_ROUTE } from "src/constants";
 
 interface LogoProps {
   // convert to path chec, if it is for authentication, if it is for authentication then remove padding
@@ -10,7 +11,7 @@ export const Logo = ({ isForAuthentication }: LogoProps) => {
     // convert to path chec, if it is for authentication, if it is for authentication then remove padding
     <div
       className={`py-2 w-238 ${isForAuthentication && "px-5"}`}
-      onClick={() => navigate("/home")}
+      onClick={() => navigate(HOME_ROUTE)}
     >
       <div className="flex  gap-1 cursor-pointer">
         <h1 className="text-xl font-semibold">Hygge</h1>

@@ -8,5 +8,3 @@ export { PrimaryButton } from "./PrimaryButton/Loadable";
 export { Profile } from "./Profile/Loadable";
 export { SecondaryButton } from "./SecondaryButton/Loadable";
 export { SideNavigationButton } from "./SideNavigationButton/Loadable";
-export { SignInForm } from "./SignInForm/Loadable";
-export { SignUpForm } from "./SignUpForm/Loadable";
