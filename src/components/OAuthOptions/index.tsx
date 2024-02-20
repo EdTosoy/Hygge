@@ -1,6 +1,6 @@
-import facebookLogo from "assets/facebook.svg";
-import googleLogo from "assets/google.svg";
-import appleLogo from "assets/apple.svg";
+import facebookLogo from "src/assets/facebook.svg";
+import googleLogo from "src/assets/google.svg";
+import appleLogo from "src/assets/apple.svg";
 
 export const OAuthOptions = () => {
   return (
