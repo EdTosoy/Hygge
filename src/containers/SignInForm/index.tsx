@@ -5,7 +5,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { ToggleContext } from "context";
 import { OAuthOptions, PrimaryButton } from "components";
 import { useAppDispatch } from "hooks";
-import { login } from "../AuthenticationForm/slice";
+import { signIn } from "../AuthenticationForm/slice";
 import { ToggleContextType } from "@types";
 import { SignInFormInput, SignInFormProps } from "./types";
 import { AUTH_ROUTE, HOME_ROUTE } from "src/constants";
@@ -21,7 +21,7 @@ export const SignInForm = ({ showFooter }: SignInFormProps) => {
     const { emailOrUsername, password } = data;
     if (emailOrUsername && password) {
       try {
-        await dispatch(login({ email: emailOrUsername, password })).unwrap();
+        await dispatch(signIn({ email: emailOrUsername, password })).unwrap();
         reset();
         navigate(HOME_ROUTE);
         toggleModal();

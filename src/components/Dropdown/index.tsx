@@ -1,13 +1,29 @@
 import { useContext } from "react";
+import { useNavigate } from "react-router";
 import { ToggleContext } from "context";
+import { useAppDispatch } from "hooks";
+import { lagout } from "src/containers/AuthenticationForm/slice";
 import { IconContainer } from "components";
 import { ToggleContextType } from "@types";
 import { DropdownProps } from "./types";
+import { HOME_ROUTE } from "src/constants";
 
 export const Dropdown = ({ showDropdown, toggleDropdown }: DropdownProps) => {
   const { darkMode, setDarkMode, onlineStatus, setOnlineStatus } = useContext(
     ToggleContext,
   ) as ToggleContextType;
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const handleLagout = async () => {
+    try {
+      await dispatch(lagout()).unwrap();
+      localStorage.removeItem("userInfo");
+      navigate(HOME_ROUTE);
+      window.location.reload();
+    } catch (e) {
+      console.error(e);
+    }
+  };
   return (
     <div
       className="relative dropdown grid place-content-center "
@@ -49,6 +65,9 @@ export const Dropdown = ({ showDropdown, toggleDropdown }: DropdownProps) => {
               <p className="my-4 cursor-pointer">Profile </p>
               <p className="my-4 cursor-pointer">Create Avatar </p>
               <p className="my-4 cursor-pointer">User Settings </p>
+              <p className="my-4 cursor-pointer" onClick={handleLagout}>
+                Logout
+              </p>
             </div>
           </div>
           <div className="p-5">

@@ -10,7 +10,7 @@ export const initialState: AuthApiState = {
   error: null,
 };
 
-export const login = createAsyncThunk("login", async (data: User) => {
+export const signIn = createAsyncThunk("signin", async (data: User) => {
   const response = await axiosInstance.post("/api/user/login", data);
   const resData = response.data;
 
@@ -19,9 +19,17 @@ export const login = createAsyncThunk("login", async (data: User) => {
   return resData;
 });
 
-export const signUp = createAsyncThunk("register", async (data: NewUser) => {
+export const signUp = createAsyncThunk("signup", async (data: NewUser) => {
   const response = await axiosInstance.post("/api/user/register", data);
   const resData = response.data;
+
+  return resData;
+});
+
+export const lagout = createAsyncThunk("logout", async () => {
+  const response = await axiosInstance.get("/api/user/logout");
+  const resData = response.data;
+  localStorage.removeItem("userInfo");
 
   return resData;
 });
@@ -32,24 +40,25 @@ const authSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(login.pending, (state) => {
+
+      /// Sign In
+      .addCase(signIn.pending, (state) => {
         state.status = "loading";
         state.error = null;
       })
       .addCase(
-        login.fulfilled,
+        signIn.fulfilled,
         (state, action: PayloadAction<UserBasicInfo>) => {
           state.status = "idle";
           state.basicUserInfo = action.payload;
         },
       )
-      .addCase(login.rejected, (state, action) => {
+      .addCase(signIn.rejected, (state, action) => {
         state.status = "failed";
-        state.error = action.error.message || "Login failed";
+        state.error = action.error.message || "Sign In failed";
       })
 
-      /// Register
-
+      /// Sign Up
       .addCase(signUp.pending, (state) => {
         state.status = "loading";
         state.error = null;
@@ -63,7 +72,20 @@ const authSlice = createSlice({
       )
       .addCase(signUp.rejected, (state, action) => {
         state.status = "failed";
-        state.error = action.error.message || "Registration failed";
+        state.error = action.error.message || "Sign Up failed";
+      })
+
+      /// Lagout
+      .addCase(lagout.pending, (state) => {
+        state.status = "loading";
+        state.error = null;
+      })
+      .addCase(lagout.fulfilled, (state) => {
+        state.status = "idle";
+      })
+      .addCase(lagout.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message || "Lagout failed";
       });
   },
 });
