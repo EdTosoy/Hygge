@@ -4,9 +4,11 @@ export const IconContainer = ({
   children,
   hasNotification,
   className,
+  onClick,
 }: IconContainerProps) => {
   return (
     <div
+      onClick={onClick}
       className={`icon-container grid place-content-center relative cursor-pointer ${className}`}
     >
       {children}

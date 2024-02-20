@@ -78,11 +78,12 @@ export const Header = ({ isLoggedIn }: HeaderProps) => {
                         )}
                       </div>
                     </IconContainer>
-                    <div onClick={handleOnClickAddPost}>
-                      <IconContainer className="text-2xl cursor-pointer">
-                        <ion-icon name="add-circle-outline" />
-                      </IconContainer>
-                    </div>
+                    <IconContainer
+                      className="text-2xl cursor-pointer"
+                      onClick={handleOnClickAddPost}
+                    >
+                      <ion-icon name="add-circle-outline" />
+                    </IconContainer>
                   </div>
                   <Profile showStatus />
                 </div>
