@@ -1,12 +1,15 @@
 import { useTranslation } from "react-i18next";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { useNavigate } from "react-router";
 import { useAppDispatch } from "hooks";
 import { signUp } from "../AuthenticationForm/slice";
 import { OAuthOptions, PrimaryButton } from "components";
 import { SignUpFormInput } from "./types";
+import { SIGN_IN } from "src/constants";
 
 export const SignUpForm = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { register, handleSubmit, reset } = useForm<SignUpFormInput>();
 
@@ -21,6 +24,8 @@ export const SignUpForm = () => {
           signUp({ email, password, confirmPassword, username }),
         ).unwrap();
         reset();
+        navigate(SIGN_IN);
+        window.location.reload();
       } catch (e) {
         console.error(e);
       }

@@ -20,10 +20,8 @@ export const login = createAsyncThunk("login", async (data: User) => {
 });
 
 export const signUp = createAsyncThunk("register", async (data: NewUser) => {
-  const response = await axiosInstance.post("/register", data);
+  const response = await axiosInstance.post("/api/user/register", data);
   const resData = response.data;
-
-  localStorage.setItem("userInfo", JSON.stringify(resData));
 
   return resData;
 });
