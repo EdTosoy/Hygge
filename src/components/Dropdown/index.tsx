@@ -7,7 +7,7 @@ import { lagout } from "src/containers/AuthenticationForm/slice";
 import { IconContainer } from "components";
 import { ToggleContextType } from "@types";
 import { DropdownProps } from "./types";
-import { HOME_ROUTE } from "src/constants";
+import { HOME_ROUTE, USER_INFO } from "src/constants";
 
 export const Dropdown = ({ showDropdown, toggleDropdown }: DropdownProps) => {
   const { darkMode, setDarkMode, onlineStatus, setOnlineStatus } = useContext(
@@ -19,7 +19,7 @@ export const Dropdown = ({ showDropdown, toggleDropdown }: DropdownProps) => {
   const handleLagout = async () => {
     try {
       await dispatch(lagout()).unwrap();
-      localStorage.removeItem("userInfo");
+      localStorage.removeItem(USER_INFO);
       navigate(HOME_ROUTE);
       window.location.reload();
     } catch (error) {

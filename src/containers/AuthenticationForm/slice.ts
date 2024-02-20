@@ -1,10 +1,11 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { AuthApiState, NewUser, User, UserBasicInfo } from "./types";
 import { axiosInstance } from "api";
+import { USER_INFO } from "src/constants";
 
 export const initialState: AuthApiState = {
-  basicUserInfo: localStorage.getItem("userInfo")
-    ? JSON.parse(localStorage.getItem("userInfo") as string)
+  basicUserInfo: localStorage.getItem(USER_INFO)
+    ? JSON.parse(localStorage.getItem(USER_INFO) as string)
     : null,
   status: "idle",
   error: null,
@@ -14,7 +15,7 @@ export const signIn = createAsyncThunk("signin", async (data: User) => {
   const response = await axiosInstance.post("/api/user/login", data);
   const resData = response.data;
 
-  localStorage.setItem("userInfo", JSON.stringify(resData));
+  localStorage.setItem(USER_INFO, JSON.stringify(resData));
 
   return resData;
 });
@@ -29,7 +30,7 @@ export const signUp = createAsyncThunk("signup", async (data: NewUser) => {
 export const lagout = createAsyncThunk("logout", async () => {
   const response = await axiosInstance.get("/api/user/logout");
   const resData = response.data;
-  localStorage.removeItem("userInfo");
+  localStorage.removeItem(USER_INFO);
 
   return resData;
 });
