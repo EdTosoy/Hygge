@@ -27,13 +27,13 @@ export const Dropdown = ({ showDropdown, toggleDropdown }: DropdownProps) => {
     }
   };
   return (
-    <div
-      className="relative dropdown grid place-content-center "
-      onClick={() => toggleDropdown()}
-    >
-      <IconContainer>
-        <ion-icon name="chevron-down-outline" />
-      </IconContainer>
+    <div className="relative dropdown grid place-content-center ">
+      <div onClick={() => toggleDropdown()}>
+        <IconContainer>
+          <ion-icon name="chevron-down-outline" />
+        </IconContainer>
+      </div>
+
       {showDropdown && (
         <div className="w-252 border border-light-gray bg-white z-10 absolute top-12 right-0 rounded-md shadow-lg text-sm font-medium ">
           <div className="p-5 border-b border-light-gray">
