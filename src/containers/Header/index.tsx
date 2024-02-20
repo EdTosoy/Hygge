@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import { SignInForm, AddPost } from "containers";
+import { SignInForm, AddPost } from "features";
 import {
   Dropdown,
   IconContainer,

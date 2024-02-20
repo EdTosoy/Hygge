@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 import { useAppDispatch } from "hooks";
-import { signUp } from "../AuthenticationForm/slice";
+import { signUp } from "../authSlice";
 import { OAuthOptions, PrimaryButton } from "components";
 import { SignUpFormInput } from "./types";
 import { SIGN_IN } from "src/constants";

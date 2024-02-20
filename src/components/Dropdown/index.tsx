@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 import { useTranslation } from "react-i18next";
 import { ToggleContext } from "context";
 import { useAppDispatch } from "hooks";
-import { lagout } from "src/containers/AuthenticationForm/slice";
+import { lagout } from "src/features/auth/authSlice";
 import { IconContainer } from "components";
 import { ToggleContextType } from "@types";
 import { DropdownProps } from "./types";

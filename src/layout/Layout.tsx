@@ -1,12 +1,12 @@
 import { useContext } from "react";
-import { Header } from "containers";
 import { useLocation } from "react-router-dom";
-import { ToggleContextType } from "@types";
+import { useAppSelector } from "hooks";
+import { Header } from "containers";
 import { AuthenticationHeader, ModalContainer } from "components";
+import { selectBasicUserInfo } from "src/features/auth/selectors";
 import { ToggleContext } from "context";
 import { LayoutProps } from "./types";
-import { useAppSelector } from "hooks";
-import { selectBasicUserInfo } from "src/containers/AuthenticationForm/selectors";
+import { ToggleContextType } from "@types";
 import { AUTH_ROUTE } from "src/constants";
 
 export const Layout = ({ children }: LayoutProps) => {

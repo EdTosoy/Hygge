@@ -1,4 +1,4 @@
-import { SignUpForm } from "containers";
+import { SignUpForm } from "features";
 
 describe("<SignUpForm />", () => {
   it("renders", () => {

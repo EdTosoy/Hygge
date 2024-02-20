@@ -1,11 +1,14 @@
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { SignInForm, SignUpForm } from "features";
 import HeroPNG from "/src/assets/Hero.svg";
-import { AuthenticationForm } from "containers";
+import { SIGN_IN } from "src/constants";
 
 export const AuthenticationPage = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const { search } = useLocation();
+  const isSignIn = search === SIGN_IN;
 
   return (
     <div>
@@ -35,7 +38,7 @@ export const AuthenticationPage = () => {
               {t("translation.button.goBackToHome")}
             </p>
           </div>
-          <AuthenticationForm />
+          <div>{isSignIn ? <SignInForm /> : <SignUpForm />}</div>;
         </div>
       </div>
     </div>

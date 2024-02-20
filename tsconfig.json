@@ -37,6 +37,7 @@
       "constants": ["src/constants"],
       "containers": ["src/containers"],
       "context": ["src/context"],
+      "features": ["src/features"],
       "hooks": ["src/hooks"],
       "layout": ["src/layout"],
       "locales": ["src/locales"],
@@ -47,7 +48,7 @@
     },
     "typeRoots": ["node_modules/@types", "./src/@types"]
   },
-  "include": ["src", "cypress/**/*.tsx", "./cypress.d.ts"],
+  "include": ["src", "cypress/**/*.tsx", "./cypress.d.ts", "vite.config.ts"],
   "exclude": ["node_modules", "dist"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

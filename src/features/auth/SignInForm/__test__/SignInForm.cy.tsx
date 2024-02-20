@@ -1,4 +1,4 @@
-import { SignInForm } from "containers";
+import { SignInForm } from "features";
 
 describe("<SignInForm />", () => {
   it("renders", () => {

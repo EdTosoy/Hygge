@@ -5,7 +5,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { ToggleContext } from "context";
 import { OAuthOptions, PrimaryButton } from "components";
 import { useAppDispatch } from "hooks";
-import { signIn } from "../AuthenticationForm/slice";
+import { signIn } from "../authSlice";
 import { ToggleContextType } from "@types";
 import { SignInFormInput, SignInFormProps } from "./types";
 import { AUTH_ROUTE, HOME_ROUTE } from "src/constants";

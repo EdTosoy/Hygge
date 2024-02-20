@@ -1,6 +1,6 @@
 import { defineConfig, configDefaults } from "vitest/config";
 import react from "@vitejs/plugin-react-swc";
-import { resolve } from "path";
+import tsconfigPaths from "vite-tsconfig-paths";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -22,23 +22,5 @@ export default defineConfig({
       },
     },
   },
-  plugins: [react()],
-  resolve: {
-    alias: {
-      api: resolve("src/api/"),
-      assets: resolve("src/assets/"),
-      components: resolve("src/components/"),
-      constants: resolve("src/constants/"),
-      containers: resolve("src/containers/"),
-      context: resolve("src/context/"),
-      hooks: resolve("src/hooks/"),
-      layout: resolve("src/layout/"),
-      locales: resolve("src/locales/"),
-      pages: resolve("src/pages/"),
-      routes: resolve("src/routes/"),
-      src: resolve("src/"),
-      types: resolve("src/@types/"),
-      utils: resolve("src/utils/"),
-    },
-  },
+  plugins: [react(), tsconfigPaths()],
 });

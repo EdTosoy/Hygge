@@ -1,5 +1,5 @@
 import { useAppSelector } from "hooks";
-import { selectBasicUserInfo } from "src/containers/AuthenticationForm/selectors";
+import { selectBasicUserInfo } from "src/features/auth/selectors";
 import { ProfileProps } from "./types";
 
 export const Profile = ({ showStatus }: ProfileProps) => {

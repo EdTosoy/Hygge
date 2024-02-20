@@ -1,12 +1,12 @@
 import { useContext } from "react";
 import { useLocation } from "react-router-dom";
+import { SignInForm } from "features";
 import { HomePage, SideNavigation } from "containers";
-import { SignInForm } from "containers";
 import { ToggleContext } from "context";
-import { ToggleContextType } from "@types";
-import { selectBasicUserInfo } from "src/containers/AuthenticationForm/selectors";
 import { useAppSelector } from "hooks";
+import { selectBasicUserInfo } from "src/features/auth/selectors";
 import { HOME_ROUTE, POPULAR_ROUTE } from "src/constants";
+import { ToggleContextType } from "@types";
 
 export const MainPage = () => {
   const { toggleModal, setModalContent } = useContext(
