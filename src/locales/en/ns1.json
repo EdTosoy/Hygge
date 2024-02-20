@@ -9,7 +9,8 @@
       "signIn": "Sign In",
       "goBack": "Go Back",
       "goBackToHome": "<- Go Back to Home Page",
-      "forgotPassword": "Forgot Password?"
+      "forgotPassword": "Forgot Password?",
+      "lagout": "Log Out"
     },
     "input": {
       "email": "Enter Email",
@@ -51,6 +52,15 @@
         "careers": "Careers",
         "faq": "FAQ"
       }
+    },
+    "dropDown": {
+      "myStuff": "My Stuff",
+      "onlineStatus": "Online Status",
+      "profile": "Profile",
+      "changeAvatar": "Change Avatar",
+      "userSettings": "User Settings",
+      "themePreferences": "Theme Preferences",
+      "darkMode": "Dark Mode"
     }
   }
 }

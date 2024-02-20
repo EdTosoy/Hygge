@@ -26,8 +26,8 @@ export const SignUpForm = () => {
         reset();
         navigate(SIGN_IN);
         window.location.reload();
-      } catch (e) {
-        console.error(e);
+      } catch (error) {
+        console.error(error);
       }
     } else {
       console.log("there is no email, password, confirmPassword, username");

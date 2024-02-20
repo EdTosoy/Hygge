@@ -25,8 +25,8 @@ export const SignInForm = ({ showFooter }: SignInFormProps) => {
         reset();
         navigate(HOME_ROUTE);
         toggleModal();
-      } catch (e) {
-        console.error(e);
+      } catch (error) {
+        console.error(error);
       }
     } else {
       console.log("there is no email and/or password");

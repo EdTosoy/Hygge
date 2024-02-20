@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router";
+import { useTranslation } from "react-i18next";
 import { ToggleContext } from "context";
 import { useAppDispatch } from "hooks";
 import { lagout } from "src/containers/AuthenticationForm/slice";
@@ -13,6 +14,7 @@ export const Dropdown = ({ showDropdown, toggleDropdown }: DropdownProps) => {
     ToggleContext,
   ) as ToggleContextType;
   const dispatch = useAppDispatch();
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const handleLagout = async () => {
     try {
@@ -20,8 +22,8 @@ export const Dropdown = ({ showDropdown, toggleDropdown }: DropdownProps) => {
       localStorage.removeItem("userInfo");
       navigate(HOME_ROUTE);
       window.location.reload();
-    } catch (e) {
-      console.error(e);
+    } catch (error) {
+      console.error(error);
     }
   };
   return (
@@ -39,7 +41,7 @@ export const Dropdown = ({ showDropdown, toggleDropdown }: DropdownProps) => {
               <IconContainer className="text-2xl">
                 <ion-icon name="planet-outline" />
               </IconContainer>
-              <h2>My Stuff</h2>
+              <h2>{t("translation.dropDown.myStuff")}</h2>
             </div>
             <div className="pl-8">
               <div
@@ -50,7 +52,7 @@ export const Dropdown = ({ showDropdown, toggleDropdown }: DropdownProps) => {
                   setOnlineStatus(!onlineStatus);
                 }}
               >
-                <p>Online Status</p>
+                <p>{t("translation.dropDown.onlineStatus")}</p>
                 <label className="inline-flex relative items-center mr-5 cursor-pointer">
                   <input
                     aria-label="input"
@@ -62,11 +64,17 @@ export const Dropdown = ({ showDropdown, toggleDropdown }: DropdownProps) => {
                   <div className="w-11 h-6 bg-gray-200 rounded-full peer  peer-focus:ring-dark-violet  peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-white after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-dark-violet"></div>
                 </label>
               </div>
-              <p className="my-4 cursor-pointer">Profile </p>
-              <p className="my-4 cursor-pointer">Create Avatar </p>
-              <p className="my-4 cursor-pointer">User Settings </p>
+              <p className="my-4 cursor-pointer">
+                {t("translation.dropDown.profile")}
+              </p>
+              <p className="my-4 cursor-pointer">
+                {t("translation.dropDown.changeAvatar")}
+              </p>
+              <p className="my-4 cursor-pointer">
+                {t("translation.dropDown.userSettings")}
+              </p>
               <p className="my-4 cursor-pointer" onClick={handleLagout}>
-                Logout
+                {t("translation.button.lagout")}
               </p>
             </div>
           </div>
@@ -75,7 +83,7 @@ export const Dropdown = ({ showDropdown, toggleDropdown }: DropdownProps) => {
               <IconContainer className="text-2xl">
                 <ion-icon name="cloudy-night-outline" />
               </IconContainer>
-              <h2>Theme Preference</h2>
+              <h2>{t("translation.dropDown.themePreferences")}</h2>
             </div>
             <div className="pl-8">
               <div
@@ -86,7 +94,7 @@ export const Dropdown = ({ showDropdown, toggleDropdown }: DropdownProps) => {
                   setDarkMode(!darkMode);
                 }}
               >
-                <p>Dark Mode</p>
+                <p>{t("translation.dropDown.darkMode")}</p>
                 <label className="inline-flex relative items-center mr-5 cursor-pointer">
                   <input
                     aria-label="input"
