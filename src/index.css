@@ -28,6 +28,10 @@ a {
   text-decoration: none;
 }
 
+textarea {
+  resize: none;
+}
+
 * {
   scroll-behavior: smooth;
   transition: all 0.3s;

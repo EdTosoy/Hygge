@@ -1,3 +1,4 @@
+export { AddPost } from "./AddPost/Loadable.ts";
 export { AuthenticationForm } from "./AuthenticationForm/Loadable.ts";
 export { Header } from "./Header/Loadable.ts";
 export { HomePage } from "./HomePage/Loadable.ts";

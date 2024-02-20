@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import { SignInForm } from "containers";
+import { SignInForm, AddPost } from "containers";
 import {
   Dropdown,
   IconContainer,
@@ -30,6 +30,11 @@ export const Header = ({ isLoggedIn }: HeaderProps) => {
 
   const handleOnClickSignIn = () => {
     setModalContent(<SignInForm showFooter />);
+    toggleModal();
+  };
+
+  const handleOnClickAddPost = () => {
+    setModalContent(<AddPost />);
     toggleModal();
   };
 
@@ -73,11 +78,13 @@ export const Header = ({ isLoggedIn }: HeaderProps) => {
                         )}
                       </div>
                     </IconContainer>
-                    <IconContainer className="text-2xl cursor-pointer">
-                      <ion-icon name="add-circle-outline" />
-                    </IconContainer>
+                    <div onClick={handleOnClickAddPost}>
+                      <IconContainer className="text-2xl cursor-pointer">
+                        <ion-icon name="add-circle-outline" />
+                      </IconContainer>
+                    </div>
                   </div>
-                  <Profile />
+                  <Profile showStatus />
                 </div>
                 <Dropdown
                   toggleDropdown={toggleDropdown}

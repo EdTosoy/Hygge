@@ -12,7 +12,7 @@ export const initialState: AuthApiState = {
 };
 
 export const signIn = createAsyncThunk("signin", async (data: User) => {
-  const response = await axiosInstance.post("/api/user/login", data);
+  const response = await axiosInstance.post("/api/user/sign-in", data);
   const resData = response.data;
 
   localStorage.setItem(USER_INFO, JSON.stringify(resData));
@@ -21,7 +21,7 @@ export const signIn = createAsyncThunk("signin", async (data: User) => {
 });
 
 export const signUp = createAsyncThunk("signup", async (data: NewUser) => {
-  const response = await axiosInstance.post("/api/user/register", data);
+  const response = await axiosInstance.post("/api/user/sign-up", data);
   const resData = response.data;
 
   return resData;
