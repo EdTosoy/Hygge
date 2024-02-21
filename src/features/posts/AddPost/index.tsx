@@ -36,6 +36,7 @@ export const AddPost = () => {
           }),
         ).unwrap();
         reset();
+        window.location.reload();
       } catch (error) {
         console.error(error);
       }

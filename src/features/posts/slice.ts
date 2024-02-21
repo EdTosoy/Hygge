@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Posts, PostsApiState } from "./types";
+import { Post, PostsApiState } from "./types";
 import { createPost, deletePost, getPosts, updatePost } from "./api";
 
 export const initialState: PostsApiState = {
@@ -19,13 +19,10 @@ const postsSlice = createSlice({
         state.status = "loading";
         state.error = null;
       })
-      .addCase(
-        createPost.fulfilled,
-        (state, action: PayloadAction<[Posts]>) => {
-          state.status = "idle";
-          state.posts = action.payload;
-        },
-      )
+      .addCase(createPost.fulfilled, (state, action: PayloadAction<Post[]>) => {
+        state.status = "idle";
+        state.posts = action.payload;
+      })
       .addCase(createPost.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message || "Sign In failed";
@@ -36,7 +33,7 @@ const postsSlice = createSlice({
         state.status = "loading";
         state.error = null;
       })
-      .addCase(getPosts.fulfilled, (state, action: PayloadAction<[Posts]>) => {
+      .addCase(getPosts.fulfilled, (state, action: PayloadAction<Post[]>) => {
         state.status = "idle";
         state.posts = action.payload;
       })
@@ -50,13 +47,10 @@ const postsSlice = createSlice({
         state.status = "loading";
         state.error = null;
       })
-      .addCase(
-        updatePost.fulfilled,
-        (state, action: PayloadAction<[Posts]>) => {
-          state.status = "idle";
-          state.posts = action.payload;
-        },
-      )
+      .addCase(updatePost.fulfilled, (state, action: PayloadAction<Post[]>) => {
+        state.status = "idle";
+        state.posts = action.payload;
+      })
       .addCase(updatePost.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message || "Sign In failed";

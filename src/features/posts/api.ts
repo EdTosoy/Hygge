@@ -1,10 +1,10 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { axiosInstance } from "api";
-import { Posts } from "./types";
+import { createPostFields } from "./types";
 
 export const createPost = createAsyncThunk(
   "createPost",
-  async (data: Posts) => {
+  async (data: createPostFields) => {
     const response = await axiosInstance.post("/api/posts/create-post", data);
     const resData = response.data;
 

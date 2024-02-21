@@ -1,4 +1,4 @@
-export type Posts = {
+export type createPostFields = {
   title: string;
   content: string;
   userId: string;
@@ -7,7 +7,21 @@ export type Posts = {
 };
 
 export type PostsApiState = {
-  posts?: [Posts] | [];
+  posts?: Post[] | [];
   status: "idle" | "loading" | "failed";
   error: string | null;
 };
+
+export interface Post {
+  _id: string;
+  commentsCount: number;
+  content: string;
+  createdAt: string;
+  likesCount: number;
+  mediaUrl?: string;
+  sharesCount: number;
+  title: string;
+  updatedAt: string;
+  userId: string;
+  username: string;
+}
