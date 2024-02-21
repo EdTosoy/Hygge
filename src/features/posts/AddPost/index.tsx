@@ -1,21 +1,55 @@
 import { useContext } from "react";
 import { useTranslation } from "react-i18next";
 import { format } from "date-fns";
-import { PrimaryButton, Profile, SecondaryButton } from "components";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { ToggleContext } from "context";
+import { createPost } from "../api";
+import { selectBasicUserInfo } from "src/features/auth/selectors";
+import { postTitle } from "utils";
+import { useAppDispatch, useAppSelector } from "hooks";
+import { PrimaryButton, Profile, SecondaryButton } from "components";
 import { ToggleContextType } from "@types";
+import { AddPostFormInput } from "./types";
 import { MMDDYYYY } from "src/constants";
 
 export const AddPost = () => {
   const { t } = useTranslation();
   const dateToday = format(new Date(), MMDDYYYY);
   const { toggleModal } = useContext(ToggleContext) as ToggleContextType;
+  const { _id, username } = useAppSelector(selectBasicUserInfo) || {};
+
+  const dispatch = useAppDispatch();
+  const { register, handleSubmit, reset } = useForm<AddPostFormInput>();
+  const onSubmit: SubmitHandler<AddPostFormInput> = async (data) => {
+    const { content, mediaUrl } = data;
+
+    if (_id && username && content) {
+      try {
+        await dispatch(
+          createPost({
+            content,
+            // discuss where to find title
+            title: postTitle(content),
+            mediaUrl: mediaUrl,
+            userId: _id,
+            username: username,
+          }),
+        ).unwrap();
+        reset();
+      } catch (error) {
+        console.error(error);
+      }
+    } else {
+      console.log("there is no content or Not Authorize ");
+    }
+  };
   return (
-    <div
+    <form
       className="py-6 px-4 w-598"
       onClick={(e) => {
         e.stopPropagation();
       }}
+      onSubmit={handleSubmit(onSubmit)}
     >
       <div className="mb-4 flex justify-between">
         <Profile />
@@ -39,6 +73,7 @@ export const AddPost = () => {
         placeholder={`Today is ${dateToday}...`}
         aria-label="post-content-input"
         rows={7}
+        {...register("content")}
       />
       <div className="flex  gap-4 justify-end items-center mt-4">
         <SecondaryButton
@@ -50,10 +85,10 @@ export const AddPost = () => {
         />
         <PrimaryButton
           text="Post"
-          type="button"
+          type="submit"
           className="px-6 py-1 rounded-full text-sm"
         />
       </div>
-    </div>
+    </form>
   );
 };
