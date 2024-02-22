@@ -27,8 +27,7 @@ export const MainPage = () => {
         <SideNavigation />
         <div className="col-start-2 col-end-3">
           <div className="bg-white main-section-height">
-            {/* /// remove h-screen  */}
-            <div className="p-6 h-screen">
+            <div className="p-6">
               {pathname === HOME_ROUTE && <HomePage />}
               {pathname === POPULAR_ROUTE && <HomePage />}
             </div>

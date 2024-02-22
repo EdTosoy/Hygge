@@ -38,7 +38,7 @@ export const AuthenticationPage = () => {
               {t("translation.button.goBackToHome")}
             </p>
           </div>
-          <div>{isSignIn ? <SignInForm /> : <SignUpForm />}</div>;
+          <div>{isSignIn ? <SignInForm /> : <SignUpForm />}</div>
         </div>
       </div>
     </div>

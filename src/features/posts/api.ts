@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { axiosInstance } from "api";
-import { createPostFields } from "./types";
+import { DeletePostFields, EditPostFields, createPostFields } from "./types";
 
 export const createPost = createAsyncThunk(
   "createPost",
@@ -17,15 +17,23 @@ export const getPosts = createAsyncThunk("getPosts", async () => {
 
   return resData;
 });
-export const updatePost = createAsyncThunk("updatePost", async () => {
-  const response = await axiosInstance.put("/api/posts/update-post");
-  const resData = response.data;
+export const updatePost = createAsyncThunk(
+  "updatePost",
+  async (data: EditPostFields) => {
+    const response = await axiosInstance.put("/api/posts/update-post", data);
+    const resData = response.data;
 
-  return resData;
-});
-export const deletePost = createAsyncThunk("deletePost", async () => {
-  const response = await axiosInstance.delete("/api/posts/delete-post");
-  const resData = response.data;
+    return resData;
+  },
+);
+export const deletePost = createAsyncThunk(
+  "deletePost",
+  async (data: DeletePostFields) => {
+    const response = await axiosInstance.delete(
+      `/api/posts/delete-post/${data.postId}`,
+    );
+    const resData = response.data;
 
-  return resData;
-});
+    return resData;
+  },
+);

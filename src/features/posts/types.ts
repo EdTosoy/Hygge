@@ -6,6 +6,16 @@ export type createPostFields = {
   mediaUrl?: string;
 };
 
+export type EditPostFields = {
+  newTitle: string;
+  newContent: string;
+  newMediaUrl?: string;
+  postId: string;
+};
+export type DeletePostFields = {
+  postId: string;
+};
+
 export type PostsApiState = {
   posts?: Post[] | [];
   status: "idle" | "loading" | "failed";
