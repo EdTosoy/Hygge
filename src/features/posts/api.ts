@@ -17,6 +17,14 @@ export const getPosts = createAsyncThunk("getPosts", async () => {
 
   return resData;
 });
+
+export const getUserPosts = createAsyncThunk("getUserPosts", async () => {
+  const response = await axiosInstance.get("/api/posts/user-posts");
+  const resData = response.data;
+
+  return resData;
+});
+
 export const updatePost = createAsyncThunk(
   "updatePost",
   async (data: EditPostFields) => {

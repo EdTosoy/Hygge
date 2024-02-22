@@ -6,3 +6,6 @@ const selectDomain = (state: RootState) => state.post || initialState;
 
 export const selectAllPosts =
   createSelector([selectDomain], (auth) => auth.posts) || {};
+
+export const selectAllUserPosts =
+  createSelector([selectDomain], (auth) => auth.userPosts) || {};

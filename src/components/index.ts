@@ -6,5 +6,6 @@ export { ModalContainer } from "./ModalContainer/Loadable";
 export { OAuthOptions } from "./OAuthOptions/Loadable";
 export { PrimaryButton } from "./PrimaryButton/Loadable";
 export { Profile } from "./Profile/Loadable";
+export { ProfileSummary } from "./ProfileSummary/Loadable";
 export { SecondaryButton } from "./SecondaryButton/Loadable";
 export { SideNavigationButton } from "./SideNavigationButton/Loadable";

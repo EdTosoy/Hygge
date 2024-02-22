@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useAppDispatch, useAppSelector } from "hooks";
 import { format } from "date-fns";
 import { ToggleContext } from "context";
@@ -12,8 +13,9 @@ import { UserBasicInfo } from "src/features/auth/types";
 import { ToggleContextType } from "@types";
 import { DATE_AND_TIME } from "src/constants";
 
-export function HomePage() {
+export function HomeFeed() {
   const dispatch = useAppDispatch();
+  const { t } = useTranslation();
   const AllPost = useAppSelector(selectAllPosts) as Post[];
   const userInfo = useAppSelector(selectBasicUserInfo) as UserBasicInfo;
 
@@ -103,22 +105,22 @@ export function HomePage() {
                       className="p-5 border-b border-light-gray cursor-pointer"
                       onClick={handleEditPost}
                     >
-                      Edit Post
+                      {t("translation.button.editPost")}
                     </div>
                     <div
                       className="p-5 border-b border-light-gray cursor-pointer"
                       onClick={handleDeletePost}
                     >
-                      Delete Post
+                      {t("translation.button.deletePost")}
                     </div>
                   </>
                 ) : (
                   <>
                     <div className="p-5 border-b border-light-gray cursor-pointer">
-                      Hide
+                      {t("translation.button.hide")}
                     </div>
                     <div className="p-5 border-b border-light-gray cursor-pointer">
-                      Report
+                      {t("translation.button.report")}
                     </div>
                   </>
                 )}

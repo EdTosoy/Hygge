@@ -7,7 +7,7 @@ import { lagout } from "src/features/auth/api";
 import { IconContainer } from "components";
 import { ToggleContextType } from "@types";
 import { DropdownProps } from "./types";
-import { HOME_ROUTE, USER_INFO } from "src/constants";
+import { HOME_ROUTE, PROFILE_ROUTE, USER_INFO } from "src/constants";
 
 export const Dropdown = ({ showDropdown, toggleDropdown }: DropdownProps) => {
   const { darkMode, setDarkMode, onlineStatus, setOnlineStatus } = useContext(
@@ -62,7 +62,13 @@ export const Dropdown = ({ showDropdown, toggleDropdown }: DropdownProps) => {
                   <div className="w-11 h-6 bg-gray-200 rounded-full peer  peer-focus:ring-dark-violet  peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-white after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-dark-violet"></div>
                 </label>
               </div>
-              <p className="my-4 cursor-pointer">
+              <p
+                className="my-4 cursor-pointer"
+                onClick={() => {
+                  toggleDropdown();
+                  navigate(PROFILE_ROUTE);
+                }}
+              >
                 {t("translation.dropDown.profile")}
               </p>
               <p className="my-4 cursor-pointer">

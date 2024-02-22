@@ -18,6 +18,7 @@ export type DeletePostFields = {
 
 export type PostsApiState = {
   posts?: Post[] | [];
+  userPosts?: Post[] | [];
   status: "idle" | "loading" | "failed";
   error: string | null;
 };

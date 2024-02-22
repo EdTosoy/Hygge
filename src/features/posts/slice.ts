@@ -1,9 +1,16 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Post, PostsApiState } from "./types";
-import { createPost, deletePost, getPosts, updatePost } from "./api";
+import {
+  createPost,
+  deletePost,
+  getPosts,
+  getUserPosts,
+  updatePost,
+} from "./api";
 
 export const initialState: PostsApiState = {
   posts: [],
+  userPosts: [],
   status: "idle",
   error: null,
 };
@@ -38,6 +45,23 @@ const postsSlice = createSlice({
         state.posts = action.payload;
       })
       .addCase(getPosts.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message || "Sign Up failed";
+      })
+
+      /// Get User Posts
+      .addCase(getUserPosts.pending, (state) => {
+        state.status = "loading";
+        state.error = null;
+      })
+      .addCase(
+        getUserPosts.fulfilled,
+        (state, action: PayloadAction<Post[]>) => {
+          state.status = "idle";
+          state.userPosts = action.payload;
+        },
+      )
+      .addCase(getUserPosts.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message || "Sign Up failed";
       })

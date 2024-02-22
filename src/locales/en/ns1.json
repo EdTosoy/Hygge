@@ -10,7 +10,11 @@
       "goBack": "Go Back",
       "goBackToHome": "<- Go Back to Home Page",
       "forgotPassword": "Forgot Password?",
-      "lagout": "Log Out"
+      "lagout": "Log Out",
+      "editPost": "Edit Post",
+      "deletePost": "Delete Post",
+      "hide": "Hide",
+      "report": "Report"
     },
     "input": {
       "email": "Enter Email",
@@ -64,6 +68,11 @@
     },
     "addPost": {
       "postTo": "Post to"
+    },
+    "profileSummary": {
+      "likes": "Likes",
+      "connections": "Connections",
+      "posts": "Posts"
     }
   }
 }

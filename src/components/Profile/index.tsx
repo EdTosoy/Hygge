@@ -1,8 +1,11 @@
+import { useNavigate } from "react-router";
 import { useAppSelector } from "hooks";
 import { selectBasicUserInfo } from "src/features/auth/selectors";
 import { ProfileProps } from "./types";
+import { PROFILE_ROUTE } from "src/constants";
 
 export const Profile = ({ showStatus, userProfile, date }: ProfileProps) => {
+  const navigate = useNavigate();
   const { username } = useAppSelector(selectBasicUserInfo) || {};
   return (
     <div className="w-195 flex items-center">
@@ -15,7 +18,10 @@ export const Profile = ({ showStatus, userProfile, date }: ProfileProps) => {
           </div>
         </div>
         <div>
-          <h2 className="cursor-pointer leading-tight">
+          <h2
+            className="cursor-pointer leading-tight"
+            onClick={() => navigate(PROFILE_ROUTE)}
+          >
             {userProfile?.username || username}
           </h2>
           <p className="text-2xs ">{date}</p>
