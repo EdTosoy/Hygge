@@ -1,6 +1,6 @@
 export type User = {
-  email: string;
-  password: string;
+  email?: string;
+  password?: string;
 };
 
 export type NewUser = User & {
@@ -8,15 +8,22 @@ export type NewUser = User & {
   confirmPassword?: string;
 };
 
-export type UserBasicInfo = {
+export type EditUser = NewUser & {
+  bio?: string;
+  profileId?: string;
+};
+
+export type UserInfo = {
   _id: string;
   username: string;
   email: string;
   token: string;
+  profileId: string;
+  bio: string;
 };
 
 export type AuthApiState = {
-  basicUserInfo?: UserBasicInfo | null;
+  userInfo?: UserInfo | null;
   status: "idle" | "loading" | "failed";
   error: string | null;
 };

@@ -7,9 +7,9 @@ import { EditPost } from "features";
 import { Profile, IconContainer } from "components";
 import { deletePost, getUserPosts } from "src/features/posts/api.ts";
 import { selectAllUserPosts } from "src/features/posts/selectors";
-import { selectBasicUserInfo } from "src/features/auth/selectors";
+import { selectUserInfo } from "src/features/auth/selectors";
 import { Post } from "src/features/posts/types";
-import { UserBasicInfo } from "src/features/auth/types";
+import { UserInfo } from "src/features/auth/types";
 import { ToggleContextType } from "@types";
 import { DATE_AND_TIME } from "src/constants";
 
@@ -17,7 +17,7 @@ export function ProfileFeed() {
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
   const userPosts = useAppSelector(selectAllUserPosts) as Post[];
-  const userInfo = useAppSelector(selectBasicUserInfo) as UserBasicInfo;
+  const userInfo = useAppSelector(selectUserInfo) as UserInfo;
 
   const { toggleModal, setModalContent } = useContext(
     ToggleContext,

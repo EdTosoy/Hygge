@@ -1,12 +1,12 @@
 import { useNavigate } from "react-router";
 import { useAppSelector } from "hooks";
-import { selectBasicUserInfo } from "src/features/auth/selectors";
+import { selectUserInfo } from "src/features/auth/selectors";
 import { ProfileProps } from "./types";
 import { PROFILE_ROUTE } from "src/constants";
 
 export const Profile = ({ showStatus, userProfile, date }: ProfileProps) => {
   const navigate = useNavigate();
-  const { username } = useAppSelector(selectBasicUserInfo) || {};
+  const { username } = useAppSelector(selectUserInfo) || {};
   return (
     <div className="w-195 flex items-center">
       <div className="flex items-center gap-4   ">

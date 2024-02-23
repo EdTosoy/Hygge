@@ -4,7 +4,7 @@ import { format } from "date-fns";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { ToggleContext } from "context";
 import { createPost } from "../api";
-import { selectBasicUserInfo } from "src/features/auth/selectors";
+import { selectUserInfo } from "src/features/auth/selectors";
 import { postTitle } from "utils";
 import { useAppDispatch, useAppSelector } from "hooks";
 import { PrimaryButton, Profile, SecondaryButton } from "components";
@@ -16,7 +16,7 @@ export const AddPost = () => {
   const { t } = useTranslation();
   const dateToday = format(new Date(), MMDDYYYY);
   const { toggleModal } = useContext(ToggleContext) as ToggleContextType;
-  const { _id, username } = useAppSelector(selectBasicUserInfo) || {};
+  const { _id, username } = useAppSelector(selectUserInfo) || {};
 
   const dispatch = useAppDispatch();
   const { register, handleSubmit, reset } = useForm<AddPostFormInput>();

@@ -1,19 +1,19 @@
 import { useContext } from "react";
 import { useLocation } from "react-router-dom";
 import { SignInForm } from "features";
-import { HomeFeed, SideNavigation } from "containers";
-import { ToggleContext } from "context";
 import { useAppSelector } from "hooks";
-import { selectBasicUserInfo } from "src/features/auth/selectors";
-import { HOME_ROUTE, POPULAR_ROUTE } from "src/constants";
+import { selectUserInfo } from "src/features/auth/selectors";
+import { ToggleContext } from "context";
+import { HomeFeed, SideNavigation } from "containers";
 import { ToggleContextType } from "@types";
+import { HOME_ROUTE, POPULAR_ROUTE } from "src/constants";
 
 export const MainPage = () => {
   const { toggleModal, setModalContent } = useContext(
     ToggleContext,
   ) as ToggleContextType;
   const { pathname } = useLocation();
-  const { _id } = useAppSelector(selectBasicUserInfo) || {};
+  const { _id } = useAppSelector(selectUserInfo) || {};
   const handleOnClickMainContainer = () => {
     if (!_id) {
       setModalContent(<SignInForm showFooter />);

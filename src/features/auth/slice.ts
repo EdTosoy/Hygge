@@ -1,10 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { AuthApiState, UserBasicInfo } from "./types";
+import { AuthApiState, UserInfo } from "./types";
 import { USER_INFO } from "src/constants";
-import { signIn, signUp, lagout } from "./api";
+import { signIn, signUp, lagout, updateUser } from "./api";
 
 export const initialState: AuthApiState = {
-  basicUserInfo: localStorage.getItem(USER_INFO)
+  userInfo: localStorage.getItem(USER_INFO)
     ? JSON.parse(localStorage.getItem(USER_INFO) as string)
     : null,
   status: "idle",
@@ -23,13 +23,10 @@ const authSlice = createSlice({
         state.status = "loading";
         state.error = null;
       })
-      .addCase(
-        signIn.fulfilled,
-        (state, action: PayloadAction<UserBasicInfo>) => {
-          state.status = "idle";
-          state.basicUserInfo = action.payload;
-        },
-      )
+      .addCase(signIn.fulfilled, (state, action: PayloadAction<UserInfo>) => {
+        state.status = "idle";
+        state.userInfo = action.payload;
+      })
       .addCase(signIn.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message || "Sign In failed";
@@ -40,16 +37,30 @@ const authSlice = createSlice({
         state.status = "loading";
         state.error = null;
       })
-      .addCase(
-        signUp.fulfilled,
-        (state, action: PayloadAction<UserBasicInfo>) => {
-          state.status = "idle";
-          state.basicUserInfo = action.payload;
-        },
-      )
+      .addCase(signUp.fulfilled, (state, action: PayloadAction<UserInfo>) => {
+        state.status = "idle";
+        state.userInfo = action.payload;
+      })
       .addCase(signUp.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message || "Sign Up failed";
+      })
+
+      // Update User
+      .addCase(updateUser.pending, (state) => {
+        state.status = "loading";
+        state.error = null;
+      })
+      .addCase(
+        updateUser.fulfilled,
+        (state, action: PayloadAction<UserInfo>) => {
+          state.status = "idle";
+          state.userInfo = action.payload;
+        },
+      )
+      .addCase(updateUser.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message || "Sign In failed";
       })
 
       /// Lagout
@@ -59,6 +70,7 @@ const authSlice = createSlice({
       })
       .addCase(lagout.fulfilled, (state) => {
         state.status = "idle";
+        state.userInfo = null;
       })
       .addCase(lagout.rejected, (state, action) => {
         state.status = "failed";

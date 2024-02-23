@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { axiosInstance } from "api";
-import { NewUser, User } from "./types";
+import { NewUser, User, EditUser } from "./types";
 import { USER_INFO } from "src/constants";
 
 export const signIn = createAsyncThunk("signin", async (data: User) => {
@@ -18,6 +18,19 @@ export const signUp = createAsyncThunk("signup", async (data: NewUser) => {
 
   return resData;
 });
+
+export const updateUser = createAsyncThunk(
+  "updateUser",
+  async (data: EditUser) => {
+    const response = await axiosInstance.put("/api/user/update-user", data);
+    const resData = response.data;
+
+    localStorage.removeItem(USER_INFO);
+    localStorage.setItem(USER_INFO, JSON.stringify(resData));
+
+    return resData;
+  },
+);
 
 export const lagout = createAsyncThunk("logout", async () => {
   const response = await axiosInstance.get("/api/user/logout");

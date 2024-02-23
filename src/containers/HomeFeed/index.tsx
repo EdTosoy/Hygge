@@ -4,20 +4,20 @@ import { useAppDispatch, useAppSelector } from "hooks";
 import { format } from "date-fns";
 import { ToggleContext } from "context";
 import { EditPost } from "features";
-import { Profile, IconContainer } from "components";
 import { deletePost, getPosts } from "src/features/posts/api.ts";
 import { selectAllPosts } from "src/features/posts/selectors";
-import { selectBasicUserInfo } from "src/features/auth/selectors";
+import { selectUserInfo } from "src/features/auth/selectors";
 import { Post } from "src/features/posts/types";
-import { UserBasicInfo } from "src/features/auth/types";
+import { UserInfo } from "src/features/auth/types";
+import { Profile, IconContainer } from "components";
 import { ToggleContextType } from "@types";
 import { DATE_AND_TIME } from "src/constants";
 
 export function HomeFeed() {
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
-  const AllPost = useAppSelector(selectAllPosts) as Post[];
-  const userInfo = useAppSelector(selectBasicUserInfo) as UserBasicInfo;
+  const allPosts = useAppSelector(selectAllPosts) as Post[];
+  const userInfo = useAppSelector(selectUserInfo) as UserInfo;
 
   const { toggleModal, setModalContent } = useContext(
     ToggleContext,
@@ -25,8 +25,8 @@ export function HomeFeed() {
   const [posts, setPosts] = useState<any[]>([]);
 
   const AllPostWithShowOptions =
-    AllPost.length &&
-    AllPost.map((post) => {
+    allPosts.length &&
+    allPosts.map((post) => {
       return { ...post, showOptions: false };
     });
 
@@ -39,7 +39,7 @@ export function HomeFeed() {
 
   useEffect(() => {
     setPosts(AllPostWithShowOptions || []);
-  }, [AllPost.length]);
+  }, [allPosts.length]);
 
   const postFeed = () => {
     return posts?.map((post: Post & { showOptions: boolean }, index) => {
@@ -153,5 +153,5 @@ export function HomeFeed() {
       );
     });
   };
-  return <div>{AllPost?.length && postFeed()}</div>;
+  return <div>{allPosts?.length && postFeed()}</div>;
 }

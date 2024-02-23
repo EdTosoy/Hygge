@@ -1,10 +1,10 @@
 import { useContext } from "react";
 import { useLocation } from "react-router-dom";
 import { useAppSelector } from "hooks";
+import { selectUserInfo } from "src/features/auth/selectors";
+import { ToggleContext } from "context";
 import { Header } from "containers";
 import { AuthenticationHeader, ModalContainer } from "components";
-import { selectBasicUserInfo } from "src/features/auth/selectors";
-import { ToggleContext } from "context";
 import { LayoutProps } from "./types";
 import { ToggleContextType } from "@types";
 import { AUTH_ROUTE } from "src/constants";
@@ -14,7 +14,7 @@ export const Layout = ({ children }: LayoutProps) => {
   const { showModal, modalContent, toggleModal } = useContext(
     ToggleContext,
   ) as ToggleContextType;
-  const { _id } = useAppSelector(selectBasicUserInfo) || {};
+  const { _id } = useAppSelector(selectUserInfo) || {};
 
   const isAuthPage = pathname === AUTH_ROUTE;
 

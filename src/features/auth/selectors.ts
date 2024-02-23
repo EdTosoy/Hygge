@@ -4,5 +4,5 @@ import { initialState } from "./slice";
 
 const selectDomain = (state: RootState) => state.auth || initialState;
 
-export const selectBasicUserInfo =
-  createSelector([selectDomain], (auth) => auth.basicUserInfo) || {};
+export const selectUserInfo =
+  createSelector([selectDomain], (auth) => auth.userInfo) || {};
