@@ -11,7 +11,7 @@ export const HomeFeed = () => {
       <h1 className="font-semibold text-sm  text-center ">
         {t("translation.mainpage.noActivityMessage")}
       </h1>
-      <p className="text-sm w-64 text-semi-gray py-2 text-center">
+      <p className="text-xs w-52 text-semi-gray py-2 text-center">
         {t("translation.mainpage.placeholder")}
       </p>
       <div className="grid place-content-center">
