@@ -81,7 +81,7 @@ export const EditPost = ({ contentValue, postId }: EditPostProps) => {
           }}
         />
         <PrimaryButton
-          text="Update"
+          text={t("translation.button.update")}
           type="submit"
           className="px-3 py-1 rounded-full text-sm"
         />

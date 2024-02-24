@@ -87,7 +87,7 @@ export const EditUserProfile = () => {
             }}
           />
           <PrimaryButton
-            text="Save"
+            text={t("translation.button.save")}
             type="submit"
             className="px-6 py-1 rounded-full text-sm"
           />

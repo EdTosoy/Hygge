@@ -85,7 +85,7 @@ export const AddPost = () => {
           }}
         />
         <PrimaryButton
-          text="Post"
+          text={t("translation.button.post")}
           type="submit"
           className="px-6 py-1 rounded-full text-sm"
         />

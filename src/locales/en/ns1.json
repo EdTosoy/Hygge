@@ -14,7 +14,10 @@
       "editPost": "Edit Post",
       "deletePost": "Delete Post",
       "hide": "Hide",
-      "report": "Report"
+      "report": "Report",
+      "save": "Save",
+      "post": "Post",
+      "update": "Update"
     },
     "input": {
       "email": "Enter Email",
