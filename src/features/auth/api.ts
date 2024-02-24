@@ -1,7 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { axiosInstance } from "api";
-import { NewUser, User, EditUser } from "./types";
+import { NewUser, User, EditUser, fileUploadResponse } from "./types";
 import { USER_INFO } from "src/constants";
+import axios from "axios";
 
 export const signIn = createAsyncThunk("signin", async (data: User) => {
   const response = await axiosInstance.post("/api/user/sign-in", data);
@@ -39,3 +40,11 @@ export const lagout = createAsyncThunk("logout", async () => {
 
   return resData;
 });
+
+export const fileUpload = async (formData: FormData) => {
+  const response = await axios.post(
+    "https://api.cloudinary.com/v1_1/dxsc1spde/image/upload",
+    formData,
+  );
+  return response.data as fileUploadResponse;
+};

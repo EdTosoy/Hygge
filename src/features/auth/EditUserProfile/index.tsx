@@ -1,23 +1,29 @@
 import { useContext } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import { useAppDispatch, useAppSelector } from "hooks";
-import { updateUser } from "src/features/auth/api";
+import { useAppDispatch, useAppSelector, useAppDropzone } from "hooks";
+import { fileUpload, updateUser } from "src/features/auth/api";
 import { selectUserInfo } from "src/features/auth/selectors";
 import { ToggleContext } from "context";
-import { PrimaryButton, SecondaryButton } from "components";
+import { PrimaryButton, SecondaryButton, IconContainer } from "components";
 import { ToggleContextType } from "@types";
 import { EditPostFormInput } from "./types";
 
 export const EditUserProfile = () => {
   const { toggleModal } = useContext(ToggleContext) as ToggleContextType;
   const { t } = useTranslation();
-  const { username, profileId, bio } = useAppSelector(selectUserInfo) || {};
+  const { username, profileId, bio, avatar } =
+    useAppSelector(selectUserInfo) || {};
 
   const dispatch = useAppDispatch();
+
+  const { getInputProps, getRootProps, isDragActive, preview, formData } =
+    useAppDropzone();
+
   const { register, handleSubmit, reset } = useForm<EditPostFormInput>();
   const onSubmit: SubmitHandler<EditPostFormInput> = async (data) => {
     const { newBio, newProfileId, newUsername } = data;
+    const { secure_url } = await fileUpload(formData);
 
     try {
       await dispatch(
@@ -25,6 +31,7 @@ export const EditUserProfile = () => {
           bio: newBio,
           profileId: newProfileId,
           username: newUsername,
+          avatar: secure_url,
         }),
       ).unwrap();
       reset();
@@ -35,16 +42,68 @@ export const EditUserProfile = () => {
   };
   return (
     <form
-      className="w-470 self-start border border-light-gray bg-white rounded-md"
+      className="w-470 self-start  bg-white rounded-md overflow-hidden"
       onClick={(e) => {
         e.stopPropagation();
       }}
       onSubmit={handleSubmit(onSubmit)}
     >
       <div className="h-44 bg-light-violet relative ">
-        <div className="w-32 h-32 rounded-full bg-semi-gray absolute -bottom-12  left-8"></div>
+        <div
+          className="h-full overflow-hidden  bg-center bg-no-repeat bg-cover"
+          style={{ backgroundImage: `url(${avatar})` }}
+        >
+          {/* <img src={avatar} alt="user background" className="bg-cover" /> */}
+          <div
+            {...getRootProps()}
+            className="w-full h-1/2 absolute bottom-0 right-0 grid place-content-center text-2xs overflow-hidden"
+          >
+            <input {...getInputProps()} />
+            {isDragActive ? (
+              <div className="rounded-full bg-dark-violet p-2 ">
+                <IconContainer className="text-white text-lg ">
+                  <ion-icon name="cloud-download-outline"></ion-icon>
+                </IconContainer>
+              </div>
+            ) : (
+              <div className="bg-gradient-to-b from-gray-500/0 to-black/70 w-full h-full bg-red absolute bottom-0 right-0 grid items-end justify-end  opacity-85">
+                <div className="rounded-full bg-dark-violet p-2 cursor-pointer mx-8 my-3  ">
+                  <IconContainer className="text-white text-lg ">
+                    <ion-icon name="pencil-outline"></ion-icon>
+                  </IconContainer>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+        <img
+          src={(preview as string) || avatar}
+          alt="avatar preview"
+          className="w-32 h-32 rounded-full bg-semi-gray absolute -bottom-12  left-8 shadow-2xl"
+        />
+        <div
+          {...getRootProps()}
+          className="w-32 h-32 rounded-full absolute -bottom-12  left-8 grid place-content-center text-2xs overflow-hidden"
+        >
+          <input {...getInputProps()} />
+          {isDragActive ? (
+            <div className="rounded-full bg-dark-violet p-2 ">
+              <IconContainer className="text-white text-lg ">
+                <ion-icon name="cloud-download-outline"></ion-icon>
+              </IconContainer>
+            </div>
+          ) : (
+            <div className="bg-gradient-to-b from-gray-500/0 to-black/70 w-full h-2/5 bg-red absolute bottom-0 grid place-content-center opacity-85">
+              <div className="rounded-full bg-dark-violet p-1  ">
+                <IconContainer className="text-white text-lg ">
+                  <ion-icon name="pencil-outline"></ion-icon>
+                </IconContainer>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
-      <div className="p-8 pt-14 ">
+      <div className="p-8 pt-14 border border-light-gray">
         <input
           type="text"
           defaultValue={username}

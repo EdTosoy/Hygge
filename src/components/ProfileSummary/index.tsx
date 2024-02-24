@@ -7,10 +7,11 @@ import { ToggleContextType } from "@types";
 import { ToggleContext } from "context";
 import { useContext } from "react";
 export const ProfileSummary = () => {
-  const { username, profileId, bio } = useAppSelector(selectUserInfo) || {};
   const { toggleModal, setModalContent } = useContext(
     ToggleContext,
   ) as ToggleContextType;
+  const { username, profileId, bio, avatar } =
+    useAppSelector(selectUserInfo) || {};
   const handleOnClickEdit = () => {
     setModalContent(<EditUserProfile />);
     toggleModal();
@@ -20,7 +21,11 @@ export const ProfileSummary = () => {
   return (
     <div className="w-full self-start border border-light-gray bg-white rounded-md  mt-5 overflow-hidden">
       <div className="h-24 bg-light-violet relative">
-        <div className="w-14 h-14 rounded-full bg-semi-gray absolute -bottom-5 left-3.5 "></div>
+        <img
+          src={avatar}
+          alt="avatar"
+          className="w-14 h-14 rounded-full bg-semi-gray absolute -bottom-5 left-3.5"
+        />
       </div>
       <div className="p-3.5 pt-8 ">
         <h1 className="font-semibold text-sm ">{username}</h1>
