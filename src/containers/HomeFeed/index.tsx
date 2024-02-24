@@ -6,6 +6,10 @@ import { POPULAR_ROUTE } from "src/constants";
 export const HomeFeed = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const savedPosts = [];
+  if (savedPosts.length > 0) {
+    return <div>HomeFeed</div>;
+  }
   return (
     <div className="grid place-content-center mt-40 ">
       <h1 className="font-semibold text-sm  text-center ">
