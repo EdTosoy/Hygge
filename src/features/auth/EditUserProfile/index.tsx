@@ -61,10 +61,16 @@ export const EditUserProfile = () => {
 
   const onSubmit: SubmitHandler<EditPostFormInput> = async (data) => {
     const { newBio, newProfileId, newUsername } = data;
-    const avatarFileUploadResponse = await fileUpload(avatarAcceptedFiles);
-    const wallpaperFileUploadResponse = await fileUpload(
-      wallpaperAcceptedFiles,
-    );
+
+    const avatarFileUploadResponse = (avatarAcceptedFiles.length &&
+      (await fileUpload(avatarAcceptedFiles))) || {
+      secure_url: avatar,
+    };
+
+    const wallpaperFileUploadResponse = (wallpaperAcceptedFiles.length > 0 &&
+      (await fileUpload(wallpaperAcceptedFiles))) || {
+      secure_url: wallpaper,
+    };
 
     try {
       await dispatch(
