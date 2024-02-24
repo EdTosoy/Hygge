@@ -41,7 +41,13 @@ export const lagout = createAsyncThunk("logout", async () => {
   return resData;
 });
 
-export const fileUpload = async (formData: FormData) => {
+export const fileUpload = async (acceptedFiles: File[]) => {
+  const formData = new FormData();
+
+  formData.append("file", acceptedFiles[0]);
+  formData.append("upload_preset", "test-react-uploads-unsigned");
+  formData.append("api_key", import.meta.env.VITE_CLOUDINARY_API_KEY);
+
   const response = await axios.post(
     "https://api.cloudinary.com/v1_1/dxsc1spde/image/upload",
     formData,

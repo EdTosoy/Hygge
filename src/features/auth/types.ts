@@ -12,6 +12,7 @@ export type EditUser = NewUser & {
   bio?: string;
   profileId?: string;
   avatar?: string;
+  wallpaper?: string;
 };
 
 export type UserInfo = {
@@ -22,6 +23,7 @@ export type UserInfo = {
   profileId: string;
   bio: string;
   avatar: string;
+  wallpaper: string;
 };
 
 export type AuthApiState = {

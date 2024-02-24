@@ -1,7 +1,8 @@
-import { useContext } from "react";
+import { useCallback, useContext, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { useDropzone } from "react-dropzone";
 import { useTranslation } from "react-i18next";
-import { useAppDispatch, useAppSelector, useAppDropzone } from "hooks";
+import { useAppDispatch, useAppSelector } from "hooks";
 import { fileUpload, updateUser } from "src/features/auth/api";
 import { selectUserInfo } from "src/features/auth/selectors";
 import { ToggleContext } from "context";
@@ -10,20 +11,60 @@ import { ToggleContextType } from "@types";
 import { EditPostFormInput } from "./types";
 
 export const EditUserProfile = () => {
+  const [avatarPreview, setAvatarPreview] = useState<string | null>(null);
+  const [wallpaperPreview, setWallpaperPreview] = useState<string | null>(null);
   const { toggleModal } = useContext(ToggleContext) as ToggleContextType;
   const { t } = useTranslation();
-  const { username, profileId, bio, avatar } =
+  const { register, handleSubmit, reset } = useForm<EditPostFormInput>();
+  const { username, profileId, bio, avatar, wallpaper } =
     useAppSelector(selectUserInfo) || {};
 
   const dispatch = useAppDispatch();
 
-  const { getInputProps, getRootProps, isDragActive, preview, formData } =
-    useAppDropzone();
+  const onDropAvatar = useCallback((acceptedFiles: File[]) => {
+    const file = new FileReader();
 
-  const { register, handleSubmit, reset } = useForm<EditPostFormInput>();
+    file.onload = () => {
+      setAvatarPreview(file.result as string);
+    };
+
+    file.readAsDataURL(acceptedFiles[0]);
+  }, []);
+
+  const onDropWallpaper = useCallback((acceptedFiles: File[]) => {
+    const file = new FileReader();
+
+    file.onload = () => {
+      setWallpaperPreview(file.result as string);
+    };
+
+    file.readAsDataURL(acceptedFiles[0]);
+  }, []);
+
+  const {
+    getRootProps: getAvatarRootProps,
+    getInputProps: getAvatarInputProps,
+    isDragActive: isAvatarDragActive,
+    acceptedFiles: avatarAcceptedFiles,
+  } = useDropzone({
+    onDrop: onDropAvatar,
+  });
+
+  const {
+    getRootProps: getWallpaperRootProps,
+    getInputProps: getWallpaperInputProps,
+    isDragActive: isWallpaperDragActive,
+    acceptedFiles: wallpaperAcceptedFiles,
+  } = useDropzone({
+    onDrop: onDropWallpaper,
+  });
+
   const onSubmit: SubmitHandler<EditPostFormInput> = async (data) => {
     const { newBio, newProfileId, newUsername } = data;
-    const { secure_url } = await fileUpload(formData);
+    const avatarFileUploadResponse = await fileUpload(avatarAcceptedFiles);
+    const wallpaperFileUploadResponse = await fileUpload(
+      wallpaperAcceptedFiles,
+    );
 
     try {
       await dispatch(
@@ -31,7 +72,8 @@ export const EditUserProfile = () => {
           bio: newBio,
           profileId: newProfileId,
           username: newUsername,
-          avatar: secure_url,
+          avatar: avatarFileUploadResponse.secure_url,
+          wallpaper: wallpaperFileUploadResponse.secure_url,
         }),
       ).unwrap();
       reset();
@@ -51,15 +93,14 @@ export const EditUserProfile = () => {
       <div className="h-44 bg-light-violet relative ">
         <div
           className="h-full overflow-hidden  bg-center bg-no-repeat bg-cover"
-          style={{ backgroundImage: `url(${avatar})` }}
+          style={{ backgroundImage: `url(${wallpaperPreview || wallpaper})` }}
         >
-          {/* <img src={avatar} alt="user background" className="bg-cover" /> */}
           <div
-            {...getRootProps()}
+            {...getWallpaperRootProps()}
             className="w-full h-1/2 absolute bottom-0 right-0 grid place-content-center text-2xs overflow-hidden"
           >
-            <input {...getInputProps()} />
-            {isDragActive ? (
+            <input {...getWallpaperInputProps()} />
+            {isWallpaperDragActive ? (
               <div className="rounded-full bg-dark-violet p-2 ">
                 <IconContainer className="text-white text-lg ">
                   <ion-icon name="cloud-download-outline"></ion-icon>
@@ -77,16 +118,16 @@ export const EditUserProfile = () => {
           </div>
         </div>
         <img
-          src={(preview as string) || avatar}
+          src={avatarPreview || avatar}
           alt="avatar preview"
           className="w-32 h-32 rounded-full bg-semi-gray absolute -bottom-12  left-8 shadow-2xl"
         />
         <div
-          {...getRootProps()}
+          {...getAvatarRootProps()}
           className="w-32 h-32 rounded-full absolute -bottom-12  left-8 grid place-content-center text-2xs overflow-hidden"
         >
-          <input {...getInputProps()} />
-          {isDragActive ? (
+          <input {...getAvatarInputProps()} />
+          {isAvatarDragActive ? (
             <div className="rounded-full bg-dark-violet p-2 ">
               <IconContainer className="text-white text-lg ">
                 <ion-icon name="cloud-download-outline"></ion-icon>

@@ -10,7 +10,7 @@ export const ProfileSummary = () => {
   const { toggleModal, setModalContent } = useContext(
     ToggleContext,
   ) as ToggleContextType;
-  const { username, profileId, bio, avatar } =
+  const { username, profileId, bio, avatar, wallpaper } =
     useAppSelector(selectUserInfo) || {};
   const handleOnClickEdit = () => {
     setModalContent(<EditUserProfile />);
@@ -21,11 +21,16 @@ export const ProfileSummary = () => {
   return (
     <div className="w-full self-start border border-light-gray bg-white rounded-md  mt-5 overflow-hidden">
       <div className="h-24 bg-light-violet relative">
-        <img
-          src={avatar}
-          alt="avatar"
-          className="w-14 h-14 rounded-full bg-semi-gray absolute -bottom-5 left-3.5"
-        />
+        <div
+          className="h-full w-full overflow-hidden  bg-center bg-cover"
+          style={{ backgroundImage: `url(${wallpaper})` }}
+        >
+          <img
+            src={avatar}
+            alt="avatar"
+            className="w-14 h-14 rounded-full bg-semi-gray absolute -bottom-5 left-3.5"
+          />
+        </div>
       </div>
       <div className="p-3.5 pt-8 ">
         <h1 className="font-semibold text-sm ">{username}</h1>
