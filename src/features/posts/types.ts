@@ -35,4 +35,5 @@ export interface Post {
   updatedAt: string;
   userId: string;
   username: string;
+  userAvatar: string;
 }

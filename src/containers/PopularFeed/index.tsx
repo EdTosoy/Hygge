@@ -53,6 +53,7 @@ export function PopularFeed() {
         createdAt,
         sharesCount,
         showOptions,
+        userAvatar,
       } = post;
 
       const isUserAuthorizedToManipulatePost =
@@ -84,6 +85,7 @@ export function PopularFeed() {
         >
           <div className="flex justify-between my-4 items-center">
             <Profile
+              userAvatar={userAvatar}
               userProfile={{ username }}
               date={format(createdAt, DATE_AND_TIME)}
             />

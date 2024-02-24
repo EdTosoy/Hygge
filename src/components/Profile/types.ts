@@ -2,6 +2,7 @@ export interface ProfileProps {
   showStatus?: boolean;
   userProfile?: userProfile;
   date?: string;
+  userAvatar?: string;
 }
 
 interface userProfile {

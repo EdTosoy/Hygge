@@ -174,7 +174,7 @@ export const EditUserProfile = () => {
           placeholder="add bio"
           aria-label="bio-input"
           className="w-full border border-light-gray rounded-md px-2 py-1 text-sm italic my-4 focus:outline-none focus:border-dark-violet focus:border-2"
-          {...register("newBio", { required: true })}
+          {...register("newBio")}
         />
 
         <div className="mb-6">
