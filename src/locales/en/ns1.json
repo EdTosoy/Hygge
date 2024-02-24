@@ -17,7 +17,8 @@
       "report": "Report",
       "save": "Save",
       "post": "Post",
-      "update": "Update"
+      "update": "Update",
+      "explore": "Explore"
     },
     "input": {
       "email": "Enter Email",
@@ -76,6 +77,10 @@
       "likes": "Likes",
       "connections": "Connections",
       "posts": "Posts"
+    },
+    "mainpage": {
+      "noActivityMessage": "You don’t have any activity yet",
+      "placeholder": "Your save posts, Ideas, and inspiration will live here."
     }
   }
 }

@@ -5,11 +5,13 @@ export const SideNavigationButton = ({
   isActive,
   text,
   ionIconName,
+  onClick,
 }: SideNavigationButtonProps) => {
   return (
     <button
       type="button"
       className={` w-full  text-left px-5 py-3 font-medium text-xs rounded-xl flex gap-3 items-center ${isActive && "bg-light-violet text-dark-violet"} `}
+      onClick={onClick}
     >
       <IconContainer className="text-2xl">
         <ion-icon name={ionIconName}></ion-icon>
