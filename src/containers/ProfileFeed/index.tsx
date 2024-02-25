@@ -5,7 +5,12 @@ import { format } from "date-fns";
 import { ToggleContext } from "context";
 import { EditPost } from "features";
 import { Profile, IconContainer } from "components";
-import { deletePost, getUserPosts } from "src/features/posts/api.ts";
+import {
+  deletePost,
+  getUserPosts,
+  likePost,
+  unLikePost,
+} from "src/features/posts/api.ts";
 import { selectAllUserPosts } from "src/features/posts/selectors";
 import { selectUserInfo } from "src/features/auth/selectors";
 import { Post } from "src/features/posts/types";
@@ -22,13 +27,7 @@ export function ProfileFeed() {
   const { toggleModal, setModalContent } = useContext(
     ToggleContext,
   ) as ToggleContextType;
-  const [posts, setPosts] = useState<any[]>([]);
-
-  const AllPostWithShowOptions =
-    userPosts.length &&
-    userPosts.map((post) => {
-      return { ...post, showOptions: false };
-    });
+  const [posts, setPosts] = useState<Post[]>([]);
 
   useEffect(() => {
     const getAllPosts = async () => {
@@ -38,26 +37,34 @@ export function ProfileFeed() {
   }, []);
 
   useEffect(() => {
+    const AllPostWithShowOptions =
+      userPosts.length &&
+      userPosts.map((post) => {
+        return { ...post, showOptions: false };
+      });
+
     setPosts(AllPostWithShowOptions || []);
   }, [userPosts.length]);
 
   const postFeed = () => {
-    return posts?.map((post: Post & { showOptions: boolean }, index) => {
+    return posts?.map((post: Post, index) => {
       const {
         _id,
         username,
         content,
         title,
-        likesCount,
-        commentsCount,
+        likes,
         createdAt,
-        sharesCount,
+        shares,
+        comments,
         showOptions,
         userAvatar,
       } = post;
 
       const isUserAuthorizedToManipulatePost =
         userInfo && userInfo._id === post.userId;
+
+      const alreadyLiked = Boolean(likes.includes(userInfo._id));
 
       const toggleShowOptions = () => {
         const newPosts = [...posts];
@@ -77,12 +84,28 @@ export function ProfileFeed() {
         await dispatch(deletePost({ postId: _id })).unwrap();
         window.location.reload();
       };
+
+      const handleLikePost = async (postId: string) => {
+        const dummyPosts = [...posts];
+        if (alreadyLiked) {
+          await dispatch(unLikePost(_id)).unwrap();
+          const newLikes = dummyPosts[index].likes.filter(
+            (id) => id !== userInfo._id,
+          );
+          dummyPosts[index].likes = newLikes;
+          setPosts(dummyPosts);
+        } else {
+          await dispatch(likePost(_id)).unwrap();
+          const newPosts = dummyPosts.map((post) =>
+            post._id === postId
+              ? { ...post, likes: [...post.likes, userInfo._id] }
+              : post,
+          );
+          setPosts(newPosts);
+        }
+      };
       return (
-        <div
-          key={_id}
-          className=" border-b border-light-gray relative"
-          onClick={() => setPosts(AllPostWithShowOptions || [])}
-        >
+        <div key={_id} className=" border-b border-light-gray relative">
           <div className="flex justify-between my-4 items-center">
             <Profile
               userAvatar={userAvatar}
@@ -133,22 +156,31 @@ export function ProfileFeed() {
           <p>{content}</p>
           <div className="flex justify-between my-7">
             <div className="flex gap-1 text-xl items-center">
-              <IconContainer>
-                <ion-icon name="heart-outline"></ion-icon>
+              <IconContainer
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  handleLikePost(_id);
+                }}
+                className={`${alreadyLiked ? "text-accent-red " : ""}`}
+              >
+                <ion-icon
+                  name={`${alreadyLiked ? "heart" : "heart-outline"}`}
+                ></ion-icon>
               </IconContainer>
-              <p className="text-sm">{likesCount}</p>
+              <p className="text-sm">{likes.length}</p>
             </div>
             <div className="flex gap-1 text-xl items-center">
               <IconContainer>
                 <ion-icon name="chatbox-outline"></ion-icon>
               </IconContainer>
-              <p className="text-sm">{commentsCount}</p>
+              <p className="text-sm">{comments.length}</p>
             </div>
             <div className="flex gap-1 text-xl items-center">
               <IconContainer>
                 <ion-icon name="image-outline"></ion-icon>
               </IconContainer>
-              <p className="text-sm">{sharesCount}</p>
+              <p className="text-sm">{shares.length}</p>
             </div>
           </div>
         </div>

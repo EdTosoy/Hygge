@@ -25,15 +25,17 @@ export type PostsApiState = {
 
 export interface Post {
   _id: string;
-  commentsCount: number;
+
   content: string;
   createdAt: string;
-  likesCount: number;
   mediaUrl?: string;
-  sharesCount: number;
   title: string;
   updatedAt: string;
+  userAvatar: string;
   userId: string;
   username: string;
-  userAvatar: string;
+  likes: string[];
+  comments: string[];
+  shares: string[];
+  showOptions: boolean;
 }

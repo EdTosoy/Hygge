@@ -34,6 +34,26 @@ export const updatePost = createAsyncThunk(
     return resData;
   },
 );
+
+export const likePost = createAsyncThunk("likePost", async (postId: string) => {
+  const response = await axiosInstance.put(`/api/posts/like-post`, { postId });
+  const resData = response.data;
+
+  return resData;
+});
+
+export const unLikePost = createAsyncThunk(
+  "unLikePost",
+  async (postId: string) => {
+    const response = await axiosInstance.put(`/api/posts/unlike-post`, {
+      postId,
+    });
+    const resData = response.data;
+
+    return resData;
+  },
+);
+
 export const deletePost = createAsyncThunk(
   "deletePost",
   async (data: DeletePostFields) => {

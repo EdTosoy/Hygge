@@ -4,7 +4,12 @@ import { useAppDispatch, useAppSelector } from "hooks";
 import { format } from "date-fns";
 import { ToggleContext } from "context";
 import { EditPost } from "features";
-import { deletePost, getPosts } from "src/features/posts/api.ts";
+import {
+  deletePost,
+  getPosts,
+  likePost,
+  unLikePost,
+} from "src/features/posts/api.ts";
 import { selectAllPosts } from "src/features/posts/selectors";
 import { selectUserInfo } from "src/features/auth/selectors";
 import { Post } from "src/features/posts/types";
@@ -22,13 +27,7 @@ export function PopularFeed() {
   const { toggleModal, setModalContent } = useContext(
     ToggleContext,
   ) as ToggleContextType;
-  const [posts, setPosts] = useState<any[]>([]);
-
-  const AllPostWithShowOptions =
-    allPosts.length &&
-    allPosts.map((post) => {
-      return { ...post, showOptions: false };
-    });
+  const [posts, setPosts] = useState<Post[]>([]);
 
   useEffect(() => {
     const getAllPosts = async () => {
@@ -38,26 +37,34 @@ export function PopularFeed() {
   }, []);
 
   useEffect(() => {
+    const AllPostWithShowOptions =
+      allPosts.length &&
+      allPosts.map((post) => {
+        return { ...post, showOptions: false };
+      });
+
     setPosts(AllPostWithShowOptions || []);
   }, [allPosts.length]);
 
   const postFeed = () => {
-    return posts?.map((post: Post & { showOptions: boolean }, index) => {
+    return posts?.map((post: Post, index) => {
       const {
         _id,
         username,
         content,
         title,
-        likesCount,
-        commentsCount,
+        shares,
+        comments,
         createdAt,
-        sharesCount,
+        likes,
         showOptions,
         userAvatar,
       } = post;
 
       const isUserAuthorizedToManipulatePost =
         userInfo && userInfo._id === post.userId;
+
+      const alreadyLiked = Boolean(likes.includes(userInfo._id));
 
       const toggleShowOptions = () => {
         const newPosts = [...posts];
@@ -69,6 +76,7 @@ export function PopularFeed() {
         }
         setPosts(newPosts);
       };
+
       const handleEditPost = () => {
         setModalContent(<EditPost contentValue={content} postId={_id} />);
         toggleModal();
@@ -77,12 +85,28 @@ export function PopularFeed() {
         await dispatch(deletePost({ postId: _id })).unwrap();
         window.location.reload();
       };
+
+      const handleLikePost = async (postId: string) => {
+        const dummyPosts = [...posts];
+        if (alreadyLiked) {
+          const newLikes = dummyPosts[index].likes.filter(
+            (id) => id !== userInfo._id,
+          );
+          dummyPosts[index].likes = newLikes;
+          setPosts(dummyPosts);
+          await dispatch(unLikePost(_id)).unwrap();
+        } else {
+          const newPosts = dummyPosts.map((post) =>
+            post._id === postId
+              ? { ...post, likes: [...post.likes, userInfo._id] }
+              : post,
+          );
+          setPosts(newPosts);
+          await dispatch(likePost(_id)).unwrap();
+        }
+      };
       return (
-        <div
-          key={_id}
-          className=" border-b border-light-gray relative"
-          onClick={() => setPosts(AllPostWithShowOptions || [])}
-        >
+        <div key={_id} className=" border-b border-light-gray relative">
           <div className="flex justify-between my-4 items-center">
             <Profile
               userAvatar={userAvatar}
@@ -133,27 +157,36 @@ export function PopularFeed() {
           <p>{content}</p>
           <div className="flex justify-between my-7">
             <div className="flex gap-1 text-xl items-center">
-              <IconContainer>
-                <ion-icon name="heart-outline"></ion-icon>
+              <IconContainer
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  handleLikePost(_id);
+                }}
+                className={`${alreadyLiked ? "text-accent-red " : ""}`}
+              >
+                <ion-icon
+                  name={`${alreadyLiked ? "heart" : "heart-outline"}`}
+                ></ion-icon>
               </IconContainer>
-              <p className="text-sm">{likesCount}</p>
+              <p className="text-sm">{likes.length}</p>
             </div>
             <div className="flex gap-1 text-xl items-center">
               <IconContainer>
                 <ion-icon name="chatbox-outline"></ion-icon>
               </IconContainer>
-              <p className="text-sm">{commentsCount}</p>
+              <p className="text-sm">{comments.length}</p>
             </div>
             <div className="flex gap-1 text-xl items-center">
               <IconContainer>
                 <ion-icon name="image-outline"></ion-icon>
               </IconContainer>
-              <p className="text-sm">{sharesCount}</p>
+              <p className="text-sm">{shares.length}</p>
             </div>
           </div>
         </div>
       );
     });
   };
-  return <div>{allPosts?.length && postFeed()}</div>;
+  return <div>{allPosts?.length > 0 && postFeed()}</div>;
 }
