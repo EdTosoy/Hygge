@@ -1,9 +1,11 @@
 export { AuthenticationHeader } from "./AuthenticationHeader/Loadable";
+export { Comment } from "./Comment/Loadable";
 export { Dropdown } from "./Dropdown/Loadable";
 export { IconContainer } from "./IconContainer/Loadable";
 export { Logo } from "./Logo/Loadable";
 export { ModalContainer } from "./ModalContainer/Loadable";
 export { OAuthOptions } from "./OAuthOptions/Loadable";
+export { PostWrapper } from "./PostWrapper/Loadable.ts";
 export { PrimaryButton } from "./PrimaryButton/Loadable";
 export { Profile } from "./Profile/Loadable";
 export { ProfileSummary } from "./ProfileSummary/Loadable";

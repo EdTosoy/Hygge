@@ -1,6 +1,11 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { axiosInstance } from "api";
-import { DeletePostFields, EditPostFields, createPostFields } from "./types";
+import {
+  CommentPostFields,
+  DeletePostFields,
+  EditPostFields,
+  createPostFields,
+} from "./types";
 
 export const createPost = createAsyncThunk(
   "createPost",
@@ -48,6 +53,16 @@ export const unLikePost = createAsyncThunk(
     const response = await axiosInstance.put(`/api/posts/unlike-post`, {
       postId,
     });
+    const resData = response.data;
+
+    return resData;
+  },
+);
+
+export const commentPost = createAsyncThunk(
+  "commentPost",
+  async (date: CommentPostFields) => {
+    const response = await axiosInstance.put(`/api/posts/comment-post`, date);
     const resData = response.data;
 
     return resData;

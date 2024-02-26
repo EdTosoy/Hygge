@@ -66,3 +66,19 @@ ion-icon {
 .main-section-height {
   height: calc(100vh - 60px);
 }
+
+.vertical-line {
+  height: 85%; /* Adjust this value to change the height of the line */
+  border-left: 1px solid #8b8b8b; /* This creates a thin line */
+  position: relative;
+}
+/* 
+.vertical-line::before {
+  content: ".";
+  display: none;
+  position: absolute;
+  font-size: 26px;
+  top: 100%;
+  left: 50%;
+  transform: translate(-56%, -45%);
+} */

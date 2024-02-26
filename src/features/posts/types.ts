@@ -16,12 +16,26 @@ export type DeletePostFields = {
   postId: string;
 };
 
+export type CommentPostFields = {
+  postId: string;
+  comment: string;
+  date: string;
+};
+
 export type PostsApiState = {
   posts?: Post[] | [];
   userPosts?: Post[] | [];
   status: "idle" | "loading" | "failed";
   error: string | null;
 };
+
+export interface PostComments {
+  userId: string;
+  username: string;
+  userAvatar: string;
+  date: string;
+  comment: string;
+}
 
 export interface Post {
   _id: string;
@@ -35,7 +49,7 @@ export interface Post {
   userId: string;
   username: string;
   likes: string[];
-  comments: string[];
+  comments: PostComments[];
   shares: string[];
   showOptions: boolean;
 }
