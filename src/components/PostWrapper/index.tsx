@@ -155,6 +155,7 @@ export const PostWrapper = ({
             e.preventDefault();
             e.stopPropagation();
           }}
+          className="pt-2"
         >
           {comments.map((comment) => {
             return <Comment key={comment.userId} commentData={comment} />;

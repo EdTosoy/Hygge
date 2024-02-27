@@ -4,7 +4,7 @@ import { CommentProps } from "./types";
 export const Comment = ({ commentData }: CommentProps) => {
   const { comment, date, userAvatar, username } = commentData;
   return (
-    <div className="py-4">
+    <div className="pt-2 mb-4">
       <Profile date={date} userAvatar={userAvatar} userProfile={{ username }} />
       <div>
         <div className="flex my-2 gap-2">
