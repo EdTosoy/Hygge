@@ -7,6 +7,10 @@ import {
   HOME_ROUTE,
   POPULAR_ROUTE,
 } from "src/constants";
+import { useContext } from "react";
+import { ToggleContext } from "context";
+import { ToggleContextType } from "@types";
+import { AllCategories } from "features";
 
 export const SideNavigation = () => {
   const { t } = useTranslation();
@@ -82,6 +86,14 @@ export const SideNavigation = () => {
     ],
   };
 
+  const { toggleModal, setModalContent } = useContext(
+    ToggleContext,
+  ) as ToggleContextType;
+
+  const onClickSeeMore = () => {
+    setModalContent(<AllCategories />);
+    toggleModal();
+  };
   return (
     <div className="w-238  border-r border-light-gray fixed ">
       <div className="border-b border-light-gray py-3">
@@ -108,7 +120,10 @@ export const SideNavigation = () => {
             isActive={pathname === button.url}
           />
         ))}
-        <p className="py-5 pl-5 text-xs font-medium cursor-pointer ">
+        <p
+          className="py-5 pl-5 text-xs font-medium cursor-pointer "
+          onClick={onClickSeeMore}
+        >
           {t("translation.input.seeMore")}
         </p>
       </div>

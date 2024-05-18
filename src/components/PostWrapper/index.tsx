@@ -43,7 +43,6 @@ export const PostWrapper = ({
     userInfo && userInfo._id === post.userId;
 
   const submit = async (data: CommentInputField) => {
-    console.log("submitted");
     const { comment } = data;
 
     const commentPostRequestData = {
@@ -54,6 +53,8 @@ export const PostWrapper = ({
 
     if (comment) {
       await dispatch(commentPost(commentPostRequestData)).unwrap();
+      reset();
+      window.location.reload();
     } else {
       console.log("there is no comment");
     }
@@ -65,7 +66,7 @@ export const PostWrapper = ({
     <>
       <div
         key={_id}
-        className=" border-b border-light-gray relative"
+        className=" border-b border-light-gray relative w-660"
         onClick={(e) => {
           e.preventDefault();
           e.stopPropagation();

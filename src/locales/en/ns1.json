@@ -11,6 +11,7 @@
       "goBackToHome": "<- Go Back to Home Page",
       "forgotPassword": "Forgot Password?",
       "lagout": "Log Out",
+      "edit": "Edit",
       "editPost": "Edit Post",
       "deletePost": "Delete Post",
       "hide": "Hide",
@@ -18,7 +19,8 @@
       "save": "Save",
       "post": "Post",
       "update": "Update",
-      "explore": "Explore"
+      "explore": "Explore",
+      "add": "Add"
     },
     "input": {
       "email": "Enter Email",
