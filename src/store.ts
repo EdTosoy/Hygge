@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import authReducer from "./features/auth/slice";
 import postReducer from "./features/posts/slice";
+import categoryReducer from "./features/categories/slice";
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof store.getState>;
@@ -11,5 +12,6 @@ export const store = configureStore({
   reducer: {
     auth: authReducer,
     post: postReducer,
+    category: categoryReducer,
   },
 });

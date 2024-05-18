@@ -1,60 +1,22 @@
 import { ToggleContextType } from "@types";
-import {
-  PrimaryButton,
-  SecondaryButton,
-  SideNavigationButton,
-} from "components";
+import { PrimaryButton, SecondaryButton } from "components";
 import { ToggleContext } from "context";
 import { useAppDispatch } from "hooks";
 import { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useLocation, useNavigate } from "react-router";
 import { createCategory } from "../api";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { AddCategoryField } from "./types";
+import { SideNavigation } from "../SideNavigation/Loadable";
 
 export const AllCategories = () => {
   const [isEditMode, setIsEditMode] = useState(false);
-  const navigate = useNavigate();
+
   const { t } = useTranslation();
-  const { pathname } = useLocation();
 
   const { toggleModal } = useContext(ToggleContext) as ToggleContextType;
   const { register, handleSubmit, reset } = useForm<AddCategoryField>();
   const dispatch = useAppDispatch();
-
-  const navigationButtons = [
-    {
-      ionIconName: "pie-chart-outline",
-      text: t("translation.sideNavigation.icons.arts"),
-      url: "/community/arts",
-    },
-    {
-      ionIconName: "musical-notes-outline",
-      text: t("translation.sideNavigation.icons.music"),
-      url: "/community/music",
-    },
-    {
-      ionIconName: "videocam-outline",
-      text: t("translation.sideNavigation.icons.videoEditing"),
-      url: "/community/video-editing",
-    },
-    {
-      ionIconName: "game-controller-outline",
-      text: t("translation.sideNavigation.icons.gaming"),
-      url: "/community/gaming",
-    },
-    {
-      ionIconName: "desktop-outline",
-      text: t("translation.sideNavigation.icons.informationTechnology"),
-      url: "/community/information-technology",
-    },
-    {
-      ionIconName: "business-outline",
-      text: t("translation.sideNavigation.icons.businessAdministration"),
-      url: "/community/business-administration",
-    },
-  ];
 
   const addCategorySubmit: SubmitHandler<AddCategoryField> = async (data) => {
     const { categoryName } = data;
@@ -63,6 +25,8 @@ export const AllCategories = () => {
         await dispatch(
           createCategory({
             categoryName,
+            url: `community/${categoryName}`,
+            ionIconName: "scale-outline",
           }),
         ).unwrap();
         reset();
@@ -105,15 +69,7 @@ export const AllCategories = () => {
         </form>
       )}
       <div>
-        {navigationButtons.map((button, index) => (
-          <SideNavigationButton
-            onClick={() => navigate(button.url)}
-            key={index}
-            ionIconName={button.ionIconName}
-            text={button.text}
-            isActive={pathname === button.url}
-          />
-        ))}
+        <SideNavigation />
       </div>
       <div className="flex  gap-4 justify-end items-center mt-4">
         <SecondaryButton

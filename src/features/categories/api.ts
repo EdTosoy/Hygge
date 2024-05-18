@@ -14,3 +14,13 @@ export const createCategory = createAsyncThunk(
     return resData;
   },
 );
+
+export const getAllCategories = createAsyncThunk(
+  "getAllCategories",
+  async () => {
+    const response = await axiosInstance.get("/api/categories/all-categories");
+    const resData = response.data;
+
+    return resData;
+  },
+);
