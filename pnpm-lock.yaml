@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@reduxjs/toolkit':
-        specifier: ^2.1.0
-        version: 2.2.1(react-redux@9.1.0)(react@18.2.0)
+        specifier: ^2.2.1
+        version: 2.2.1(react-redux@9.1.0(@types/react@18.2.57)(react@18.2.0)(redux@5.0.1))(react@18.2.0)
       axios:
         specifier: ^1.6.7
         version: 1.6.7
@@ -18,7 +18,7 @@ importers:
         specifier: ^3.3.1
         version: 3.3.1
       i18next:
-        specifier: ^23.8.2
+        specifier: ^23.9.0
         version: 23.9.0
       i18next-browser-languagedetector:
         specifier: ^7.2.0
@@ -30,7 +30,7 @@ importers:
         specifier: ^1.10.0
         version: 1.10.0
       match-sorter:
-        specifier: ^6.3.3
+        specifier: ^6.3.4
         version: 6.3.4
       react:
         specifier: ^18.2.0
@@ -45,59 +45,59 @@ importers:
         specifier: ^7.50.1
         version: 7.50.1(react@18.2.0)
       react-i18next:
-        specifier: ^14.0.3
-        version: 14.0.5(i18next@23.9.0)(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^14.0.5
+        version: 14.0.5(i18next@23.9.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       react-redux:
         specifier: ^9.1.0
         version: 9.1.0(@types/react@18.2.57)(react@18.2.0)(redux@5.0.1)
       react-router:
-        specifier: ^6.22.0
+        specifier: ^6.22.1
         version: 6.22.1(react@18.2.0)
       react-router-dom:
-        specifier: ^6.22.0
-        version: 6.22.1(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^6.22.1
+        version: 6.22.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       sass:
-        specifier: ^1.70.0
+        specifier: ^1.71.0
         version: 1.71.0
       sort-by:
         specifier: ^1.2.0
         version: 1.2.0
     devDependencies:
       '@commitlint/cli':
-        specifier: ^18.6.0
+        specifier: ^18.6.1
         version: 18.6.1(@types/node@20.11.19)(typescript@5.3.3)
       '@commitlint/config-conventional':
-        specifier: ^18.6.0
+        specifier: ^18.6.2
         version: 18.6.2
       '@cypress/react':
         specifier: ^8.0.0
-        version: 8.0.0(@types/react@18.2.57)(cypress@13.6.4)(react-dom@18.2.0)(react@18.2.0)
+        version: 8.0.0(@types/react@18.2.57)(cypress@13.6.4)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@swc/cli':
-        specifier: ^0.3.6
-        version: 0.3.9(@swc/core@1.4.2)
+        specifier: ^0.3.9
+        version: 0.3.9(@swc/core@1.4.2)(chokidar@3.6.0)
       '@swc/core':
-        specifier: ^1.3.107
+        specifier: ^1.4.2
         version: 1.4.2
       '@types/node':
-        specifier: ^20.11.16
+        specifier: ^20.11.19
         version: 20.11.19
       '@types/react':
-        specifier: ^18.2.52
+        specifier: ^18.2.57
         version: 18.2.57
       '@types/react-dom':
-        specifier: ^18.2.18
+        specifier: ^18.2.19
         version: 18.2.19
       '@typescript-eslint/eslint-plugin':
-        specifier: ^6.20.0
-        version: 6.21.0(@typescript-eslint/parser@6.21.0)(eslint@8.56.0)(typescript@5.3.3)
+        specifier: ^6.21.0
+        version: 6.21.0(@typescript-eslint/parser@6.21.0(eslint@8.56.0)(typescript@5.3.3))(eslint@8.56.0)(typescript@5.3.3)
       '@typescript-eslint/parser':
-        specifier: ^6.20.0
+        specifier: ^6.21.0
         version: 6.21.0(eslint@8.56.0)(typescript@5.3.3)
       '@vitejs/plugin-react-swc':
         specifier: ^3.6.0
-        version: 3.6.0(vite@5.1.3)
+        version: 3.6.0(vite@5.1.3(@types/node@20.11.19)(sass@1.71.0))
       '@vitest/ui':
-        specifier: ^1.2.2
+        specifier: ^1.3.1
         version: 1.3.1(vitest@1.3.1)
       autoprefixer:
         specifier: ^10.4.17
@@ -124,16 +124,16 @@ importers:
         specifier: ^0.4.5
         version: 0.4.5(eslint@8.56.0)
       husky:
-        specifier: ^9.0.10
+        specifier: ^9.0.11
         version: 9.0.11
       lint-staged:
-        specifier: ^15.2.1
+        specifier: ^15.2.2
         version: 15.2.2
       postcss:
-        specifier: ^8.4.33
+        specifier: ^8.4.35
         version: 8.4.35
       prettier:
-        specifier: ^3.2.4
+        specifier: ^3.2.5
         version: 3.2.5
       tailwindcss:
         specifier: ^3.4.1
@@ -142,13 +142,13 @@ importers:
         specifier: ^5.3.3
         version: 5.3.3
       vite:
-        specifier: ^5.0.12
+        specifier: ^5.1.3
         version: 5.1.3(@types/node@20.11.19)(sass@1.71.0)
       vite-tsconfig-paths:
         specifier: ^4.3.1
-        version: 4.3.1(typescript@5.3.3)(vite@5.1.3)
+        version: 4.3.1(typescript@5.3.3)(vite@5.1.3(@types/node@20.11.19)(sass@1.71.0))
       vitest:
-        specifier: ^1.2.2
+        specifier: ^1.3.1
         version: 1.3.1(@types/node@20.11.19)(@vitest/ui@1.3.1)(sass@1.71.0)
 
 packages:
@@ -1072,8 +1072,8 @@ packages:
     resolution: {integrity: sha512-L28STB170nwWS63UjtlEOE3dldQApaJXZkOI1uMFfzf3rRuPegHaHesyee+YxQ+W6SvRDQV6UrdOdRiR153wJg==}
     engines: {node: '>=6'}
 
-  caniuse-lite@1.0.30001588:
-    resolution: {integrity: sha512-+hVY9jE44uKLkH0SrUTqxjxqNTOWHsbnQDIKjwkZ3lNTzUUVdBLBGXtj/q5Mp5u98r3droaZAewQuEDzjQdZlQ==}
+  caniuse-lite@1.0.30001645:
+    resolution: {integrity: sha512-GFtY2+qt91kzyMk6j48dJcwJVq5uTkk71XxE3RtScx7XWRLsO7bU44LOFkOZYR8w9YMS0UhPSYpN/6rAMImmLw==}
 
   caseless@0.12.0:
     resolution: {integrity: sha512-4tYFyifaFfGacoiObjJegolkwSU4xQNGbVgUiNYVUxbQ2x2lUsFvY4hVgVzGiIe6WLOPqycWXA40l+PWsxthUw==}
@@ -3593,7 +3593,7 @@ snapshots:
       '@commitlint/types': 18.6.1
       chalk: 4.1.2
       cosmiconfig: 8.3.6(typescript@5.3.3)
-      cosmiconfig-typescript-loader: 5.0.0(@types/node@20.11.19)(cosmiconfig@8.3.6)(typescript@5.3.3)
+      cosmiconfig-typescript-loader: 5.0.0(@types/node@20.11.19)(cosmiconfig@8.3.6(typescript@5.3.3))(typescript@5.3.3)
       lodash.isplainobject: 4.0.6
       lodash.merge: 4.6.2
       lodash.uniq: 4.5.0
@@ -3644,12 +3644,13 @@ snapshots:
     dependencies:
       chalk: 4.1.2
 
-  '@cypress/react@8.0.0(@types/react@18.2.57)(cypress@13.6.4)(react-dom@18.2.0)(react@18.2.0)':
+  '@cypress/react@8.0.0(@types/react@18.2.57)(cypress@13.6.4)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
-      '@types/react': 18.2.57
       cypress: 13.6.4
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
+    optionalDependencies:
+      '@types/react': 18.2.57
 
   '@cypress/request@3.0.1':
     dependencies:
@@ -3843,14 +3844,15 @@ snapshots:
 
   '@polka/url@1.0.0-next.24': {}
 
-  '@reduxjs/toolkit@2.2.1(react-redux@9.1.0)(react@18.2.0)':
+  '@reduxjs/toolkit@2.2.1(react-redux@9.1.0(@types/react@18.2.57)(react@18.2.0)(redux@5.0.1))(react@18.2.0)':
     dependencies:
       immer: 10.0.3
-      react: 18.2.0
-      react-redux: 9.1.0(@types/react@18.2.57)(react@18.2.0)(redux@5.0.1)
       redux: 5.0.1
       redux-thunk: 3.1.0(redux@5.0.1)
       reselect: 5.1.0
+    optionalDependencies:
+      react: 18.2.0
+      react-redux: 9.1.0(@types/react@18.2.57)(react@18.2.0)(redux@5.0.1)
 
   '@remix-run/router@1.15.1': {}
 
@@ -3897,7 +3899,7 @@ snapshots:
 
   '@sindresorhus/is@4.6.0': {}
 
-  '@swc/cli@0.3.9(@swc/core@1.4.2)':
+  '@swc/cli@0.3.9(@swc/core@1.4.2)(chokidar@3.6.0)':
     dependencies:
       '@mole-inc/bin-wrapper': 8.0.1
       '@swc/core': 1.4.2
@@ -3909,6 +3911,8 @@ snapshots:
       semver: 7.6.0
       slash: 3.0.0
       source-map: 0.7.4
+    optionalDependencies:
+      chokidar: 3.6.0
 
   '@swc/core-darwin-arm64@1.4.2':
     optional: true
@@ -4024,7 +4028,7 @@ snapshots:
       '@types/node': 20.11.19
     optional: true
 
-  '@typescript-eslint/eslint-plugin@6.21.0(@typescript-eslint/parser@6.21.0)(eslint@8.56.0)(typescript@5.3.3)':
+  '@typescript-eslint/eslint-plugin@6.21.0(@typescript-eslint/parser@6.21.0(eslint@8.56.0)(typescript@5.3.3))(eslint@8.56.0)(typescript@5.3.3)':
     dependencies:
       '@eslint-community/regexpp': 4.10.0
       '@typescript-eslint/parser': 6.21.0(eslint@8.56.0)(typescript@5.3.3)
@@ -4039,6 +4043,7 @@ snapshots:
       natural-compare: 1.4.0
       semver: 7.6.0
       ts-api-utils: 1.2.1(typescript@5.3.3)
+    optionalDependencies:
       typescript: 5.3.3
     transitivePeerDependencies:
       - supports-color
@@ -4051,6 +4056,7 @@ snapshots:
       '@typescript-eslint/visitor-keys': 6.21.0
       debug: 4.3.4(supports-color@8.1.1)
       eslint: 8.56.0
+    optionalDependencies:
       typescript: 5.3.3
     transitivePeerDependencies:
       - supports-color
@@ -4067,6 +4073,7 @@ snapshots:
       debug: 4.3.4(supports-color@8.1.1)
       eslint: 8.56.0
       ts-api-utils: 1.2.1(typescript@5.3.3)
+    optionalDependencies:
       typescript: 5.3.3
     transitivePeerDependencies:
       - supports-color
@@ -4083,6 +4090,7 @@ snapshots:
       minimatch: 9.0.3
       semver: 7.6.0
       ts-api-utils: 1.2.1(typescript@5.3.3)
+    optionalDependencies:
       typescript: 5.3.3
     transitivePeerDependencies:
       - supports-color
@@ -4108,7 +4116,7 @@ snapshots:
 
   '@ungap/structured-clone@1.2.0': {}
 
-  '@vitejs/plugin-react-swc@3.6.0(vite@5.1.3)':
+  '@vitejs/plugin-react-swc@3.6.0(vite@5.1.3(@types/node@20.11.19)(sass@1.71.0))':
     dependencies:
       '@swc/core': 1.4.2
       vite: 5.1.3(@types/node@20.11.19)(sass@1.71.0)
@@ -4303,7 +4311,7 @@ snapshots:
   autoprefixer@10.4.17(postcss@8.4.35):
     dependencies:
       browserslist: 4.23.0
-      caniuse-lite: 1.0.30001588
+      caniuse-lite: 1.0.30001645
       fraction.js: 4.3.7
       normalize-range: 0.1.2
       picocolors: 1.0.0
@@ -4371,7 +4379,7 @@ snapshots:
 
   browserslist@4.23.0:
     dependencies:
-      caniuse-lite: 1.0.30001588
+      caniuse-lite: 1.0.30001645
       electron-to-chromium: 1.4.676
       node-releases: 2.0.14
       update-browserslist-db: 1.0.13(browserslist@4.23.0)
@@ -4433,7 +4441,7 @@ snapshots:
 
   camelcase@5.3.1: {}
 
-  caniuse-lite@1.0.30001588: {}
+  caniuse-lite@1.0.30001645: {}
 
   caseless@0.12.0: {}
 
@@ -4586,7 +4594,7 @@ snapshots:
 
   core-util-is@1.0.2: {}
 
-  cosmiconfig-typescript-loader@5.0.0(@types/node@20.11.19)(cosmiconfig@8.3.6)(typescript@5.3.3):
+  cosmiconfig-typescript-loader@5.0.0(@types/node@20.11.19)(cosmiconfig@8.3.6(typescript@5.3.3))(typescript@5.3.3):
     dependencies:
       '@types/node': 20.11.19
       cosmiconfig: 8.3.6(typescript@5.3.3)
@@ -4599,6 +4607,7 @@ snapshots:
       js-yaml: 4.1.0
       parse-json: 5.2.0
       path-type: 4.0.0
+    optionalDependencies:
       typescript: 5.3.3
 
   cross-fetch@4.0.0:
@@ -4685,11 +4694,13 @@ snapshots:
   debug@3.2.7(supports-color@8.1.1):
     dependencies:
       ms: 2.1.3
+    optionalDependencies:
       supports-color: 8.1.1
 
   debug@4.3.4(supports-color@8.1.1):
     dependencies:
       ms: 2.1.2
+    optionalDependencies:
       supports-color: 8.1.1
 
   decamelize-keys@1.1.1:
@@ -5679,13 +5690,14 @@ snapshots:
     dependencies:
       cli-truncate: 2.1.0
       colorette: 2.0.20
-      enquirer: 2.4.1
       log-update: 4.0.0
       p-map: 4.0.0
       rfdc: 1.3.1
       rxjs: 7.8.1
       through: 2.3.8
       wrap-ansi: 7.0.0
+    optionalDependencies:
+      enquirer: 2.4.1
 
   listr2@8.0.1:
     dependencies:
@@ -6101,8 +6113,9 @@ snapshots:
   postcss-load-config@4.0.2(postcss@8.4.35):
     dependencies:
       lilconfig: 3.1.1
-      postcss: 8.4.35
       yaml: 2.3.4
+    optionalDependencies:
+      postcss: 8.4.35
 
   postcss-nested@6.0.1(postcss@8.4.35):
     dependencies:
@@ -6186,12 +6199,13 @@ snapshots:
     dependencies:
       react: 18.2.0
 
-  react-i18next@14.0.5(i18next@23.9.0)(react-dom@18.2.0)(react@18.2.0):
+  react-i18next@14.0.5(i18next@23.9.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
     dependencies:
       '@babel/runtime': 7.23.9
       html-parse-stringify: 3.0.1
       i18next: 23.9.0
       react: 18.2.0
+    optionalDependencies:
       react-dom: 18.2.0(react@18.2.0)
 
   react-is@16.13.1: {}
@@ -6200,13 +6214,14 @@ snapshots:
 
   react-redux@9.1.0(@types/react@18.2.57)(react@18.2.0)(redux@5.0.1):
     dependencies:
-      '@types/react': 18.2.57
       '@types/use-sync-external-store': 0.0.3
       react: 18.2.0
-      redux: 5.0.1
       use-sync-external-store: 1.2.0(react@18.2.0)
+    optionalDependencies:
+      '@types/react': 18.2.57
+      redux: 5.0.1
 
-  react-router-dom@6.22.1(react-dom@18.2.0)(react@18.2.0):
+  react-router-dom@6.22.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
     dependencies:
       '@remix-run/router': 1.15.1
       react: 18.2.0
@@ -6743,7 +6758,7 @@ snapshots:
   ts-interface-checker@0.1.13: {}
 
   tsconfck@3.0.2(typescript@5.3.3):
-    dependencies:
+    optionalDependencies:
       typescript: 5.3.3
 
   tslib@2.6.2: {}
@@ -6876,11 +6891,12 @@ snapshots:
       - supports-color
       - terser
 
-  vite-tsconfig-paths@4.3.1(typescript@5.3.3)(vite@5.1.3):
+  vite-tsconfig-paths@4.3.1(typescript@5.3.3)(vite@5.1.3(@types/node@20.11.19)(sass@1.71.0)):
     dependencies:
       debug: 4.3.4(supports-color@8.1.1)
       globrex: 0.1.2
       tsconfck: 3.0.2(typescript@5.3.3)
+    optionalDependencies:
       vite: 5.1.3(@types/node@20.11.19)(sass@1.71.0)
     transitivePeerDependencies:
       - supports-color
@@ -6888,22 +6904,20 @@ snapshots:
 
   vite@5.1.3(@types/node@20.11.19)(sass@1.71.0):
     dependencies:
-      '@types/node': 20.11.19
       esbuild: 0.19.12
       postcss: 8.4.35
       rollup: 4.12.0
-      sass: 1.71.0
     optionalDependencies:
+      '@types/node': 20.11.19
       fsevents: 2.3.3
+      sass: 1.71.0
 
   vitest@1.3.1(@types/node@20.11.19)(@vitest/ui@1.3.1)(sass@1.71.0):
     dependencies:
-      '@types/node': 20.11.19
       '@vitest/expect': 1.3.1
       '@vitest/runner': 1.3.1
       '@vitest/snapshot': 1.3.1
       '@vitest/spy': 1.3.1
-      '@vitest/ui': 1.3.1(vitest@1.3.1)
       '@vitest/utils': 1.3.1
       acorn-walk: 8.3.2
       chai: 4.4.1
@@ -6920,6 +6934,9 @@ snapshots:
       vite: 5.1.3(@types/node@20.11.19)(sass@1.71.0)
       vite-node: 1.3.1(@types/node@20.11.19)(sass@1.71.0)
       why-is-node-running: 2.2.2
+    optionalDependencies:
+      '@types/node': 20.11.19
+      '@vitest/ui': 1.3.1(vitest@1.3.1)
     transitivePeerDependencies:
       - less
       - lightningcss
