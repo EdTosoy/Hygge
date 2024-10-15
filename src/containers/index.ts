@@ -1,3 +1,4 @@
+export { CommunityFeed } from "./CommunityFeed/Loadable.ts";
 export { Header } from "./Header/Loadable.ts";
 export { HomeFeed } from "./HomeFeed/Loadable.ts";
 export { PopularFeed } from "./PopularFeed/Loadable.ts";

@@ -9,7 +9,7 @@ import {
   UserProfilePage,
 } from "pages";
 import { Layout } from "layout";
-import { HomeFeed, PopularFeed } from "containers";
+import { HomeFeed, PopularFeed, CommunityFeed } from "containers";
 import {
   AUTH_ROUTE,
   COMMUNITY_ROUTE,
@@ -41,7 +41,14 @@ function App() {
                 </MainPage>
               }
             />
-            <Route path={COMMUNITY_ROUTE} element={<MainPage>OTW</MainPage>} />
+            <Route
+              path={COMMUNITY_ROUTE}
+              element={
+                <MainPage>
+                  <CommunityFeed />
+                </MainPage>
+              }
+            />
             <Route path={PROFILE_ROUTE} element={<UserProfilePage />} />
             <Route path="*" element={<PageNotFound />} />
           </Routes>

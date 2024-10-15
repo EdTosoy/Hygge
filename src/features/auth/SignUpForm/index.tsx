@@ -39,25 +39,25 @@ export const SignUpForm = () => {
       <h1 className="font-medium text-3xl">{t("translation.button.signUp")}</h1>
       <form className="pt-7" onSubmit={handleSubmit(onSubmit)}>
         <input
-          className="px-8 py-4 rounded-xl flex gap-3 items-center bg-light-violet text-dark-violet placeholder:text-violet my-4"
+          className="w-325 px-8 py-4 rounded-xl flex gap-3 items-center bg-light-violet text-dark-violet placeholder:text-violet my-4"
           placeholder={t("translation.input.username")}
           {...register("username")}
         />
 
         <input
-          className="px-8 py-4 rounded-xl flex gap-3 items-center bg-light-violet text-dark-violet placeholder:text-violet my-4"
+          className="w-325 px-8 py-4 rounded-xl flex gap-3 items-center bg-light-violet text-dark-violet placeholder:text-violet my-4"
           type="email"
           placeholder={t("translation.input.email")}
           {...register("email")}
         />
         <input
-          className="px-8 py-4 rounded-xl flex gap-3 items-center bg-light-violet text-dark-violet placeholder:text-violet my-4"
+          className="w-325 px-8 py-4 rounded-xl flex gap-3 items-center bg-light-violet text-dark-violet placeholder:text-violet my-4"
           type="password"
           placeholder={t("translation.input.password")}
           {...register("password")}
         />
         <input
-          className="px-8 py-4 rounded-xl flex gap-3 items-center bg-light-violet text-dark-violet placeholder:text-violet my-4"
+          className="w-325 px-8 py-4 rounded-xl flex gap-3 items-center bg-light-violet text-dark-violet placeholder:text-violet my-4"
           type="password"
           placeholder={t("translation.input.confirmPassword")}
           {...register("confirmPassword")}

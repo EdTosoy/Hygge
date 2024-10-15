@@ -4,6 +4,8 @@ export type createPostFields = {
   userId: string;
   username: string;
   mediaUrl?: string;
+  category: string;
+  imagefile?: any;
 };
 
 export type EditPostFields = {
@@ -52,4 +54,5 @@ export interface Post {
   comments: PostComments[];
   shares: string[];
   showOptions: boolean;
+  category: string;
 }

@@ -43,14 +43,14 @@ export const SignInForm = ({ showFooter }: SignInFormProps) => {
       <h1 className="font-medium text-3xl">{t("translation.button.signIn")}</h1>
       <form className="" onSubmit={handleSubmit(onSubmit)}>
         <input
-          className="px-8 py-4 rounded-xl flex gap-3 items-center bg-light-violet text-dark-violet placeholder:text-violet my-8"
+          className="w-325 px-8 py-4 rounded-xl flex gap-3 items-center bg-light-violet text-dark-violet placeholder:text-violet my-8"
           type="text"
           placeholder={t("translation.input.emailOrUsername")}
           {...register("emailOrUsername")}
         />
 
         <input
-          className="px-8 py-4 rounded-xl flex gap-3 items-center bg-light-violet text-dark-violet placeholder:text-violet my-8"
+          className="w-325 px-8 py-4 rounded-xl flex gap-3 items-center bg-light-violet text-dark-violet placeholder:text-violet my-8"
           type="password"
           placeholder={t("translation.input.password")}
           {...register("password")}
