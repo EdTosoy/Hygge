@@ -16,7 +16,7 @@ import {
 import { ToggleContextType } from "@types";
 import { AddPostFormInput } from "./types";
 import { MMDDYYYY } from "src/constants";
-import { ImageUpload } from "../ImageUpload/index";
+import { ImageUpload } from "features";
 
 export const AddPost = () => {
   const { t } = useTranslation();
