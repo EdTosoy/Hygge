@@ -34,6 +34,7 @@ export const PostWrapper = ({
     likes,
     showOptions,
     userAvatar,
+    mediaUrl,
   } = post;
 
   const dispatch = useAppDispatch();
@@ -66,7 +67,7 @@ export const PostWrapper = ({
     <>
       <div
         key={_id}
-        className=" border-b border-light-gray relative w-660"
+        className=" border-b border-light-gray relative"
         onClick={(e) => {
           e.preventDefault();
           e.stopPropagation();
@@ -120,6 +121,11 @@ export const PostWrapper = ({
         </div>
         <h1 className="font-semibold">{title}...</h1>
         <p>{content}</p>
+        {mediaUrl && (
+          <div>
+            <img src={mediaUrl} alt={mediaUrl} />
+          </div>
+        )}
         <div className="flex justify-between my-7">
           <div className="flex gap-1 text-xl items-center">
             <IconContainer

@@ -1,31 +1,41 @@
-import { useRef } from "react";
+import { useCallback, useRef } from "react";
 import { IconContainer } from "components";
+import { useDropzone } from "react-dropzone";
 
-export const ImageUpload = ({ register, setPreview }) => {
+export const ImageUpload = ({ register, setAvatarPreview }) => {
   const hiddenInputRef = useRef<any>();
 
   const { ref: registerRef, ...rest } = register("profilePicture");
-
-  const handleUploadedFile = (event) => {
-    const file = event.target.files[0];
-
-    const urlImage = URL.createObjectURL(file);
-
-    setPreview(urlImage);
-  };
 
   const onUpload = () => {
     hiddenInputRef.current.click();
   };
 
+  const onDropAvatar = useCallback((acceptedFiles: File[]) => {
+    const file = new FileReader();
+
+    file.onload = () => {
+      setAvatarPreview(file.result as string);
+    };
+
+    file.readAsDataURL(acceptedFiles[0]);
+  }, []);
+
+  const {
+    getRootProps: getAvatarRootProps,
+    getInputProps: getAvatarInputProps,
+  } = useDropzone({
+    onDrop: onDropAvatar,
+  });
+
   return (
-    <div>
+    <div {...getAvatarRootProps()}>
       <input
         className="hidden"
         type="file"
         name="profilePicture"
         {...rest}
-        onChange={handleUploadedFile}
+        {...getAvatarInputProps()}
         ref={(e) => {
           registerRef(e);
           hiddenInputRef.current = e;

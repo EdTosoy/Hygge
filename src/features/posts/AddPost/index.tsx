@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useCallback, useContext, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { format } from "date-fns";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -16,7 +16,8 @@ import {
 import { ToggleContextType } from "@types";
 import { AddPostFormInput } from "./types";
 import { MMDDYYYY } from "src/constants";
-import { ImageUpload } from "features";
+import { useDropzone } from "react-dropzone";
+import { fileUpload } from "src/features/auth/api";
 
 export const AddPost = () => {
   const { t } = useTranslation();
@@ -26,10 +27,43 @@ export const AddPost = () => {
 
   const dispatch = useAppDispatch();
   const { register, handleSubmit, reset } = useForm<AddPostFormInput>();
-  const [preview, setPreview] = useState<string | undefined>();
+  const [avatarPreview, setAvatarPreview] = useState<string | undefined>(
+    undefined,
+  );
+
+  const hiddenInputRef = useRef<any>();
+
+  const onUpload = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    hiddenInputRef.current.click();
+  };
+
+  const onDropAvatar = useCallback((acceptedFiles: File[]) => {
+    const file = new FileReader();
+
+    file.onload = () => {
+      setAvatarPreview(file.result as string);
+    };
+
+    file.readAsDataURL(acceptedFiles[0]);
+  }, []);
+
+  const {
+    getRootProps: getAvatarRootProps,
+    getInputProps: getAvatarInputProps,
+    acceptedFiles: avatarAcceptedFiles,
+  } = useDropzone({
+    onDrop: onDropAvatar,
+  });
+
   const onSubmit: SubmitHandler<AddPostFormInput> = async (data) => {
-    console.log(data);
     const { content, mediaUrl, category } = data;
+
+    const avatarFileUploadResponse = (avatarAcceptedFiles.length &&
+      (await fileUpload(avatarAcceptedFiles))) || {
+      secure_url: mediaUrl,
+    };
 
     if (_id && username && content) {
       try {
@@ -38,7 +72,7 @@ export const AddPost = () => {
             content,
             // discuss where to find title
             title: postTitle(content),
-            mediaUrl: mediaUrl,
+            mediaUrl: avatarFileUploadResponse.secure_url,
             userId: _id,
             username: username,
             category: category,
@@ -95,17 +129,36 @@ export const AddPost = () => {
           {...register("content")}
         ></textarea>
         <div className="p-3">
-          <img src={preview} className="rounded-xl overflow-hidden" />
+          <img src={avatarPreview} className="rounded-xl overflow-hidden" />
         </div>
       </div>
 
       <div className="flex items-center  mt-4">
-        <div className="w-full p-3 flex gap-1 ">
-          <ImageUpload register={register} setPreview={setPreview} />
+        <div className="w-full p-3 flex gap-1">
+          {/* NEEDS TO BE REFACTORED */}
+          <div {...getAvatarRootProps()}>
+            <input
+              className="hidden"
+              onChange={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+              }}
+              {...getAvatarInputProps()}
+              ref={(e) => {
+                hiddenInputRef.current = e;
+              }}
+            />
+
+            <button onClick={onUpload}>
+              <IconContainer className="text-2xl text-dark-violet hover:bg-light-gray p-3 rounded-full">
+                <ion-icon name="images-outline"></ion-icon>
+              </IconContainer>
+            </button>
+          </div>
+          {/* NEEDS TO BE REFACTORED */}
           <IconContainer className="text-2xl  text-dark-violet hover:bg-light-gray p-3 rounded-full">
             <ion-icon name="people-outline"></ion-icon>
           </IconContainer>
-
           <IconContainer className="text-2xl  text-dark-violet hover:bg-light-gray p-3 rounded-full">
             <ion-icon name="happy-outline"></ion-icon>
           </IconContainer>

@@ -45,7 +45,7 @@ export const Header = ({ isLoggedIn }: HeaderProps) => {
           <header className="flex py-2  ">
             <div className="flex justify-between">
               <Logo isForAuthentication />
-              <div className="grid place-items-center w-660">
+              <div className="grid place-items-center ">
                 <input
                   type="text"
                   placeholder="Search"
