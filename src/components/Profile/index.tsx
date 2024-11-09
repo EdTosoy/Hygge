@@ -14,7 +14,7 @@ export const Profile = ({
   const { username, avatar } = useAppSelector(selectUserInfo) || {};
   return (
     <div className="w-195 flex items-center">
-      <div className="flex items-center gap-4   ">
+      <div className="flex items-center gap-3   ">
         <div>
           <div className="relative ">
             <img
@@ -29,7 +29,7 @@ export const Profile = ({
         </div>
         <div>
           <h2
-            className="cursor-pointer leading-tight"
+            className="cursor-pointer leading-tight text-xs font-medium"
             onClick={() => navigate(PROFILE_ROUTE)}
           >
             {userProfile?.username || username}

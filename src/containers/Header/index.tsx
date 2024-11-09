@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import { SignInForm, AddPost } from "features";
+import { SignInForm, AddPost, Contacts } from "features";
 import {
   Dropdown,
   IconContainer,
@@ -42,7 +42,7 @@ export const Header = ({ isLoggedIn }: HeaderProps) => {
     <div className="fixed top-0 z-40 grid place-content-center w-full border-b border-light-gray">
       <div className="bg-white body-grid-container ">
         <div className="col-start-2 col-end-3  ">
-          <header className="flex py-2  ">
+          <header className="flex py-2">
             <div className="flex justify-between">
               <Logo isForAuthentication />
               <div className="grid place-items-center ">
@@ -107,6 +107,7 @@ export const Header = ({ isLoggedIn }: HeaderProps) => {
                 />
               </div>
             )}
+            <Contacts />
           </header>
         </div>
       </div>

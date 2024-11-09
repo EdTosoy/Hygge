@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Contacts, SignInForm } from "features";
+import { SignInForm } from "features";
 import { useAppSelector } from "hooks";
 import { selectUserInfo } from "src/features/auth/selectors";
 import { ToggleContext } from "context";
@@ -28,7 +28,6 @@ export const MainPage = ({ children }: MainPageProps) => {
             <div className="p-6">{children}</div>
           </div>
         </div>
-        <Contacts />
       </div>
     </div>
   );
