@@ -39,6 +39,7 @@ export const PostWrapper = ({
 
   const dispatch = useAppDispatch();
   const alreadyLiked = Boolean(likes.includes(userInfo._id));
+  const alreadySaved = Boolean(likes.includes(userInfo._id));
 
   const isUserAuthorizedToManipulatePost =
     userInfo && userInfo._id === post.userId;
@@ -149,8 +150,15 @@ export const PostWrapper = ({
             <p className="text-sm">{comments.length}</p>
           </div>
           <div className="flex gap-1 text-xl items-center">
-            <IconContainer>
-              <ion-icon name="image-outline"></ion-icon>
+            <IconContainer
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+              }}
+            >
+              <ion-icon
+                name={`${alreadySaved ? "image" : "image-outline"}`}
+              ></ion-icon>
             </IconContainer>
             <p className="text-sm">{shares.length}</p>
           </div>
