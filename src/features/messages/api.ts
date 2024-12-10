@@ -2,8 +2,8 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { axiosInstance } from "api";
 import { createMessageFields } from "./types";
 
-export const getAllMessages = createAsyncThunk("getAllCategories", async () => {
-  const response = await axiosInstance.get("/api/categories/all-messages");
+export const getAllMessages = createAsyncThunk("getAllMessages", async () => {
+  const response = await axiosInstance.get("/api/messages/all-messages");
   const resData = response.data;
 
   return resData;
