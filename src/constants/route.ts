@@ -5,3 +5,4 @@ export const HELP_ROUTE = "/help";
 export const HOME_ROUTE = "/home";
 export const POPULAR_ROUTE = "/popular";
 export const PROFILE_ROUTE = "/profile";
+export const PROFILE_WITH_ID_ROUTE = "/profile/:id";

@@ -35,6 +35,7 @@ export const PostWrapper = ({
     showOptions,
     userAvatar,
     mediaUrl,
+    userId: postUserId,
   } = post;
 
   const dispatch = useAppDispatch();
@@ -42,7 +43,7 @@ export const PostWrapper = ({
   const alreadySaved = Boolean(likes.includes(userInfo._id));
 
   const isUserAuthorizedToManipulatePost =
-    userInfo && userInfo._id === post.userId;
+    userInfo && userInfo._id === postUserId;
 
   const submit = async (data: CommentInputField) => {
     const { comment } = data;
@@ -77,8 +78,10 @@ export const PostWrapper = ({
         <div className="flex justify-between my-4 items-center">
           <Profile
             userAvatar={userAvatar}
-            userProfile={{ username }}
             date={format(createdAt, DATE_AND_TIME)}
+            username={username}
+            profileUserId={postUserId}
+            avatar={userAvatar}
           />
           <IconContainer
             className="text-xl "
@@ -177,7 +180,6 @@ export const PostWrapper = ({
           })}
 
           <form className="relative">
-            <Profile />
             <textarea
               placeholder="Write a comment..."
               aria-label="comment-input"

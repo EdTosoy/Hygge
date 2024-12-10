@@ -6,3 +6,8 @@ const selectDomain = (state: RootState) => state.auth || initialState;
 
 export const selectUserInfo =
   createSelector([selectDomain], (auth) => auth.userInfo) || {};
+
+export const selectSingleUserInfo = createSelector(
+  [selectDomain],
+  (auth) => auth.singleUserInfo,
+);

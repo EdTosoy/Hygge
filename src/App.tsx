@@ -16,7 +16,7 @@ import {
   COMMUNITY_ROUTE,
   HOME_ROUTE,
   POPULAR_ROUTE,
-  PROFILE_ROUTE,
+  PROFILE_WITH_ID_ROUTE,
 } from "src/constants";
 import "./App.css";
 function App() {
@@ -50,7 +50,7 @@ function App() {
                 </MainPage>
               }
             />
-            <Route path={PROFILE_ROUTE} element={<UserProfilePage />} />
+            <Route path={PROFILE_WITH_ID_ROUTE} element={<UserProfilePage />} />
             <Route path="*" element={<PageNotFound />} />
           </Routes>
           <Inbox />

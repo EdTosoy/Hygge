@@ -28,6 +28,7 @@ export type UserInfo = {
 
 export type AuthApiState = {
   userInfo?: UserInfo | null;
+  singleUserInfo?: UserInfo | null;
   status: "idle" | "loading" | "failed";
   error: string | null;
 };

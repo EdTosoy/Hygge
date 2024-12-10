@@ -2,10 +2,16 @@ import { Profile } from "components";
 import { CommentProps } from "./types";
 
 export const Comment = ({ commentData }: CommentProps) => {
-  const { comment, date, userAvatar, username } = commentData;
+  const { comment, date, userAvatar, username, userId } = commentData;
   return (
     <div className="pt-2 mb-4">
-      <Profile date={date} userAvatar={userAvatar} userProfile={{ username }} />
+      <Profile
+        date={date}
+        userAvatar={userAvatar}
+        profileUserId={userId}
+        username={username}
+        avatar={userAvatar}
+      />
       <div>
         <div className="flex my-2 gap-2">
           <div className="mx-4">

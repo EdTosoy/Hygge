@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { AuthApiState, UserInfo } from "./types";
 import { USER_INFO } from "src/constants";
-import { signIn, signUp, lagout, updateUser } from "./api";
+import { signIn, signUp, lagout, updateUser, getSingleUser } from "./api";
 
 export const initialState: AuthApiState = {
   userInfo: localStorage.getItem(USER_INFO)
@@ -75,6 +75,23 @@ const authSlice = createSlice({
       .addCase(lagout.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message || "Lagout failed";
+      })
+
+      /// get user info
+      .addCase(getSingleUser.pending, (state) => {
+        state.status = "loading";
+        state.error = null;
+      })
+      .addCase(
+        getSingleUser.fulfilled,
+        (state, action: PayloadAction<UserInfo>) => {
+          state.status = "idle";
+          state.singleUserInfo = action.payload;
+        },
+      )
+      .addCase(getSingleUser.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message || "Get User Info failed";
       });
   },
 });

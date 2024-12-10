@@ -3,6 +3,7 @@ import authReducer from "./features/auth/slice";
 import postReducer from "./features/posts/slice";
 import categoryReducer from "./features/categories/slice";
 import messageReducer from "./features/messages/slice";
+import contactReducer from "./features/contacts/slice";
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof store.getState>;
@@ -15,5 +16,6 @@ export const store = configureStore({
     post: postReducer,
     category: categoryReducer,
     message: messageReducer,
+    contact: contactReducer,
   },
 });
