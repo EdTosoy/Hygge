@@ -1,6 +1,8 @@
 import { useContext } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
+import { useAppSelector } from "hooks";
+import { selectUserInfo } from "src/features/auth/selectors";
 import { SignInForm, AddPost, Contacts } from "features";
 import {
   Dropdown,
@@ -14,6 +16,7 @@ import { ToggleContext } from "context";
 import { HeaderProps } from "./types";
 import { ToggleContextType } from "@types";
 import { AUTH_ROUTE } from "src/constants";
+import { UserInfo } from "src/features/auth/types";
 
 export const Header = ({ isLoggedIn }: HeaderProps) => {
   const {
@@ -27,6 +30,8 @@ export const Header = ({ isLoggedIn }: HeaderProps) => {
 
   const { t } = useTranslation();
   const navigate = useNavigate();
+
+  const { username, avatar, _id } = useAppSelector(selectUserInfo) as UserInfo;
 
   const handleOnClickSignIn = () => {
     setModalContent(<SignInForm showFooter />);
@@ -83,7 +88,12 @@ export const Header = ({ isLoggedIn }: HeaderProps) => {
                       <ion-icon name="add-circle-outline" />
                     </IconContainer>
                   </div>
-                  <Profile showStatus />
+                  <Profile
+                    showStatus
+                    username={username}
+                    avatar={avatar}
+                    profileUserId={_id}
+                  />
                 </div>
                 <Dropdown
                   toggleDropdown={toggleDropdown}

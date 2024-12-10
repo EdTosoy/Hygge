@@ -1,17 +1,18 @@
 import { useNavigate } from "react-router";
-import { useAppSelector } from "hooks";
-import { selectUserInfo } from "src/features/auth/selectors";
 import { ProfileProps } from "./types";
-import { PROFILE_ROUTE } from "src/constants";
-
 export const Profile = ({
   showStatus,
-  userProfile,
   date,
   userAvatar,
+  username,
+  avatar,
+  profileUserId,
 }: ProfileProps) => {
   const navigate = useNavigate();
-  const { username, avatar } = useAppSelector(selectUserInfo) || {};
+
+  const onClickProfile = () => {
+    navigate(`/profile/${profileUserId}`);
+  };
   return (
     <div className="w-195 flex items-center">
       <div className="flex items-center gap-3   ">
@@ -30,9 +31,9 @@ export const Profile = ({
         <div>
           <h2
             className="cursor-pointer leading-tight text-xs font-medium"
-            onClick={() => navigate(PROFILE_ROUTE)}
+            onClick={() => onClickProfile()}
           >
-            {userProfile?.username || username}
+            {username}
           </h2>
           <p className="text-2xs ">{date}</p>
         </div>

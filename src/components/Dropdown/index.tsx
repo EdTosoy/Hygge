@@ -2,12 +2,14 @@ import { useContext } from "react";
 import { useNavigate } from "react-router";
 import { useTranslation } from "react-i18next";
 import { ToggleContext } from "context";
-import { useAppDispatch } from "hooks";
+import { useAppDispatch, useAppSelector } from "hooks";
 import { lagout } from "src/features/auth/api";
 import { IconContainer } from "components";
 import { ToggleContextType } from "@types";
 import { DropdownProps } from "./types";
-import { HOME_ROUTE, PROFILE_ROUTE, USER_INFO } from "src/constants";
+import { HOME_ROUTE, USER_INFO } from "src/constants";
+import { selectUserInfo } from "src/features/auth/selectors";
+import { UserInfo } from "src/features/auth/types";
 
 export const Dropdown = ({ showDropdown, toggleDropdown }: DropdownProps) => {
   const { darkMode, setDarkMode, onlineStatus, setOnlineStatus } = useContext(
@@ -26,6 +28,9 @@ export const Dropdown = ({ showDropdown, toggleDropdown }: DropdownProps) => {
       console.error(error);
     }
   };
+
+  const { _id } = useAppSelector(selectUserInfo) as UserInfo;
+
   return (
     <div className="relative dropdown grid place-content-center ">
       <IconContainer onClick={() => toggleDropdown()}>
@@ -66,7 +71,7 @@ export const Dropdown = ({ showDropdown, toggleDropdown }: DropdownProps) => {
                 className="my-4 cursor-pointer"
                 onClick={() => {
                   toggleDropdown();
-                  navigate(PROFILE_ROUTE);
+                  navigate(`profile/${_id}`);
                 }}
               >
                 {t("translation.dropDown.profile")}

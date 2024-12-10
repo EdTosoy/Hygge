@@ -6,18 +6,31 @@ import { IconContainer } from "components";
 import { ToggleContextType } from "@types";
 import { ToggleContext } from "context";
 import { useContext } from "react";
-export const ProfileSummary = () => {
+import { UserInfo } from "src/features/auth/types";
+interface ProfileSummaryProps {
+  singleUserInfo: UserInfo;
+}
+export const ProfileSummary = ({ singleUserInfo }: ProfileSummaryProps) => {
+  const { t } = useTranslation();
   const { toggleModal, setModalContent } = useContext(
     ToggleContext,
   ) as ToggleContextType;
-  const { username, profileId, bio, avatar, wallpaper } =
-    useAppSelector(selectUserInfo) || {};
+
+  const {
+    username,
+    profileId,
+    bio,
+    avatar,
+    wallpaper,
+    _id: singleUserId,
+  } = singleUserInfo;
+  const { _id } = useAppSelector(selectUserInfo) as UserInfo;
+
   const handleOnClickEdit = () => {
     setModalContent(<EditUserProfile />);
     toggleModal();
   };
 
-  const { t } = useTranslation();
   return (
     <div className="w-full self-start border border-light-gray bg-white rounded-md  mt-5 overflow-hidden">
       <div className="h-24 bg-light-violet relative">
@@ -50,9 +63,15 @@ export const ProfileSummary = () => {
         </div>
 
         <div className="flex justify-end mt-2">
-          <IconContainer className="text-lg" onClick={handleOnClickEdit}>
-            <ion-icon name="create-outline"></ion-icon>
-          </IconContainer>
+          {singleUserId === _id ? (
+            <IconContainer className="text-lg" onClick={handleOnClickEdit}>
+              <ion-icon name="create-outline"></ion-icon>
+            </IconContainer>
+          ) : (
+            <IconContainer className="text-lg" onClick={handleOnClickEdit}>
+              <ion-icon name="person-add-outline"></ion-icon>
+            </IconContainer>
+          )}
         </div>
       </div>
     </div>
