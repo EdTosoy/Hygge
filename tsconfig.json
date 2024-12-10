@@ -6,6 +6,7 @@
     "module": "ES2020",
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
+
     /* Bundler mode */
     "allowImportingTsExtensions": true,
     "moduleResolution": "Bundler",

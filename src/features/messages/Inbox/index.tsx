@@ -11,6 +11,7 @@ export const Inbox = () => {
   const [messages, setMessages] = useState<string[]>([]);
 
   const { handleSubmit, register, reset } = useForm<createMessageInput>();
+
   useEffect(() => {
     socket.on("newMessage", (msg: IMessage) => {
       setMessages((prevMessages) => [
