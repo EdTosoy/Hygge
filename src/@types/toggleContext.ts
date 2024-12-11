@@ -11,4 +11,8 @@ export type ToggleContextType = {
   setDarkMode: React.Dispatch<boolean>;
   onlineStatus: boolean;
   setOnlineStatus: React.Dispatch<boolean>;
+  showMessages: boolean;
+  toggleShowMessages: () => void;
+  toggleShowConversationBox: () => void;
+  showConversationBox: boolean;
 };

@@ -14,6 +14,8 @@ export const ToggleProvider: React.FC<{ children: React.ReactNode }> = ({
   const [modalContent, setModalContent] = useState<React.ReactNode>(null);
   const [darkMode, setDarkMode] = useState(false);
   const [onlineStatus, setOnlineStatus] = useState(false);
+  const [showMessages, setShowMessages] = useState(false);
+  const [showConversationBox, setShowConversationBox] = useState(false);
 
   const toggleDropdown = () => {
     setShowDropdown(!showDropdown);
@@ -33,6 +35,13 @@ export const ToggleProvider: React.FC<{ children: React.ReactNode }> = ({
     }
   };
 
+  const toggleShowMessages = () => {
+    setShowMessages(!showMessages);
+  };
+  const toggleShowConversationBox = () => {
+    setShowConversationBox(!showConversationBox);
+  };
+
   return (
     <ToggleContext.Provider
       value={{
@@ -48,6 +57,10 @@ export const ToggleProvider: React.FC<{ children: React.ReactNode }> = ({
         setDarkMode,
         onlineStatus,
         setOnlineStatus,
+        showMessages,
+        toggleShowMessages,
+        toggleShowConversationBox,
+        showConversationBox,
       }}
     >
       {children}

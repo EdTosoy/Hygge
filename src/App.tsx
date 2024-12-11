@@ -1,7 +1,7 @@
 import { Provider } from "react-redux";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-import { Inbox } from "features";
+import { Messages } from "features";
 import { store } from "./store";
 import {
   AuthenticationPage,
@@ -53,7 +53,7 @@ function App() {
             <Route path={PROFILE_WITH_ID_ROUTE} element={<UserProfilePage />} />
             <Route path="*" element={<PageNotFound />} />
           </Routes>
-          <Inbox />
+          <Messages />
         </Layout>
       </Provider>
     </Router>
