@@ -31,7 +31,8 @@ export const Header = ({ isLoggedIn }: HeaderProps) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
-  const { username, avatar, _id } = useAppSelector(selectUserInfo) as UserInfo;
+  const { username, avatar, _id } =
+    (useAppSelector(selectUserInfo) as UserInfo) || {};
 
   const handleOnClickSignIn = () => {
     setModalContent(<SignInForm showFooter />);

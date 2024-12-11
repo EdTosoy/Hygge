@@ -1,14 +1,7 @@
 export type AddContactFields = {
-  contactInfo: {
-    userId: string;
-    username: string;
-    avatar: string;
-  };
-  contactFrom: {
-    userId: string;
-    username: string;
-    avatar: string;
-  };
+  contactUserId: string;
+  contactUsername: string;
+  contactAvatar: string;
 };
 
 export type ContactApiState = {
@@ -18,15 +11,14 @@ export type ContactApiState = {
 };
 
 export interface Contacts {
-  messageFrom: {
+  contactInfo: {
     userId: string;
     username: string;
     avatar: string;
   };
-  messageTo: {
-    userId: string;
+  contactOf: {
     username: string;
     avatar: string;
+    id: string;
   };
-  message: string;
 }
