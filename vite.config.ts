@@ -4,8 +4,7 @@ import tsconfigPaths from "vite-tsconfig-paths";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
-  base: "/web-app/", // Set this to your subfolder name
+  plugins: [react(), tsconfigPaths()],
   build: {
     minify: true,
     sourcemap: false,
@@ -31,5 +30,4 @@ export default defineConfig({
       },
     },
   },
-  plugins: [react(), tsconfigPaths()],
 });
