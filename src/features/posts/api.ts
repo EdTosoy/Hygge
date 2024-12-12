@@ -4,6 +4,7 @@ import {
   CommentPostFields,
   DeletePostFields,
   EditPostFields,
+  savePostFields,
   createPostFields,
 } from "./types";
 
@@ -34,6 +35,26 @@ export const updatePost = createAsyncThunk(
   "updatePost",
   async (data: EditPostFields) => {
     const response = await axiosInstance.put("/api/posts/update-post", data);
+    const resData = response.data;
+
+    return resData;
+  },
+);
+
+export const savePost = createAsyncThunk(
+  "savePost",
+  async (data: savePostFields) => {
+    const response = await axiosInstance.post("/api/user/save", data);
+    const resData = response.data;
+
+    return resData;
+  },
+);
+
+export const unSavePost = createAsyncThunk(
+  "savePost",
+  async (data: savePostFields) => {
+    const response = await axiosInstance.post("/api/user/unsave", data);
     const resData = response.data;
 
     return resData;

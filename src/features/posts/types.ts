@@ -14,6 +14,9 @@ export type EditPostFields = {
   newMediaUrl?: string;
   postId: string;
 };
+export type savePostFields = {
+  postId: string;
+};
 export type DeletePostFields = {
   postId: string;
 };
@@ -55,4 +58,5 @@ export interface Post {
   shares: string[];
   showOptions: boolean;
   category: string;
+  savedBy: string[];
 }

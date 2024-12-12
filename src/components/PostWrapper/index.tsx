@@ -16,6 +16,7 @@ export const PostWrapper = ({
   handleLikePost,
   toggleShowOptions,
   handleOnClickComment,
+  handleSavePost,
   isModalView,
 }: PostWrapperProps) => {
   const { register, handleSubmit, reset } = useForm<CommentInputField>();
@@ -28,19 +29,19 @@ export const PostWrapper = ({
     username,
     content,
     title,
-    shares,
     comments,
     createdAt,
     likes,
     showOptions,
     userAvatar,
     mediaUrl,
+    savedBy,
     userId: postUserId,
   } = post;
 
   const dispatch = useAppDispatch();
   const alreadyLiked = Boolean(likes.includes(userInfo._id));
-  const alreadySaved = Boolean(likes.includes(userInfo._id));
+  const alreadySaved = Boolean(savedBy?.includes(userInfo._id));
 
   const isUserAuthorizedToManipulatePost =
     userInfo && userInfo._id === postUserId;
@@ -61,7 +62,6 @@ export const PostWrapper = ({
     } else {
       console.log("there is no comment");
     }
-
     reset();
   };
 
@@ -157,13 +157,14 @@ export const PostWrapper = ({
               onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
+
+                handleSavePost(_id);
               }}
             >
               <ion-icon
                 name={`${alreadySaved ? "image" : "image-outline"}`}
               ></ion-icon>
             </IconContainer>
-            <p className="text-sm">{shares.length}</p>
           </div>
         </div>
       </div>

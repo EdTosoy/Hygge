@@ -6,6 +6,7 @@ export interface PostWrapperProps {
   handleEditPost: () => void;
   handleDeletePost: () => void;
   handleLikePost: (postId: string) => Promise<void>;
+  handleSavePost: (postId: string) => Promise<void>;
   handleOnClickComment?: () => void;
   isModalView?: boolean;
 }

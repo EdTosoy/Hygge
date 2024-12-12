@@ -6,10 +6,15 @@ import {
   deletePost,
   getPosts,
   likePost,
+  savePost,
   unLikePost,
+  unSavePost,
 } from "src/features/posts/api.ts";
 import { selectAllPosts } from "src/features/posts/selectors";
-import { selectUserInfo } from "src/features/auth/selectors";
+import {
+  selectSingleUserInfo,
+  selectUserInfo,
+} from "src/features/auth/selectors";
 import { Post } from "src/features/posts/types";
 import { UserInfo } from "src/features/auth/types";
 import { PostWrapper } from "components";
@@ -19,18 +24,14 @@ export function PopularFeed() {
   const dispatch = useAppDispatch();
   const allPosts = useAppSelector(selectAllPosts) as Post[];
   const userInfo = useAppSelector(selectUserInfo) as UserInfo;
+  const singleUserInfo = useAppSelector(selectSingleUserInfo) as UserInfo;
+
+  const savedPosts = singleUserInfo?.savedPosts;
 
   const { toggleModal, setModalContent } = useContext(
     ToggleContext,
   ) as ToggleContextType;
   const [posts, setPosts] = useState<Post[]>([]);
-
-  useEffect(() => {
-    const getAllPosts = async () => {
-      await dispatch(getPosts()).unwrap();
-    };
-    getAllPosts();
-  }, []);
 
   useEffect(() => {
     const AllPostWithShowOptions =
@@ -40,13 +41,21 @@ export function PopularFeed() {
       });
 
     setPosts(AllPostWithShowOptions || []);
-  }, [allPosts.length]);
+  }, [allPosts.length, savedPosts]);
+
+  useEffect(() => {
+    const getAllPosts = async () => {
+      await dispatch(getPosts()).unwrap();
+    };
+    getAllPosts();
+  }, []);
 
   const postFeed = () => {
     return posts?.map((post: Post, index) => {
-      const { _id, content, likes } = post;
+      const { _id, content, likes, savedBy } = post;
 
       const alreadyLiked = Boolean(likes.includes(userInfo._id));
+      const alreadySaved = Boolean(savedBy.includes(userInfo._id));
 
       const toggleShowOptions = () => {
         const newPosts = [...posts];
@@ -87,6 +96,25 @@ export function PopularFeed() {
           await dispatch(likePost(_id)).unwrap();
         }
       };
+      const handleSavePost = async (postId: string) => {
+        const dummyPosts = [...posts];
+        if (alreadySaved) {
+          const newSave = dummyPosts[index].savedBy.filter(
+            (id) => id !== userInfo._id,
+          );
+          dummyPosts[index].savedBy = newSave;
+          setPosts(dummyPosts);
+          await dispatch(unSavePost({ postId })).unwrap();
+        } else {
+          const newPosts = dummyPosts.map((post) =>
+            post._id === postId
+              ? { ...post, savedBy: [...post.savedBy, userInfo._id] }
+              : post,
+          );
+          setPosts(newPosts);
+          await dispatch(savePost({ postId })).unwrap();
+        }
+      };
       const handleOnClickComment = () => {
         setModalContent(
           <div className="p-5">
@@ -96,6 +124,7 @@ export function PopularFeed() {
               handleDeletePost={handleDeletePost}
               handleEditPost={handleEditPost}
               handleLikePost={() => handleLikePost(_id)}
+              handleSavePost={() => handleSavePost(_id)}
               toggleShowOptions={toggleShowOptions}
               isModalView
             />
@@ -110,11 +139,13 @@ export function PopularFeed() {
           handleDeletePost={handleDeletePost}
           handleEditPost={handleEditPost}
           handleLikePost={() => handleLikePost(_id)}
+          handleSavePost={() => handleSavePost(_id)}
           toggleShowOptions={toggleShowOptions}
           handleOnClickComment={handleOnClickComment}
         />
       );
     });
   };
+
   return <div>{allPosts?.length > 0 && postFeed()}</div>;
 }

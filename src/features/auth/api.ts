@@ -54,6 +54,7 @@ export const fileUpload = async (acceptedFiles: File[]) => {
   );
   return response.data as fileUploadResponse;
 };
+
 export const getSingleUser = createAsyncThunk(
   "getSingleUser",
   async (id: string) => {
