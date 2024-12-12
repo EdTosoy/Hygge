@@ -22,7 +22,7 @@ import {
 import "./App.css";
 function App() {
   return (
-    <Router>
+    <Router basename={process.env.BASENAME}>
       <Provider store={store}>
         <Layout>
           <Routes>
