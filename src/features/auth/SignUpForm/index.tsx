@@ -25,7 +25,7 @@ export const SignUpForm = () => {
         ).unwrap();
         reset();
         navigate(SIGN_IN);
-        // window.location.reload();
+        window.location.reload();
       } catch (error) {
         console.error(error);
       }
