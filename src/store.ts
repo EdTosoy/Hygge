@@ -18,4 +18,5 @@ export const store = configureStore({
     message: messageReducer,
     contact: contactReducer,
   },
+  devTools: process.env.NODE_ENV !== "production",
 });
