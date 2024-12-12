@@ -3,6 +3,7 @@ import { axiosInstance } from "api";
 import { NewUser, User, EditUser, fileUploadResponse } from "./types";
 import { USER_INFO } from "src/constants";
 import axios from "axios";
+import cookie from "js-cookie";
 
 export const signIn = createAsyncThunk("signin", async (data: User) => {
   const response = await axiosInstance.post("/api/user/sign-in", data);
@@ -37,6 +38,8 @@ export const lagout = createAsyncThunk("logout", async () => {
   const response = await axiosInstance.get("/api/user/logout");
   const resData = response.data;
   localStorage.removeItem(USER_INFO);
+  cookie.remove("refreshToken");
+  window.location.reload();
 
   return resData;
 });

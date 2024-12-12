@@ -69,7 +69,7 @@ export const PostWrapper = ({
     <>
       <div
         key={_id}
-        className=" border-b border-light-gray relative"
+        className=" border-b border-light-gray relative w-660"
         onClick={(e) => {
           e.preventDefault();
           e.stopPropagation();
