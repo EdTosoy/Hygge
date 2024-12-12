@@ -17,6 +17,7 @@ import { HeaderProps } from "./types";
 import { ToggleContextType } from "@types";
 import { AUTH_ROUTE } from "src/constants";
 import { UserInfo } from "src/features/auth/types";
+import { useForm } from "react-hook-form";
 
 export const Header = ({ isLoggedIn }: HeaderProps) => {
   const {
@@ -31,6 +32,9 @@ export const Header = ({ isLoggedIn }: HeaderProps) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
+  const { register, watch } = useForm();
+
+  const searchTerm = watch("search");
   const { username, avatar, _id } =
     (useAppSelector(selectUserInfo) as UserInfo) || {};
 
@@ -44,17 +48,24 @@ export const Header = ({ isLoggedIn }: HeaderProps) => {
     toggleModal();
   };
 
+  const handleOnEnterSearch = () => {
+    navigate(`/search/${searchTerm}`);
+  };
   return (
     <div className="fixed top-0 z-40 grid place-content-center w-full border-b border-light-gray">
       <div className="bg-white body-grid-container ">
         <div className="col-start-2 col-end-3  ">
           <header className="flex py-2 relative justify-between">
             <Logo isForAuthentication />
-            <div className="grid place-items-center ">
+            <div className="grid place-items-center  relative">
               <input
                 type="text"
                 placeholder="Search"
+                onKeyDown={(e) => {
+                  e.key === "Enter" && handleOnEnterSearch();
+                }}
                 className="px-10 py-3 text-xs font-light bg-light-violet text-dark-violet placeholder-dark-violet rounded-full w-607 focus:outline-none focus:ring-2 focus:ring-light-violet focus:ring-opacity-50"
+                {...register("search")}
               />
             </div>
 

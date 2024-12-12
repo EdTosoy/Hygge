@@ -23,7 +23,7 @@ export const AddPost = () => {
   const { t } = useTranslation();
   const dateToday = format(new Date(), MMDDYYYY);
   const { toggleModal } = useContext(ToggleContext) as ToggleContextType;
-  const { _id, username } = useAppSelector(selectUserInfo) || {};
+  const { _id, username, avatar } = useAppSelector(selectUserInfo) || {};
 
   const dispatch = useAppDispatch();
   const { register, handleSubmit, reset } = useForm<AddPostFormInput>();
@@ -96,7 +96,11 @@ export const AddPost = () => {
       onSubmit={handleSubmit(onSubmit)}
     >
       <div className="mb-4 flex justify-between">
-        <Profile />
+        <Profile
+          avatar={avatar || ""}
+          username={username || ""}
+          profileUserId={_id || ""}
+        />
         <div className="flex items-center gap-4">
           <p className="text-xs">{t("translation.addPost.postTo")}</p>
           <select

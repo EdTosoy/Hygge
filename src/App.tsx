@@ -10,13 +10,14 @@ import {
   UserProfilePage,
 } from "pages";
 import { Layout } from "layout";
-import { HomeFeed, PopularFeed, CommunityFeed } from "containers";
+import { HomeFeed, PopularFeed, CommunityFeed, SearchFeed } from "containers";
 import {
   AUTH_ROUTE,
   COMMUNITY_ROUTE,
   HOME_ROUTE,
   POPULAR_ROUTE,
   PROFILE_WITH_ID_ROUTE,
+  SEARCH_ROUTE,
 } from "src/constants";
 import "./App.css";
 function App() {
@@ -47,6 +48,14 @@ function App() {
               element={
                 <MainPage>
                   <CommunityFeed />
+                </MainPage>
+              }
+            />
+            <Route
+              path={SEARCH_ROUTE}
+              element={
+                <MainPage>
+                  <SearchFeed />
                 </MainPage>
               }
             />
