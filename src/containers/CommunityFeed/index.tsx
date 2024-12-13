@@ -52,7 +52,8 @@ export function CommunityFeed() {
 
   const postFeed = () => {
     return posts?.map((post: Post, index) => {
-      const { _id, content, likes, savedBy } = post;
+      const { _id, content, likes, savedBy, userAvatar, userId, username } =
+        post;
 
       const alreadyLiked = Boolean(likes.includes(userInfo._id));
       const alreadySaved = Boolean(savedBy.includes(userInfo._id));
@@ -69,7 +70,15 @@ export function CommunityFeed() {
       };
 
       const handleEditPost = () => {
-        setModalContent(<EditPost contentValue={content} postId={_id} />);
+        setModalContent(
+          <EditPost
+            contentValue={content}
+            postId={_id}
+            username={username}
+            avatar={userAvatar}
+            profileUserId={userId}
+          />,
+        );
         toggleModal();
       };
       const handleDeletePost = async () => {

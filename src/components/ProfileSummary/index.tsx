@@ -24,6 +24,7 @@ export const ProfileSummary = ({ singleUserInfo }: ProfileSummaryProps) => {
     avatar,
     wallpaper,
     _id: singleUserId,
+    likes,
   } = singleUserInfo;
 
   const accountUserInfo = useAppSelector(selectUserInfo);
@@ -74,7 +75,7 @@ export const ProfileSummary = ({ singleUserInfo }: ProfileSummaryProps) => {
 
         <div>
           <p className="text-xs font-semibold">
-            0 {t("translation.profileSummary.likes")}
+            {likes?.length} {t("translation.profileSummary.likes")}
           </p>
           <p className="text-xs font-semibold">
             0 {t("translation.profileSummary.connections")}

@@ -25,6 +25,7 @@ export type UserInfo = {
   avatar: string;
   wallpaper: string;
   savedPosts: string[];
+  likes: string[];
 };
 
 export type AuthApiState = {

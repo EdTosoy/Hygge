@@ -34,7 +34,9 @@ export const UserProfilePage = () => {
         {singleUserInfo && <ProfileSummary singleUserInfo={singleUserInfo} />}
         <div className="col-start-2 col-end-3">
           <div className="bg-white main-section-height">
-            <div className="p-6">{<ProfileFeed />}</div>
+            <div className="p-6">
+              {<ProfileFeed singleUserInfo={singleUserInfo} />}
+            </div>
           </div>
         </div>
       </div>
