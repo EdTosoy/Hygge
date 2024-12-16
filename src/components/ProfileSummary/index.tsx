@@ -9,6 +9,7 @@ import { addContact } from "src/features/contacts/api";
 import { EditUserProfile } from "features";
 import { IconContainer } from "components";
 import { ProfileSummaryProps } from "./types";
+import { selectAllPosts } from "src/features/posts/selectors";
 
 export const ProfileSummary = ({ singleUserInfo }: ProfileSummaryProps) => {
   const { t } = useTranslation();
@@ -29,6 +30,10 @@ export const ProfileSummary = ({ singleUserInfo }: ProfileSummaryProps) => {
 
   const accountUserInfo = useAppSelector(selectUserInfo);
   const accountContacts = useAppSelector(selectAllContacts);
+  const posts = useAppSelector(selectAllPosts);
+  const numberOfPosts = posts?.filter(
+    (post) => post.userId === singleUserId,
+  ).length;
 
   const handleOnClickEdit = () => {
     setModalContent(<EditUserProfile />);
@@ -78,10 +83,7 @@ export const ProfileSummary = ({ singleUserInfo }: ProfileSummaryProps) => {
             {likes?.length} {t("translation.profileSummary.likes")}
           </p>
           <p className="text-xs font-semibold">
-            0 {t("translation.profileSummary.connections")}
-          </p>
-          <p className="text-xs font-semibold">
-            0 {t("translation.profileSummary.posts")}
+            {numberOfPosts} {t("translation.profileSummary.posts")}
           </p>
         </div>
 

@@ -23,11 +23,11 @@
       "add": "Add"
     },
     "input": {
-      "email": "Enter Email",
+      "email": "Email",
       "password": "Password",
       "confirmPassword": "Confirm Password",
       "search": "Search",
-      "emailOrUsername": "Enter email or user name",
+      "emailOrUsername": "Email",
       "username": "Create Username",
       "seeMore": "See More"
     },

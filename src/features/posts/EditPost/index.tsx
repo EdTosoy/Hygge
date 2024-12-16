@@ -43,7 +43,6 @@ export const EditPost = ({
     e.stopPropagation();
     hiddenInputRef.current.click();
   };
-  console.log(avatarPreview);
 
   const onDropAvatar = useCallback((acceptedFiles: File[]) => {
     const file = new FileReader();
