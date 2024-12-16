@@ -13,6 +13,7 @@ export type EditPostFields = {
   newContent: string;
   newMediaUrl?: string;
   postId: string;
+  newCategory: string;
 };
 export type savePostFields = {
   postId: string;

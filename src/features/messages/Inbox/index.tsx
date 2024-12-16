@@ -16,7 +16,7 @@ export const Inbox = () => {
 
   return (
     <div
-      className="py-3 px-5 border rounded-tr-xl rounded-tl-xl border-light-gray shadow-lg cursor-pointer w-293"
+      className="py-3 px-5 border rounded-tr-xl rounded-tl-xl border-light-gray shadow-lg cursor-pointer w-293 bg-white"
       onClick={() => toggleShowMessages()}
     >
       <div className=" flex justify-between ">

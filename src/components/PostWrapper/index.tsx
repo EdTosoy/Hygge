@@ -40,11 +40,11 @@ export const PostWrapper = ({
   } = post;
 
   const dispatch = useAppDispatch();
-  const alreadyLiked = Boolean(likes.includes(userInfo._id));
-  const alreadySaved = Boolean(savedBy?.includes(userInfo._id));
+  const alreadyLiked = Boolean(likes.includes(userInfo?._id));
+  const alreadySaved = Boolean(savedBy?.includes(userInfo?._id));
 
   const isUserAuthorizedToManipulatePost =
-    userInfo && userInfo._id === postUserId;
+    userInfo && userInfo?._id === postUserId;
 
   const submit = async (data: CommentInputField) => {
     const { comment } = data;

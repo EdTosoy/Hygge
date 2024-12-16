@@ -53,7 +53,7 @@ export const HomeFeed = () => {
     const AllPostWithShowOptions =
       allPosts.length &&
       allPosts
-        .filter((post) => savedPosts?.includes(post._id))
+        .filter((post) => savedPosts?.includes(post?._id))
         .map((post) => {
           return { ...post, showOptions: false };
         });
@@ -70,13 +70,22 @@ export const HomeFeed = () => {
 
   const postFeed = () => {
     return posts?.map((post: Post, index) => {
-      const { _id, content, likes, savedBy } = post;
+      const {
+        _id,
+        content,
+        likes,
+        savedBy,
+        userAvatar,
+        userId,
+        username,
+        mediaUrl,
+      } = post;
 
       const alreadyLiked = userInfo
-        ? Boolean(likes.includes(userInfo._id))
+        ? Boolean(likes.includes(userInfo?._id))
         : false;
 
-      const alreadySaved = Boolean(savedBy.includes(userInfo._id));
+      const alreadySaved = Boolean(savedBy.includes(userInfo?._id));
 
       const toggleShowOptions = () => {
         const newPosts = [...posts];
@@ -90,7 +99,16 @@ export const HomeFeed = () => {
       };
 
       const handleEditPost = () => {
-        setModalContent(<EditPost contentValue={content} postId={_id} />);
+        setModalContent(
+          <EditPost
+            contentValue={content}
+            postId={_id}
+            username={username}
+            avatar={userAvatar}
+            profileUserId={userId}
+            mediaUrl={mediaUrl}
+          />,
+        );
         toggleModal();
       };
       const handleDeletePost = async () => {
@@ -102,15 +120,15 @@ export const HomeFeed = () => {
         const dummyPosts = [...posts];
         if (alreadyLiked) {
           const newLikes = dummyPosts[index].likes.filter(
-            (id) => userInfo && id !== userInfo._id,
+            (id) => userInfo && id !== userInfo?._id,
           );
           dummyPosts[index].likes = newLikes;
           setPosts(dummyPosts);
           await dispatch(unLikePost(_id)).unwrap();
         } else {
           const newPosts = dummyPosts.map((post) =>
-            post._id === postId && userInfo
-              ? { ...post, likes: [...post.likes, userInfo._id] }
+            post?._id === postId && userInfo
+              ? { ...post, likes: [...post.likes, userInfo?._id] }
               : post,
           );
           setPosts(newPosts);
@@ -121,7 +139,7 @@ export const HomeFeed = () => {
         const dummyPosts = [...posts];
         if (alreadySaved) {
           const newSave = dummyPosts[index].savedBy.filter(
-            (id) => id !== userInfo._id,
+            (id) => id !== userInfo?._id,
           );
           dummyPosts[index].savedBy = newSave;
           setPosts(dummyPosts);
@@ -129,7 +147,7 @@ export const HomeFeed = () => {
           window.location.reload();
         } else {
           const newPosts = dummyPosts.map((post) =>
-            post._id === postId
+            post?._id === postId
               ? { ...post, savedBy: [...post.savedBy, userInfo._id] }
               : post,
           );

@@ -5,23 +5,25 @@ import { EditPost } from "features";
 import { PostWrapper } from "components";
 import {
   deletePost,
-  getUserPosts,
+  getPosts,
   likePost,
   savePost,
   unLikePost,
   unSavePost,
 } from "src/features/posts/api.ts";
-import { selectAllUserPosts } from "src/features/posts/selectors";
+import { selectAllPosts } from "src/features/posts/selectors";
 import { selectUserInfo } from "src/features/auth/selectors";
 import { Post } from "src/features/posts/types";
 import { UserInfo } from "src/features/auth/types";
 import { ToggleContextType } from "@types";
+import { ProfileFeedProps } from "./types";
 
-export function ProfileFeed() {
+export function ProfileFeed({ singleUserInfo }: ProfileFeedProps) {
   const dispatch = useAppDispatch();
-  const userPosts = useAppSelector(selectAllUserPosts) as Post[];
+  const userPosts = useAppSelector(selectAllPosts) as Post[];
   const userInfo = useAppSelector(selectUserInfo) as UserInfo;
 
+  const singleUserId = singleUserInfo?._id;
   const { toggleModal, setModalContent } = useContext(
     ToggleContext,
   ) as ToggleContextType;
@@ -29,7 +31,7 @@ export function ProfileFeed() {
 
   useEffect(() => {
     const getAllPosts = async () => {
-      await dispatch(getUserPosts()).unwrap();
+      await dispatch(getPosts()).unwrap();
     };
     getAllPosts();
   }, []);
@@ -37,19 +39,30 @@ export function ProfileFeed() {
   useEffect(() => {
     const AllPostWithShowOptions =
       userPosts.length &&
-      userPosts.map((post) => {
-        return { ...post, showOptions: false };
-      });
+      userPosts
+        .filter((post) => post.userId === singleUserId)
+        .map((post) => {
+          return { ...post, showOptions: false };
+        });
 
     setPosts(AllPostWithShowOptions || []);
-  }, [userPosts.length]);
+  }, [userPosts.length, singleUserId]);
 
   const postFeed = () => {
     return posts?.map((post: Post, index) => {
-      const { _id, content, likes, savedBy } = post;
+      const {
+        _id,
+        content,
+        likes,
+        savedBy,
+        userAvatar,
+        userId,
+        username,
+        mediaUrl,
+      } = post;
 
-      const alreadyLiked = Boolean(likes.includes(userInfo._id));
-      const alreadySaved = Boolean(savedBy.includes(userInfo._id));
+      const alreadyLiked = Boolean(likes.includes(userInfo?._id));
+      const alreadySaved = Boolean(savedBy.includes(userInfo?._id));
 
       const toggleShowOptions = () => {
         const newPosts = [...posts];
@@ -62,7 +75,16 @@ export function ProfileFeed() {
         setPosts(newPosts);
       };
       const handleEditPost = () => {
-        setModalContent(<EditPost contentValue={content} postId={_id} />);
+        setModalContent(
+          <EditPost
+            contentValue={content}
+            postId={_id}
+            username={username}
+            avatar={userAvatar}
+            profileUserId={userId}
+            mediaUrl={mediaUrl}
+          />,
+        );
         toggleModal();
       };
       const handleDeletePost = async () => {
@@ -75,15 +97,15 @@ export function ProfileFeed() {
         if (alreadyLiked) {
           await dispatch(unLikePost(_id)).unwrap();
           const newLikes = dummyPosts[index].likes.filter(
-            (id) => id !== userInfo._id,
+            (id) => id !== userInfo?._id,
           );
           dummyPosts[index].likes = newLikes;
           setPosts(dummyPosts);
         } else {
           await dispatch(likePost(_id)).unwrap();
           const newPosts = dummyPosts.map((post) =>
-            post._id === postId
-              ? { ...post, likes: [...post.likes, userInfo._id] }
+            post?._id === postId
+              ? { ...post, likes: [...post.likes, userInfo?._id] }
               : post,
           );
           setPosts(newPosts);
@@ -93,15 +115,15 @@ export function ProfileFeed() {
         const dummyPosts = [...posts];
         if (alreadySaved) {
           const newSave = dummyPosts[index].savedBy.filter(
-            (id) => id !== userInfo._id,
+            (id) => id !== userInfo?._id,
           );
           dummyPosts[index].savedBy = newSave;
           setPosts(dummyPosts);
           await dispatch(unSavePost({ postId })).unwrap();
         } else {
           const newPosts = dummyPosts.map((post) =>
-            post._id === postId
-              ? { ...post, savedBy: [...post.savedBy, userInfo._id] }
+            post?._id === postId
+              ? { ...post, savedBy: [...post.savedBy, userInfo?._id] }
               : post,
           );
           setPosts(newPosts);
