@@ -2,7 +2,7 @@
   "name": "hygge",
   "private": true,
   "version": "0.0.0",
-  "proxy": "http://localhost:3000",
+  "proxy": "https://hygge-backend-production.up.railway.app",
   "type": "module",
   "scripts": {
     "dev": "vite",
