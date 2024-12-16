@@ -8,6 +8,7 @@ import { selectUserInfo } from "src/features/auth/selectors";
 import { CommentInputField, PostWrapperProps } from "./types";
 import { useForm } from "react-hook-form";
 import { commentPost } from "src/features/posts/api";
+import { useNavigate } from "react-router";
 
 export const PostWrapper = ({
   post,
@@ -23,6 +24,7 @@ export const PostWrapper = ({
   const userInfo = useAppSelector(selectUserInfo) as UserInfo;
 
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
   const {
     _id,
@@ -58,7 +60,7 @@ export const PostWrapper = ({
     if (comment) {
       await dispatch(commentPost(commentPostRequestData)).unwrap();
       reset();
-      window.location.reload();
+      navigate("/", { replace: true });
     } else {
       console.log("there is no comment");
     }

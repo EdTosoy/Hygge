@@ -9,6 +9,7 @@ import { ToggleContext } from "context";
 import { PrimaryButton, SecondaryButton, IconContainer } from "components";
 import { ToggleContextType } from "@types";
 import { EditPostFormInput } from "./types";
+import { useNavigate } from "react-router";
 
 export const EditUserProfile = () => {
   const [avatarPreview, setAvatarPreview] = useState<string | null>(null);
@@ -20,6 +21,7 @@ export const EditUserProfile = () => {
     useAppSelector(selectUserInfo) || {};
 
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const onDropAvatar = useCallback((acceptedFiles: File[]) => {
     const file = new FileReader();
@@ -63,12 +65,12 @@ export const EditUserProfile = () => {
     const { newBio, newProfileId, newUsername } = data;
 
     const avatarFileUploadResponse = (avatarAcceptedFiles.length &&
-      (await fileUpload(avatarAcceptedFiles))) || {
+      (await fileUpload([...avatarAcceptedFiles]))) || {
       secure_url: avatar,
     };
 
     const wallpaperFileUploadResponse = (wallpaperAcceptedFiles.length > 0 &&
-      (await fileUpload(wallpaperAcceptedFiles))) || {
+      (await fileUpload([...wallpaperAcceptedFiles]))) || {
       secure_url: wallpaper,
     };
 
@@ -83,7 +85,7 @@ export const EditUserProfile = () => {
         }),
       ).unwrap();
       reset();
-      window.location.reload();
+      navigate("/", { replace: true });
     } catch (error) {
       console.error(error);
     }

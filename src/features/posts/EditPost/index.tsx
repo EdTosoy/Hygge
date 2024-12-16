@@ -17,6 +17,7 @@ import { EditPostFormInput, EditPostProps } from "./types";
 import { MMDDYYYY } from "src/constants";
 import { useDropzone } from "react-dropzone";
 import { fileUpload } from "src/features/auth/api";
+import { useNavigate } from "react-router";
 
 export const EditPost = ({
   contentValue,
@@ -31,6 +32,7 @@ export const EditPost = ({
   const { toggleModal } = useContext(ToggleContext) as ToggleContextType;
 
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const { register, handleSubmit, reset } = useForm<EditPostFormInput>();
   const [avatarPreview, setAvatarPreview] = useState<string | undefined>(
     undefined,
@@ -65,7 +67,7 @@ export const EditPost = ({
   const onSubmit: SubmitHandler<EditPostFormInput> = async (data) => {
     const { newContent, newMediaUrl, newCategory } = data;
     const avatarFileUploadResponse = (avatarAcceptedFiles.length &&
-      (await fileUpload(avatarAcceptedFiles))) || {
+      (await fileUpload([...avatarAcceptedFiles]))) || {
       secure_url: mediaUrl,
     };
     if (newContent) {
@@ -80,7 +82,7 @@ export const EditPost = ({
           }),
         ).unwrap();
         reset();
-        window.location.reload();
+        navigate("/", { replace: true });
       } catch (error) {
         console.error(error);
       }

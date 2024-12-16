@@ -23,7 +23,7 @@ export const Dropdown = ({ showDropdown, toggleDropdown }: DropdownProps) => {
       await dispatch(lagout()).unwrap();
       localStorage.removeItem(USER_INFO);
       navigate(HOME_ROUTE);
-      window.location.reload();
+      navigate(HOME_ROUTE, { replace: true });
     } catch (error) {
       console.error(error);
     }

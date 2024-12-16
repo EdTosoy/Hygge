@@ -10,10 +10,12 @@ import { EditUserProfile } from "features";
 import { IconContainer } from "components";
 import { ProfileSummaryProps } from "./types";
 import { selectAllPosts } from "src/features/posts/selectors";
+import { useNavigate } from "react-router";
 
 export const ProfileSummary = ({ singleUserInfo }: ProfileSummaryProps) => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const { toggleModal, setModalContent } = useContext(
     ToggleContext,
   ) as ToggleContextType;
@@ -53,7 +55,7 @@ export const ProfileSummary = ({ singleUserInfo }: ProfileSummaryProps) => {
           contactAvatar: avatar,
         }),
       ).unwrap();
-      window.location.reload();
+      navigate("/", { replace: true });
     } catch (error) {
       console.error(error);
     }

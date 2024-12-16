@@ -8,6 +8,7 @@ import { createCategory } from "../api";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { AddCategoryField } from "./types";
 import { SideNavigation } from "../SideNavigation/Loadable";
+import { useNavigate } from "react-router";
 
 export const AllCategories = () => {
   const [isEditMode, setIsEditMode] = useState(false);
@@ -17,6 +18,7 @@ export const AllCategories = () => {
   const { toggleModal } = useContext(ToggleContext) as ToggleContextType;
   const { register, handleSubmit, reset } = useForm<AddCategoryField>();
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const addCategorySubmit: SubmitHandler<AddCategoryField> = async (data) => {
     const { categoryName } = data;
@@ -30,7 +32,7 @@ export const AllCategories = () => {
           }),
         ).unwrap();
         reset();
-        window.location.reload();
+        navigate("/", { replace: true });
       } catch (error) {
         console.error(error);
       }

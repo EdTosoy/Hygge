@@ -18,6 +18,7 @@ import { AddPostFormInput } from "./types";
 import { MMDDYYYY } from "src/constants";
 import { useDropzone } from "react-dropzone";
 import { fileUpload } from "src/features/auth/api";
+import { useNavigate } from "react-router";
 
 export const AddPost = () => {
   const { t } = useTranslation();
@@ -26,6 +27,7 @@ export const AddPost = () => {
   const { _id, username, avatar } = useAppSelector(selectUserInfo) || {};
 
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const { register, handleSubmit, reset } = useForm<AddPostFormInput>();
   const [avatarPreview, setAvatarPreview] = useState<string | undefined>(
     undefined,
@@ -61,7 +63,7 @@ export const AddPost = () => {
     const { content, mediaUrl, category } = data;
 
     const avatarFileUploadResponse = (avatarAcceptedFiles.length &&
-      (await fileUpload(avatarAcceptedFiles))) || {
+      (await fileUpload([...avatarAcceptedFiles]))) || {
       secure_url: mediaUrl,
     };
 
@@ -79,7 +81,7 @@ export const AddPost = () => {
           }),
         ).unwrap();
         reset();
-        window.location.reload();
+        navigate("/", { replace: true });
       } catch (error) {
         console.error(error);
       }

@@ -17,9 +17,11 @@ import { Post } from "src/features/posts/types";
 import { UserInfo } from "src/features/auth/types";
 import { ToggleContextType } from "@types";
 import { ProfileFeedProps } from "./types";
+import { useNavigate } from "react-router";
 
 export function ProfileFeed({ singleUserInfo }: ProfileFeedProps) {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const userPosts = useAppSelector(selectAllPosts) as Post[];
   const userInfo = useAppSelector(selectUserInfo) as UserInfo;
 
@@ -89,7 +91,7 @@ export function ProfileFeed({ singleUserInfo }: ProfileFeedProps) {
       };
       const handleDeletePost = async () => {
         await dispatch(deletePost({ postId: _id })).unwrap();
-        window.location.reload();
+        navigate("/", { replace: true });
       };
 
       const handleLikePost = async (postId: string) => {

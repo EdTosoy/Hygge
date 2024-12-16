@@ -113,7 +113,7 @@ export const HomeFeed = () => {
       };
       const handleDeletePost = async () => {
         await dispatch(deletePost({ postId: _id })).unwrap();
-        window.location.reload();
+        navigate("/", { replace: true });
       };
 
       const handleLikePost = async (postId: string) => {
@@ -144,7 +144,7 @@ export const HomeFeed = () => {
           dummyPosts[index].savedBy = newSave;
           setPosts(dummyPosts);
           await dispatch(unSavePost({ postId })).unwrap();
-          window.location.reload();
+          navigate("/", { replace: true });
         } else {
           const newPosts = dummyPosts.map((post) =>
             post?._id === postId

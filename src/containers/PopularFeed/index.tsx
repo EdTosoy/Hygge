@@ -19,9 +19,11 @@ import { Post } from "src/features/posts/types";
 import { UserInfo } from "src/features/auth/types";
 import { PostWrapper } from "components";
 import { ToggleContextType } from "@types";
+import { useNavigate } from "react-router";
 
 export function PopularFeed() {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const allPosts = useAppSelector(selectAllPosts) as Post[];
   const userInfo = useAppSelector(selectUserInfo) as UserInfo;
   const singleUserInfo = useAppSelector(selectSingleUserInfo) as UserInfo;
@@ -92,7 +94,7 @@ export function PopularFeed() {
       };
       const handleDeletePost = async () => {
         await dispatch(deletePost({ postId: _id })).unwrap();
-        window.location.reload();
+        navigate("/", { replace: true });
       };
 
       const handleLikePost = async (postId: string) => {
