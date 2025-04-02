@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "rm -rf dist && swc tsc && vite build",
+    "build": "rm -rf dist && vite build",
     "preview": "vite preview"
   },
   "dependencies": {

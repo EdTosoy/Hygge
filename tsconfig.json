@@ -8,9 +8,7 @@
     "forceConsistentCasingInFileNames": true,
 
     /* Bundler mode */
-    "allowImportingTsExtensions": true,
-    "moduleResolution": "Bundler",
-    "resolveJsonModule": true,
+    "moduleResolution": "node",
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",

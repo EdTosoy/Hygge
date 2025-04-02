@@ -5,7 +5,7 @@ export { IconContainer } from "./IconContainer/Loadable";
 export { Logo } from "./Logo/Loadable";
 export { ModalContainer } from "./ModalContainer/Loadable";
 export { OAuthOptions } from "./OAuthOptions/Loadable";
-export { PostWrapper } from "./PostWrapper/Loadable.ts";
+export { PostWrapper } from "./PostWrapper/Loadable";
 export { PrimaryButton } from "./PrimaryButton/Loadable";
 export { Profile } from "./Profile/Loadable";
 export { ProfileSummary } from "./ProfileSummary/Loadable";
