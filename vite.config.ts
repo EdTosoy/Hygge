@@ -5,33 +5,5 @@ import { createHtmlPlugin } from 'vite-plugin-html';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), tsconfigPaths()],
-  build: {
-    minify: true,
-    sourcemap: false,
-    target: "modules",
-  },
-
-  test: {
-    exclude: [
-      ...configDefaults.exclude,
-      "src/**/*.tsx",
-      // Cypress tests
-      "**/__test__/**/*.spec.tsx",
-      "**/__test__/**/*.cy.tsx",
-    ],
-  },
-
-  server: {
-    proxy: {
-      "/api": {
-        target: "https://hygge-backend-production.up.railway.app",
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, "/api/"),
-        secure: false,
-      },
-    },
-    historyApiFallback: true, // Add this line
-  },
   plugins: [react(), tsconfigPaths(), createHtmlPlugin()],
 });
