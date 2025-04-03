@@ -6,12 +6,18 @@ import { signUp } from "../api";
 import { OAuthOptions, PrimaryButton } from "components";
 import { SignUpFormInput } from "./types";
 import { SIGN_IN } from "src/constants";
+import { ToggleContext } from "src";
+import { ToggleContextType } from "@types";
+import { useContext } from "react";
 
 export const SignUpForm = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { register, handleSubmit, reset } = useForm<SignUpFormInput>();
+  const { setIsAuthSignIn } = useContext(
+    ToggleContext,
+  ) as ToggleContextType;
 
   const onSubmit: SubmitHandler<SignUpFormInput> = async (data) => {
     const { confirmPassword, password, email, username } = data;
@@ -24,8 +30,8 @@ export const SignUpForm = () => {
           signUp({ email, password, confirmPassword, username }),
         ).unwrap();
         reset();
+        setIsAuthSignIn(true)
         navigate(SIGN_IN);
-        window.location.reload();
       } catch (error) {
         console.error(error);
       }

@@ -1,14 +1,18 @@
 import { useTranslation } from "react-i18next";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { SignInForm, SignUpForm } from "features";
 import HeroPNG from "/src/assets/Hero.svg";
-import { SIGN_IN } from "src/constants";
+import { useContext } from "react";
+import { ToggleContext } from "context";
+import { ToggleContextType } from "@types";
+
 
 export const AuthenticationPage = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const { search } = useLocation();
-  const isSignIn = search === SIGN_IN;
+  const { isAuthSignIn } = useContext(
+    ToggleContext,
+  ) as ToggleContextType;
 
   return (
     <div>
@@ -38,7 +42,7 @@ export const AuthenticationPage = () => {
               {t("translation.button.goBackToHome")}
             </p>
           </div>
-          <div>{isSignIn ? <SignInForm /> : <SignUpForm />}</div>
+          <div>{isAuthSignIn ? <SignInForm /> : <SignUpForm />}</div>
         </div>
       </div>
     </div>

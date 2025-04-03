@@ -15,4 +15,6 @@ export type ToggleContextType = {
   toggleShowMessages: () => void;
   toggleShowConversationBox: () => void;
   showConversationBox: boolean;
+  isAuthSignIn: boolean;
+  setisAuthSignIn: () => void
 };

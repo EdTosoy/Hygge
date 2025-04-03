@@ -16,6 +16,7 @@ export const ToggleProvider: React.FC<{ children: React.ReactNode }> = ({
   const [onlineStatus, setOnlineStatus] = useState(false);
   const [showMessages, setShowMessages] = useState(false);
   const [showConversationBox, setShowConversationBox] = useState(false);
+  const [isAuthSignIn, setIsAuthSignIn] = useState(false)
 
   const toggleDropdown = () => {
     setShowDropdown(!showDropdown);
@@ -61,6 +62,8 @@ export const ToggleProvider: React.FC<{ children: React.ReactNode }> = ({
         toggleShowMessages,
         toggleShowConversationBox,
         showConversationBox,
+        isAuthSignIn,
+        setIsAuthSignIn
       }}
     >
       {children}
