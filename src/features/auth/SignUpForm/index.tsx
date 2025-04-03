@@ -1,21 +1,18 @@
 import { useTranslation } from "react-i18next";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { useNavigate } from "react-router";
 import { useAppDispatch } from "hooks";
 import { signUp } from "../api";
 import { OAuthOptions, PrimaryButton } from "components";
 import { SignUpFormInput } from "./types";
-import { SIGN_IN } from "src/constants";
 import { ToggleContextType } from "@types";
 import { useContext } from "react";
 import { ToggleContext } from "context";
 
 export const SignUpForm = () => {
   const { t } = useTranslation();
-  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { register, handleSubmit, reset } = useForm<SignUpFormInput>();
-  const { setisAuthSignIn } = useContext(
+  const { setIsAuthSignIn } = useContext(
     ToggleContext,
   ) as ToggleContextType;
 
@@ -30,8 +27,7 @@ export const SignUpForm = () => {
           signUp({ email, password, confirmPassword, username }),
         ).unwrap();
         reset();
-        setisAuthSignIn(true)
-        navigate(SIGN_IN);
+        setIsAuthSignIn(true)
       } catch (error) {
         console.error(error);
       }

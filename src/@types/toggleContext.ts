@@ -1,3 +1,5 @@
+import { SetStateAction } from "react";
+
 export type ToggleContextType = {
   showNotificationPanel: boolean;
   toggleDropdown: () => void;
@@ -16,5 +18,5 @@ export type ToggleContextType = {
   toggleShowConversationBox: () => void;
   showConversationBox: boolean;
   isAuthSignIn: boolean;
-  setisAuthSignIn: React.Dispatch<React.ReactNode>;
+  setIsAuthSignIn: React.Dispatch<SetStateAction<boolean>>
 };
