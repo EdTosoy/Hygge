@@ -1,17 +1,22 @@
 import { useTranslation } from "react-i18next";
 import { Logo } from "components";
 import { AuthenticationHeaderProps } from "./types";
-import { useLocation, useNavigate } from "react-router";
-import { SIGN_IN, SIGN_UP } from "src/constants";
+import { useLocation } from "react-router";
+import { SIGN_IN, } from "src/constants";
+import { useContext } from "react";
+import { ToggleContextType } from "@types";
+import { ToggleContext } from "context";
 
-export const AuthenticationHeader = ({}: AuthenticationHeaderProps) => {
+export const AuthenticationHeader = ({ }: AuthenticationHeaderProps) => {
   const { t } = useTranslation();
-  const navigate = useNavigate();
   const { search } = useLocation();
   const isSignIn = search === SIGN_IN;
+  const { isAuthSignIn, setIsAuthSignIn } = useContext(
+    ToggleContext,
+  ) as ToggleContextType;
   const handleClick = () => {
-    if (isSignIn) navigate(SIGN_UP);
-    else navigate(SIGN_IN);
+    if (isAuthSignIn) { setIsAuthSignIn(false) }
+    else { setIsAuthSignIn(true) }
   };
   return (
     <div className="bg-white body-grid-container  ">
