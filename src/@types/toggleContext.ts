@@ -16,5 +16,5 @@ export type ToggleContextType = {
   toggleShowConversationBox: () => void;
   showConversationBox: boolean;
   isAuthSignIn: boolean;
-  setisAuthSignIn: () => void
+  setisAuthSignIn: React.Dispatch<React.ReactNode>;
 };
