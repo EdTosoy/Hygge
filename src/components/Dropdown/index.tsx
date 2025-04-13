@@ -2,12 +2,12 @@ import { useContext } from "react";
 import { useNavigate } from "react-router";
 import { useTranslation } from "react-i18next";
 import { ToggleContext } from "context";
-import { useAppDispatch, useAppSelector } from "hooks";
-import { lagout } from "src/features/auth/api";
+import { useAppSelector } from "hooks";
+import cookie from "js-cookie";
 import { IconContainer } from "components";
 import { ToggleContextType } from "@types";
 import { DropdownProps } from "./types";
-import { HOME_ROUTE, USER_INFO } from "src/constants";
+import { USER_INFO } from "src/constants";
 import { selectUserInfo } from "src/features/auth/selectors";
 import { UserInfo } from "src/features/auth/types";
 
@@ -15,14 +15,12 @@ export const Dropdown = ({ showDropdown, toggleDropdown }: DropdownProps) => {
   const { darkMode, setDarkMode, onlineStatus, setOnlineStatus } = useContext(
     ToggleContext,
   ) as ToggleContextType;
-  const dispatch = useAppDispatch();
   const { t } = useTranslation();
   const navigate = useNavigate();
   const handleLagout = async () => {
     try {
-      await dispatch(lagout()).unwrap();
-      localStorage.removeItem(USER_INFO);
-      navigate(HOME_ROUTE);
+      localStorage.setItem(USER_INFO, "");
+      cookie.remove("refreshToken");
       window.location.reload();
     } catch (error) {
       console.error(error);
