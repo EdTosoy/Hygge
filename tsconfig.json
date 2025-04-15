@@ -44,9 +44,11 @@
       "src": ["src/*"],
       "utils": ["src/utils"]
     },
-    "typeRoots": ["node_modules/@types", "./src/@types"]
+    "types": ["electron"],
+    "typeRoots": ["./node_modules/@types", "./src/@types"]
   },
-  "include": ["src", "cypress/**/*.tsx", "./cypress.d.ts", "vite.config.ts"],
-  "exclude": ["node_modules", "dist"],
+  "include": ["src", "cypress/**/*.tsx", "./cypress.d.ts"],
+  "exclude": ["node_modules", "dist",  "vite.config.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
+  
